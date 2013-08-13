@@ -1,10 +1,11 @@
 #include "parser/Parser.h"
+#include "translator/Translator.h"
 #include "parser/WizardBasicGrammar.h"
 #include "exceptions/WizardBasicException.h"
 #include <boost/spirit/home/classic/tree/tree_to_xml.hpp>
 
-using namespace thewizardplusplus::wizard_basic;
 using namespace thewizardplusplus::wizard_basic::parser;
+using namespace thewizardplusplus::wizard_basic::translator;
 using namespace thewizardplusplus::wizard_basic::exceptions;
 
 int main(void) {
@@ -81,6 +82,10 @@ int main(void) {
 	try {
 		Parser::ParseTree parse_tree = Parser().parse(code);
 		tree_to_xml(std::cout, parse_tree, code, WizardBasicGrammarRule::NAMES);
+		std::cout << std::endl;
+
+		std::string cpp_code = Translator().compile(parse_tree);
+		std::cout << cpp_code << std::endl;
 	} catch (const WizardBasicException& exception) {
 		std::cout << exception.what() << std::endl;
 	}

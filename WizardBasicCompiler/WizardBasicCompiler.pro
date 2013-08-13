@@ -15,13 +15,21 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/parser/WizardBasicGrammarRule.h \
 	source/thewizardplusplus/wizard_basic/parser/UnsignedRealParserPolicies.h \
 	source/thewizardplusplus/wizard_basic/parser/WizardBasicGrammar.h \
-	source/thewizardplusplus/wizard_basic/parser/Parser.h
+	source/thewizardplusplus/wizard_basic/parser/Parser.h \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateLabelsException.h \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/IncorrectOrderOfLabelsException.h \
+	source/thewizardplusplus/wizard_basic/translator/Program.h \
+	source/thewizardplusplus/wizard_basic/translator/Translator.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/exceptions/WizardBasicException.cpp \
 	source/thewizardplusplus/wizard_basic/parser/exceptions/CodePosition.cpp \
 	source/thewizardplusplus/wizard_basic/parser/exceptions/ParsingException.cpp \
 	source/thewizardplusplus/wizard_basic/parser/WizardBasicGrammarRule.cpp \
 	source/thewizardplusplus/wizard_basic/parser/Parser.cpp \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateLabelsException.cpp \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/IncorrectOrderOfLabelsException.cpp \
+	source/thewizardplusplus/wizard_basic/translator/Translator.cpp \
+	source/thewizardplusplus/wizard_basic/translator/Program.cpp \
 	source/thewizardplusplus/wizard_basic/main.cpp
 
 # файлы внешних библиотек
