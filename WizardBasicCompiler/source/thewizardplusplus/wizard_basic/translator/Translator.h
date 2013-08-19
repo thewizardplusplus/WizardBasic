@@ -32,6 +32,18 @@ private:
 		ParseTree::const_iterator&parse_tree_node);
 	std::string translateExpression(const wizard_basic::parser::Parser::
 		ParseTree::const_iterator& parse_tree_node);
+	std::string translateExpressionAddition(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
+	std::string translateExpressionMultiplication(const wizard_basic::parser::
+		Parser::ParseTree::const_iterator& parse_tree_node);
+	std::string translateConstantReal(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
+	std::string translateIdentifier(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
+	std::string translateArrayAccess(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
+	std::string translateFunctionCall(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
 };
 
 }

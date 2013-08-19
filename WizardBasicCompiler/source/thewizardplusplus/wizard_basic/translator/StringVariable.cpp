@@ -1,7 +1,5 @@
 #include "StringVariable.h"
-#include <boost/lexical_cast.hpp>
 #include <boost/format.hpp>
-#include <boost/algorithm/string.hpp>
 
 using namespace thewizardplusplus::wizard_basic::translator;
 using namespace boost;
@@ -26,6 +24,5 @@ std::string StringVariable::getCppDefinition(void) const {
 		symbol_codes += (format("%1%f") % static_cast<float>(string[i])).str();
 	}
 
-	return (format("\tfloat %1%[%2%_SIZE] = {%3%};\n") % name % to_upper_copy(
-		name) % symbol_codes).str();
+	return (format("\tfloat %1%[] = {%2%};\n") % name % symbol_codes).str();
 }

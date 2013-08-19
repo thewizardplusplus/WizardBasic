@@ -203,6 +203,74 @@ void Translator::translateStatementCondition(const Parser::ParseTree::
 std::string Translator::translateExpression(const Parser::ParseTree::
 	const_iterator& parse_tree_node)
 {
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::
+		EXPRESSION_ADDITION || parse_tree_node->value.id() ==
+		WizardBasicGrammarRule::EXPRESSION_MULTIPLICATION || parse_tree_node->
+		value.id() == WizardBasicGrammarRule::CONSTANT_REAL || parse_tree_node->
+		value.id() == WizardBasicGrammarRule::IDENTIFIER || parse_tree_node->
+		value.id() == WizardBasicGrammarRule::ARRAY_ACCESS || parse_tree_node->
+		value.id() == WizardBasicGrammarRule::FUNCTION_CALL, "Wizard BASIC: "
+		"translating error - unknown statement; expected EXPRESSION_ADDITION, "
+		"EXPRESSION_MULTIPLICATION, CONSTANT_REAL, IDENTIFIER, ARRAY_ACCESS or "
+		"FUNCTION_CALL.");
+
+	switch (parse_tree_node->value.id().to_long()) {
+		case WizardBasicGrammarRule::EXPRESSION_ADDITION:
+			return translateExpressionAddition(parse_tree_node);
+		case WizardBasicGrammarRule::EXPRESSION_MULTIPLICATION:
+			return translateExpressionMultiplication(parse_tree_node);
+		case WizardBasicGrammarRule::CONSTANT_REAL:
+			return translateConstantReal(parse_tree_node);
+		case WizardBasicGrammarRule::IDENTIFIER:
+			return translateIdentifier(parse_tree_node);
+		case WizardBasicGrammarRule::ARRAY_ACCESS:
+			return translateArrayAccess(parse_tree_node);
+		case WizardBasicGrammarRule::FUNCTION_CALL:
+			return translateFunctionCall(parse_tree_node);
+	}
+
+	// dummy for warning, value selected for guarantee error in generated C-code
+	return "(_expression)";
+}
+
+std::string Translator::translateExpressionAddition(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
 	(void)parse_tree_node;
-	return "<expression>";
+	return "<addition>";
+}
+
+std::string Translator::translateExpressionMultiplication(const Parser::
+	ParseTree::const_iterator& parse_tree_node)
+{
+	(void)parse_tree_node;
+	return "<multiplication>";
+}
+
+std::string Translator::translateConstantReal(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
+	(void)parse_tree_node;
+	return "<constant_real>";
+}
+
+std::string Translator::translateIdentifier(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
+	(void)parse_tree_node;
+	return "<identifier>";
+}
+
+std::string Translator::translateArrayAccess(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
+	(void)parse_tree_node;
+	return "<array_access>";
+}
+
+std::string Translator::translateFunctionCall(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
+	(void)parse_tree_node;
+	return "<function_call>";
 }

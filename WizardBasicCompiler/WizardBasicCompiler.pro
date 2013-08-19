@@ -63,6 +63,3 @@ unix | win32-g++ {
 win32-g++ {
 	QMAKE_CXXFLAGS += -U__STRICT_ANSI__
 }
-win32-msvc2010 {
-	QMAKE_CXXFLAGS += -W3 -Ox
-}
