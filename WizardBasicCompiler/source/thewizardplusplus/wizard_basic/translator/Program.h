@@ -3,6 +3,7 @@
 
 #include "VariableList.h"
 #include <string>
+#include <vector>
 
 namespace thewizardplusplus {
 namespace wizard_basic {
@@ -16,14 +17,20 @@ public:
 		expression);
 	void addAssign(const std::string& identifier, const std::string&
 		index_expression, const std::string& expression);
+	void addJump(size_t label);
 	std::string getCppCode(void) const;
 
 private:
-	typedef std::list<size_t> LabelList;
+	typedef std::list<size_t>   LabelList;
+	typedef std::vector<size_t> LabelVector;
 
 	std::string  cpp_code;
 	LabelList    labels;
+	LabelList    jumps;
 	VariableList variables;
+
+	void testJumps(void) const;
+	LabelVector findUnusedLabels(void) const;
 };
 
 }

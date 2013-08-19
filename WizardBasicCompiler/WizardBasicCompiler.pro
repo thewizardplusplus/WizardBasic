@@ -20,6 +20,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateLabelsException.h \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/IncorrectOrderOfLabelsException.h \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateVariablesException.h \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/JumpsToNonexsistentLabelsExceptions.h \
 	source/thewizardplusplus/wizard_basic/translator/Variable.h \
 	source/thewizardplusplus/wizard_basic/translator/NumberVariable.h \
 	source/thewizardplusplus/wizard_basic/translator/ArrayVariable.h \
@@ -38,6 +39,7 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateLabelsException.cpp \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/IncorrectOrderOfLabelsException.cpp \
 	source/thewizardplusplus/wizard_basic/translator/exceptions/DuplicateVariablesException.cpp \
+	source/thewizardplusplus/wizard_basic/translator/exceptions/JumpsToNonexsistentLabelsExceptions.cpp \
 	source/thewizardplusplus/wizard_basic/translator/Variable.cpp \
 	source/thewizardplusplus/wizard_basic/translator/NumberVariable.cpp \
 	source/thewizardplusplus/wizard_basic/translator/ArrayVariable.cpp \

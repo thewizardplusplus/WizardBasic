@@ -1,7 +1,7 @@
 #ifndef ASSERT_H
 #define ASSERT_H
 
-#include <cassert>
+#include <boost/assert.hpp>
 
-#define ASSERT(expression, message) assert((expression) && message)
+#define ASSERT(expression, message) BOOST_ASSERT((expression) && message)
 #endif
