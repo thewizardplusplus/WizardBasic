@@ -86,7 +86,7 @@ void Translator::translateStatement(const Parser::ParseTree::const_iterator&
 			translateStatementJump(parse_tree_node);
 			break;
 		case WizardBasicGrammarRule::STATEMENT_CONDITION:
-			//translateStatementCondition(parse_tree_node);
+			translateStatementCondition(parse_tree_node);
 			break;
 		case WizardBasicGrammarRule::FUNCTION_CALL:
 			//translateFunctionCall(parse_tree_node);
@@ -177,6 +177,27 @@ void Translator::translateStatementJump(const wizard_basic::parser::Parser::
 
 	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
 	program->addJump(lexical_cast<size_t>(getNodeValue(child)));
+}
+
+void Translator::translateStatementCondition(const Parser::ParseTree::
+	const_iterator& parse_tree_node)
+{
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::
+		STATEMENT_CONDITION, "Wizard BASIC: translating error - invalid node; "
+		"expected STATEMENT_CONDITION.");
+	ASSERT(parse_tree_node->children.size() == 3, "Wizard BASIC: translating "
+		"error - invalid children number of node; expected 3.");
+	std::string type_of_condition = getNodeValue(parse_tree_node);
+	ASSERT(type_of_condition == "=" || type_of_condition == "<" ||
+		type_of_condition == ">", "Wizard BASIC: translating error - invalid "
+		"value of node; expected \"=\", \"<\" or \">\".");
+
+	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
+	std::string left_expression = translateExpression(child++);
+	std::string right_expression = translateExpression(child++);
+	size_t label = lexical_cast<size_t>(getNodeValue(child));
+	program->addCondition(ConditionType::convertFromWizardBasicCode(
+		type_of_condition), left_expression, right_expression, label);
 }
 
 std::string Translator::translateExpression(const Parser::ParseTree::

@@ -28,6 +28,8 @@ private:
 		::const_iterator& parse_tree_node);
 	void translateStatementJump(const wizard_basic::parser::Parser::ParseTree::
 		const_iterator& parse_tree_node);
+	void translateStatementCondition(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator&parse_tree_node);
 	std::string translateExpression(const wizard_basic::parser::Parser::
 		ParseTree::const_iterator& parse_tree_node);
 };

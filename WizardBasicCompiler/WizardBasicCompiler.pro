@@ -26,6 +26,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/translator/ArrayVariable.h \
 	source/thewizardplusplus/wizard_basic/translator/StringVariable.h \
 	source/thewizardplusplus/wizard_basic/translator/VariableList.h \
+	source/thewizardplusplus/wizard_basic/translator/ConditionType.h \
 	source/thewizardplusplus/wizard_basic/translator/Program.h \
 	source/thewizardplusplus/wizard_basic/translator/Translator.h \
 	source/thewizardplusplus/wizard_basic/utils/assert.h
@@ -45,6 +46,7 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/translator/ArrayVariable.cpp \
 	source/thewizardplusplus/wizard_basic/translator/StringVariable.cpp \
 	source/thewizardplusplus/wizard_basic/translator/VariableList.cpp \
+	source/thewizardplusplus/wizard_basic/translator/ConditionType.cpp \
 	source/thewizardplusplus/wizard_basic/translator/Program.cpp \
 	source/thewizardplusplus/wizard_basic/translator/Translator.cpp \
 	source/thewizardplusplus/wizard_basic/main.cpp

@@ -2,6 +2,7 @@
 #define PROGRAM_H
 
 #include "VariableList.h"
+#include "ConditionType.h"
 #include <string>
 #include <vector>
 
@@ -18,6 +19,8 @@ public:
 	void addAssign(const std::string& identifier, const std::string&
 		index_expression, const std::string& expression);
 	void addJump(size_t label);
+	void addCondition(ConditionType::Types condition_type, const std::string&
+		left_expression, const std::string& right_expression, size_t label);
 	std::string getCppCode(void) const;
 
 private:

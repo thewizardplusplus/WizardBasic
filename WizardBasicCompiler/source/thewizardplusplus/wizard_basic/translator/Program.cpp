@@ -20,7 +20,7 @@ void Program::addLabel(size_t label) {
 	}
 	labels.push_back(label);
 
-	cpp_code += (format("\tlabel%1%:\n") % label).str();
+	cpp_code += (format("label%1%:\n") % label).str();
 }
 
 void Program::addVariable(const boost::shared_ptr<Variable>& variable) {
@@ -49,6 +49,18 @@ void Program::addJump(size_t label) {
 	cpp_code += (format("\tgoto %1%;\n") % label).str();
 }
 
+void Program::addCondition(ConditionType::Types condition_type, const std::
+	string& left_expression, const std::string& right_expression, size_t label)
+{
+	jumps.push_back(label);
+	cpp_code += (format(
+		"\tif (%1% %2% %3%) {\n"
+		"\t\tgoto %4%;\n"
+		"\t}\n"
+		) % left_expression % ConditionType::convertToCppCode(condition_type) %
+		right_expression % label).str();
+}
+
 std::string Program::getCppCode(void) const {
 	testJumps();
 
@@ -56,7 +68,7 @@ std::string Program::getCppCode(void) const {
 	LabelVector unused_labels = findUnusedLabels();
 	LabelVector::const_iterator i = unused_labels.begin();
 	for (; i != unused_labels.end(); ++i) {
-		erase_all(code, (format("\tlabel%1%:\n") % *i).str());
+		erase_all(code, (format("label%1%:\n") % *i).str());
 	}
 
 	return (format(
