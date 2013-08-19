@@ -5,8 +5,13 @@ using namespace thewizardplusplus::wizard_basic;
 using namespace thewizardplusplus::wizard_basic::exceptions;
 using namespace boost;
 
-const std::string WizardBasicException::MESSAGE = "Wizard BASIC: %1%.";
-
 WizardBasicException::WizardBasicException(const std::string& message) :
-	std::runtime_error((format(MESSAGE) % message).str())
+	std::runtime_error("Wizard BASIC: impossible error."),
+	message(message)
 {}
+
+WizardBasicException::~WizardBasicException(void) throw() {}
+
+const char* WizardBasicException::what(void) const throw() {
+	return (format("Wizard BASIC: %1%.") % message).str().c_str();
+}

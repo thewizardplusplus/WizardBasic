@@ -132,7 +132,7 @@ WizardBasicGrammar::definition<ScannerType>::definition(const
 		1>() - '0') >> !uint_p];
 	constant_real = real_parser<float, UnsignedRealParserPolicies>();
 	constant_string = lexeme_d[discard_node_d[ch_p('"')] >> token_node_d[
-		*(c_escape_ch_p - '"')] >> discard_node_d[ch_p('"')]];
+		+(c_escape_ch_p - '"')] >> discard_node_d[ch_p('"')]];
 }
 
 template <typename ScannerType>

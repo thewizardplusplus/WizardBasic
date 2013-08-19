@@ -9,14 +9,9 @@ namespace wizard_basic {
 namespace parser {
 namespace exceptions {
 
-class ParsingException : public thewizardplusplus::wizard_basic::exceptions::
-	WizardBasicException
-{
+class ParsingException : public wizard_basic::exceptions::WizardBasicException {
 public:
 	ParsingException(const CodePosition& code_position);
-
-private:
-	static const std::string MESSAGE;
 };
 
 }

@@ -14,14 +14,16 @@ public:
 		ParseTree& parse_tree);
 
 private:
-	Program program;
+	boost::shared_ptr<Program> program;
 
-	std::string getNodeValue(const thewizardplusplus::wizard_basic::parser::
-		Parser::ParseTree::const_iterator& parse_tree_node) const;
-	void compileLine(const thewizardplusplus::wizard_basic::parser::Parser::
+	std::string getNodeValue(const wizard_basic::parser::Parser::ParseTree::
+		const_iterator& parse_tree_node) const;
+	void compileLine(const wizard_basic::parser::Parser::ParseTree::
+		const_iterator& parse_tree_node);
+	void compileStatement(const wizard_basic::parser::Parser::ParseTree::
+		const_iterator& parse_tree_node);
+	void compileStatementArrayDefinition(const wizard_basic::parser::Parser::
 		ParseTree::const_iterator& parse_tree_node);
-	void compileStatement(const thewizardplusplus::wizard_basic::parser::Parser
-		::Parser::ParseTree::const_iterator& parse_tree_node);
 };
 
 }

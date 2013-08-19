@@ -10,9 +10,11 @@ namespace exceptions {
 class WizardBasicException : public std::runtime_error {
 public:
 	WizardBasicException(const std::string& message);
+	virtual ~WizardBasicException(void) throw();
+	virtual const char* what(void) const throw();
 
-private:
-	static const std::string MESSAGE;
+protected:
+	std::string message;
 };
 
 }
