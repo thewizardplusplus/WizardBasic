@@ -84,7 +84,7 @@ int main(void) {
 		tree_to_xml(std::cout, parse_tree, code, WizardBasicGrammarRule::NAMES);
 		std::cout << std::endl;
 
-		std::string cpp_code = Translator().compile(parse_tree);
+		std::string cpp_code = Translator().translate(parse_tree);
 		std::cout << cpp_code << std::endl;
 	} catch (const WizardBasicException& exception) {
 		std::cout << exception.what() << std::endl;

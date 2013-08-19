@@ -10,19 +10,23 @@ namespace translator {
 
 class Translator {
 public:
-	std::string compile(const thewizardplusplus::wizard_basic::parser::Parser::
-		ParseTree& parse_tree);
+	std::string translate(const thewizardplusplus::wizard_basic::parser::Parser
+		::ParseTree& parse_tree);
 
 private:
 	boost::shared_ptr<Program> program;
 
 	std::string getNodeValue(const wizard_basic::parser::Parser::ParseTree::
 		const_iterator& parse_tree_node) const;
-	void compileLine(const wizard_basic::parser::Parser::ParseTree::
+	void translateLine(const wizard_basic::parser::Parser::ParseTree::
 		const_iterator& parse_tree_node);
-	void compileStatement(const wizard_basic::parser::Parser::ParseTree::
+	void translateStatement(const wizard_basic::parser::Parser::ParseTree::
 		const_iterator& parse_tree_node);
-	void compileStatementArrayDefinition(const wizard_basic::parser::Parser::
+	void translateStatementArrayDefinition(const wizard_basic::parser::Parser::
+		ParseTree::const_iterator& parse_tree_node);
+	void translateStatementAssign(const wizard_basic::parser::Parser::ParseTree
+		::const_iterator& parse_tree_node);
+	std::string translateExpression(const wizard_basic::parser::Parser::
 		ParseTree::const_iterator& parse_tree_node);
 };
 

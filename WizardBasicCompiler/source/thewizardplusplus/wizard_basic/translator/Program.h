@@ -12,6 +12,10 @@ class Program {
 public:
 	void addLabel(size_t label);
 	void addVariable(const boost::shared_ptr<Variable>& variable);
+	void addAssign(const std::string& identifier, const std::string&
+		expression);
+	void addAssign(const std::string& identifier, const std::string&
+		index_expression, const std::string& expression);
 	std::string getCppCode(void) const;
 
 private:

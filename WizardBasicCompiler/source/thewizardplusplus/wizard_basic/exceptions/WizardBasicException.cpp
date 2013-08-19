@@ -6,7 +6,7 @@ using namespace thewizardplusplus::wizard_basic::exceptions;
 using namespace boost;
 
 WizardBasicException::WizardBasicException(const std::string& message) :
-	std::runtime_error("Wizard BASIC: impossible error."),
+	std::runtime_error("Wizard BASIC: unknown error."),
 	message(message)
 {}
 

@@ -1,6 +1,7 @@
 #include "Program.h"
 #include "exceptions/DuplicateLabelsException.h"
 #include "exceptions/IncorrectOrderOfLabelsException.h"
+#include "NumberVariable.h"
 #include <boost/format.hpp>
 
 using namespace thewizardplusplus::wizard_basic::translator;
@@ -21,6 +22,23 @@ void Program::addLabel(size_t label) {
 
 void Program::addVariable(const boost::shared_ptr<Variable>& variable) {
 	variables.addVariable(variable);
+}
+
+void Program::addAssign(const std::string& identifier, const std::string&
+	expression)
+{
+	if (!variables.hasVariable(identifier)) {
+		variables.addVariable(shared_ptr<Variable>(new NumberVariable(
+			identifier)));
+	}
+	cpp_code += (format("\t%1% = %2%;\n") % identifier % expression).str();
+}
+
+void Program::addAssign(const std::string& identifier, const std::string&
+	index_expression, const std::string& expression)
+{
+	cpp_code += (format("\t%1%[%2%] = %3%;\n") % identifier % index_expression %
+		expression).str();
 }
 
 std::string Program::getCppCode(void) const {

@@ -11,9 +11,10 @@ using namespace thewizardplusplus::wizard_basic::translator;
 using namespace thewizardplusplus::wizard_basic::translator::exceptions;
 using namespace boost;
 
-bool VariableList::hasVariable(const shared_ptr<Variable>& variable) {
-	for (const_iterator i = begin(); i != end(); ++i) {
-		if ((*i)->getName() == variable->getName()) {
+bool VariableList::hasVariable(const std::string& variable_name) {
+	VariableInnerList::const_iterator i = variables.begin();
+	for (; i != variables.end(); ++i) {
+		if ((*i)->getName() == variable_name) {
 			return true;
 		}
 	}
@@ -22,8 +23,8 @@ bool VariableList::hasVariable(const shared_ptr<Variable>& variable) {
 }
 
 void VariableList::addVariable(const shared_ptr<Variable>& variable) {
-	if (!hasVariable(variable)) {
-		push_back(variable);
+	if (!hasVariable(variable->getName())) {
+		variables.push_back(variable);
 	} else {
 		throw DuplicateVariablesException(variable->getName());
 	}
@@ -31,7 +32,8 @@ void VariableList::addVariable(const shared_ptr<Variable>& variable) {
 
 std::string VariableList::getCppDefinitionOfArraySizes(void) const {
 	std::string cpp_definition;
-	for (const_iterator i = begin(); i != end(); ++i) {
+	VariableInnerList::const_iterator i = variables.begin();
+	for (; i != variables.end(); ++i) {
 		Variable* variable = (*i).get();
 		if (typeid(*variable) == typeid(ArrayVariable) || typeid(*variable) ==
 			typeid(StringVariable))
@@ -55,7 +57,8 @@ std::string VariableList::getCppDefinitionOfArraySizes(void) const {
 
 std::string VariableList::getCppDefinitionOfVariables(void) const {
 	std::string cpp_definition;
-	for (const_iterator i = begin(); i != end(); ++i) {
+	VariableInnerList::const_iterator i = variables.begin();
+	for (; i != variables.end(); ++i) {
 		cpp_definition += (*i)->getCppDefinition();
 	}
 

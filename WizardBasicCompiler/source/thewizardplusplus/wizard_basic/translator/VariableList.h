@@ -9,12 +9,17 @@ namespace thewizardplusplus {
 namespace wizard_basic {
 namespace translator {
 
-class VariableList : public std::list<boost::shared_ptr<Variable> > {
+class VariableList {
 public:
-	bool hasVariable(const boost::shared_ptr<Variable>& variable);
+	bool hasVariable(const std::string& variable_name);
 	void addVariable(const boost::shared_ptr<Variable>& variable);
 	std::string getCppDefinitionOfArraySizes(void) const;
 	std::string getCppDefinitionOfVariables(void) const;
+
+private:
+	typedef std::list<boost::shared_ptr<Variable> > VariableInnerList;
+
+	VariableInnerList variables;
 };
 
 }
