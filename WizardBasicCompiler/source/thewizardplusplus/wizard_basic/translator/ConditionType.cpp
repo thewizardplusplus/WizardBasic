@@ -9,16 +9,14 @@ std::string ConditionType::convertToCppCode(ConditionType::Types
 	ASSERT(condition_type == EQUAL || condition_type == LESS || condition_type
 		== GREATER, "Wizard BASIC: translating error - invalid ConditionType "
 		"value.");
+
 	switch (condition_type) {
-		case ConditionType::EQUAL:
+		case EQUAL:
 			return "==";
-			break;
-		case ConditionType::LESS:
+		case LESS:
 			return "<";
-			break;
-		case ConditionType::GREATER:
+		case GREATER:
 			return ">";
-			break;
 	}
 
 	// dummy for warning, value selected for guarantee error in generated C-code
@@ -31,18 +29,16 @@ ConditionType::Types ConditionType::convertFromWizardBasicCode(const std::
 	ASSERT(wizard_basic_code == "=" || wizard_basic_code == "<" ||
 		wizard_basic_code == ">", "Wizard BASIC: translating error - invalid "
 		"code of condition; expected \"=\", \"<\" or \">\".");
+
 	switch (wizard_basic_code[0]) {
 		case '=':
-			return ConditionType::EQUAL;
-			break;
+			return EQUAL;
 		case '<':
-			return ConditionType::LESS;
-			break;
+			return LESS;
 		case '>':
-			return ConditionType::GREATER;
-			break;
+			return GREATER;
 	}
 
 	// dummy for warning
-	return ConditionType::EQUAL;
+	return EQUAL;
 }

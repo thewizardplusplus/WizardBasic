@@ -73,7 +73,7 @@ int main(void) {
 		"600 LET i = 0\n"
 		"610     IF i = 0 THEN 630\n"
 		"620     LET message = message + MESSAGE_ITEM_SEPARATOR\n"
-		"630     LET message = message + ToString(array[i])\n"
+		"630     REM LET message = message + ToString(array[i])\n"
 		"640     LET i = i + 1\n"
 		"650     IF i < Length(array) THEN 610\n"
 		"660 DIM END_OF_MESSAGE = \"].\n\"\n"
@@ -87,6 +87,6 @@ int main(void) {
 		std::string cpp_code = Translator().translate(parse_tree);
 		std::cout << cpp_code << std::endl;
 	} catch (const WizardBasicException& exception) {
-		std::cout << exception.what() << std::endl;
+		std::cerr << exception.what() << std::endl;
 	}
 }

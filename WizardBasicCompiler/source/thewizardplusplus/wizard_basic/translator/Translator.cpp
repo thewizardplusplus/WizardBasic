@@ -4,7 +4,15 @@
 #include "exceptions/TranslateException.h"
 #include "ArrayVariable.h"
 #include "StringVariable.h"
+#include "AdditionExpression.h"
+#include "MultiplicationExpression.h"
+#include "RealConstantExpression.h"
+#include "exceptions/UndefinedIdentifierException.h"
+#include "IdentifierExpression.h"
+#include "ArrayAccessExpression.h"
+#include "FunctionCallExpression.h"
 #include <boost/lexical_cast.hpp>
+#include <typeinfo>
 
 using namespace thewizardplusplus::wizard_basic::translator;
 using namespace thewizardplusplus::wizard_basic::parser;
@@ -89,7 +97,8 @@ void Translator::translateStatement(const Parser::ParseTree::const_iterator&
 			translateStatementCondition(parse_tree_node);
 			break;
 		case WizardBasicGrammarRule::FUNCTION_CALL:
-			//translateFunctionCall(parse_tree_node);
+			program->addFunctionCallAsSatetement(translateFunctionCall(
+				parse_tree_node));
 			break;
 	}
 }
@@ -145,22 +154,14 @@ void Translator::translateStatementAssign(const wizard_basic::parser::Parser::
 	switch (child->value.id().to_long()) {
 		case WizardBasicGrammarRule::IDENTIFIER: {
 			std::string identifier = getNodeValue(child);
-			std::string expression = translateExpression(++child);
+			shared_ptr<Expression> expression = translateExpression(++child);
 			program->addAssign(identifier, expression);
 			break;
 		}
 		case WizardBasicGrammarRule::ARRAY_ACCESS: {
-			ASSERT(child->children.size() == 2, "Wizard BASIC: translating "
-				"error - invalid children number of node; expected 2.");
-			Parser::ParseTree::const_iterator subchild = child->children.
-				begin();
-			ASSERT(subchild->value.id() == WizardBasicGrammarRule::IDENTIFIER,
-				"Wizard BASIC: translating error - invalid node; expected "
-				"IDENTIFIER.");
-			std::string identifier = getNodeValue(subchild);
-			std::string index_expression = translateExpression(++subchild);
-			std::string expression = translateExpression(++child);
-			program->addAssign(identifier, index_expression, expression);
+			shared_ptr<Expression> array_access = translateArrayAccess(child);
+			shared_ptr<Expression> expression = translateExpression(++child);
+			program->addAssign(array_access, expression);
 			break;
 		}
 	}
@@ -187,20 +188,21 @@ void Translator::translateStatementCondition(const Parser::ParseTree::
 		"expected STATEMENT_CONDITION.");
 	ASSERT(parse_tree_node->children.size() == 3, "Wizard BASIC: translating "
 		"error - invalid children number of node; expected 3.");
+
 	std::string type_of_condition = getNodeValue(parse_tree_node);
 	ASSERT(type_of_condition == "=" || type_of_condition == "<" ||
 		type_of_condition == ">", "Wizard BASIC: translating error - invalid "
 		"value of node; expected \"=\", \"<\" or \">\".");
 
 	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
-	std::string left_expression = translateExpression(child++);
-	std::string right_expression = translateExpression(child++);
+	shared_ptr<Expression> left_expression = translateExpression(child++);
+	shared_ptr<Expression> right_expression = translateExpression(child++);
 	size_t label = lexical_cast<size_t>(getNodeValue(child));
 	program->addCondition(ConditionType::convertFromWizardBasicCode(
 		type_of_condition), left_expression, right_expression, label);
 }
 
-std::string Translator::translateExpression(const Parser::ParseTree::
+shared_ptr<Expression> Translator::translateExpression(const Parser::ParseTree::
 	const_iterator& parse_tree_node)
 {
 	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::
@@ -229,48 +231,115 @@ std::string Translator::translateExpression(const Parser::ParseTree::
 			return translateFunctionCall(parse_tree_node);
 	}
 
-	// dummy for warning, value selected for guarantee error in generated C-code
-	return "(_expression)";
+	// dummy for warning
+	return shared_ptr<Expression>();
 }
 
-std::string Translator::translateExpressionAddition(const Parser::ParseTree::
-	const_iterator& parse_tree_node)
-{
-	(void)parse_tree_node;
-	return "<addition>";
-}
-
-std::string Translator::translateExpressionMultiplication(const Parser::
+shared_ptr<Expression> Translator::translateExpressionAddition(const Parser::
 	ParseTree::const_iterator& parse_tree_node)
 {
-	(void)parse_tree_node;
-	return "<multiplication>";
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::
+		EXPRESSION_ADDITION, "Wizard BASIC: translating error - invalid node; "
+		"expected EXPRESSION_ADDITION.");
+	ASSERT(parse_tree_node->children.size() == 2, "Wizard BASIC: translating "
+		"error - invalid children number of node; expected 2.");
+
+	std::string type_of_addition = getNodeValue(parse_tree_node);
+	ASSERT(type_of_addition == "+" || type_of_addition == "-", "Wizard BASIC: "
+		"translating error - invalid value of node; expected \"+\" or \"-\".");
+
+	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
+	shared_ptr<Expression> operand1 = translateExpression(child);
+	shared_ptr<Expression> operand2 = translateExpression(++child);
+
+	return shared_ptr<Expression>(new AdditionExpression(operand1, AdditionType
+		::convertFromWizardBasicCode(type_of_addition), operand2));
 }
 
-std::string Translator::translateConstantReal(const Parser::ParseTree::
-	const_iterator& parse_tree_node)
+shared_ptr<Expression> Translator::translateExpressionMultiplication(const
+	Parser::ParseTree::const_iterator& parse_tree_node)
 {
-	(void)parse_tree_node;
-	return "<constant_real>";
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::
+		EXPRESSION_MULTIPLICATION, "Wizard BASIC: translating error - invalid "
+		"node; expected EXPRESSION_MULTIPLICATION.");
+	ASSERT(parse_tree_node->children.size() == 2, "Wizard BASIC: translating "
+		"error - invalid children number of node; expected 2.");
+
+	std::string type_of_multiplication = getNodeValue(parse_tree_node);
+	ASSERT(type_of_multiplication == "*" || type_of_multiplication == "/",
+		"Wizard BASIC: translating error - invalid value of node; expected "
+		"\"*\" or \"/\".");
+
+	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
+	shared_ptr<Expression> operand1 = translateExpression(child);
+	shared_ptr<Expression> operand2 = translateExpression(++child);
+
+	return shared_ptr<Expression>(new MultiplicationExpression(operand1,
+		MultiplicationType::convertFromWizardBasicCode(type_of_multiplication),
+		operand2));
 }
 
-std::string Translator::translateIdentifier(const Parser::ParseTree::
-	const_iterator& parse_tree_node)
+shared_ptr<Expression> Translator::translateConstantReal(const Parser::ParseTree
+	::const_iterator& parse_tree_node)
 {
-	(void)parse_tree_node;
-	return "<identifier>";
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::CONSTANT_REAL,
+		"Wizard BASIC: translating error - invalid node; expected "
+		"CONSTANT_REAL.");
+
+	return shared_ptr<Expression>(new RealConstantExpression(lexical_cast<
+		float>(getNodeValue(parse_tree_node))));
 }
 
-std::string Translator::translateArrayAccess(const Parser::ParseTree::
+shared_ptr<Expression> Translator::translateIdentifier(const Parser::ParseTree::
 	const_iterator& parse_tree_node)
 {
-	(void)parse_tree_node;
-	return "<array_access>";
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::IDENTIFIER,
+		"Wizard BASIC: translating error - invalid node; expected IDENTIFIER.");
+
+	std::string identifier = getNodeValue(parse_tree_node);
+	shared_ptr<Variable> variable = program->getVariables().getVariableByName(
+		identifier);
+	if (!variable) {
+		throw UndefinedIdentifierException(identifier);
+	}
+
+	return shared_ptr<Expression>(new IdentifierExpression(variable));
 }
 
-std::string Translator::translateFunctionCall(const Parser::ParseTree::
-	const_iterator& parse_tree_node)
+shared_ptr<Expression> Translator::translateArrayAccess(const Parser::ParseTree
+	::const_iterator& parse_tree_node)
 {
-	(void)parse_tree_node;
-	return "<function_call>";
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::ARRAY_ACCESS,
+		"Wizard BASIC: translating error - invalid node; expected "
+		"ARRAY_ACCESS.");
+	ASSERT(parse_tree_node->children.size() == 2, "Wizard BASIC: translating "
+		"error - invalid children number of node; expected 2.");
+
+	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
+	ASSERT(child->value.id() == WizardBasicGrammarRule::IDENTIFIER, "Wizard "
+		"BASIC: translating error - invalid node; expected IDENTIFIER.");
+
+	std::string identifier = getNodeValue(child++);
+	shared_ptr<Variable> variable = program->getVariables().getVariableByName(
+		identifier);
+	if (!variable) {
+		throw UndefinedIdentifierException(identifier);
+	}
+
+	shared_ptr<Expression> index = translateExpression(child);
+	std::string index_variable_name = program->addTestArrayBounds(variable,
+		index);
+
+	return shared_ptr<Expression>(new ArrayAccessExpression(variable, index,
+		index_variable_name));
+}
+
+shared_ptr<Expression> Translator::translateFunctionCall(const Parser::ParseTree
+	::const_iterator& parse_tree_node)
+{
+	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::FUNCTION_CALL,
+		"Wizard BASIC: translating error - invalid node; expected "
+		"FUNCTION_CALL.");
+
+	return shared_ptr<Expression>(new FunctionCallExpression());
 }

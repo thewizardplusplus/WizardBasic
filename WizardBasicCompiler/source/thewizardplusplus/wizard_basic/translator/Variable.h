@@ -10,6 +10,7 @@ namespace translator {
 class Variable {
 public:
 	Variable(const std::string& name);
+	virtual ~Variable(void);
 	std::string getName(void) const;
 	virtual std::string getCppDefinition(void) const = 0;
 

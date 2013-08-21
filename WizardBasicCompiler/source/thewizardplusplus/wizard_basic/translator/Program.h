@@ -1,8 +1,9 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include "VariableList.h"
+#include "Expression.h"
 #include "ConditionType.h"
+#include "VariableList.h"
 #include <string>
 #include <vector>
 
@@ -12,15 +13,21 @@ namespace translator {
 
 class Program {
 public:
+	const VariableList& getVariables(void) const;
 	void addLabel(size_t label);
 	void addVariable(const boost::shared_ptr<Variable>& variable);
-	void addAssign(const std::string& identifier, const std::string&
-		expression);
-	void addAssign(const std::string& identifier, const std::string&
-		index_expression, const std::string& expression);
+	void addAssign(const std::string& variable_name, const boost::shared_ptr<
+		Expression>& expression);
+	void addAssign(const boost::shared_ptr<Expression>& array_access, const
+		boost::shared_ptr<Expression>& expression);
 	void addJump(size_t label);
-	void addCondition(ConditionType::Types condition_type, const std::string&
-		left_expression, const std::string& right_expression, size_t label);
+	void addCondition(ConditionType::Types condition_type, const boost::
+		shared_ptr<Expression>& left_expression, const boost::shared_ptr<
+		Expression>& right_expression, size_t label);
+	std::string addTestArrayBounds(const boost::shared_ptr<Variable>& variable,
+		const boost::shared_ptr<Expression>& index);
+	void addFunctionCallAsSatetement(const boost::shared_ptr<Expression>&
+		function_call);
 	std::string getCppCode(void) const;
 
 private:

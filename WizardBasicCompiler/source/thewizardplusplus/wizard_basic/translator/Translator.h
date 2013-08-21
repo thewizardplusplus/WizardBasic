@@ -30,20 +30,21 @@ private:
 		const_iterator& parse_tree_node);
 	void translateStatementCondition(const wizard_basic::parser::Parser::
 		ParseTree::const_iterator&parse_tree_node);
-	std::string translateExpression(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
-	std::string translateExpressionAddition(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
-	std::string translateExpressionMultiplication(const wizard_basic::parser::
-		Parser::ParseTree::const_iterator& parse_tree_node);
-	std::string translateConstantReal(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
-	std::string translateIdentifier(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
-	std::string translateArrayAccess(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
-	std::string translateFunctionCall(const wizard_basic::parser::Parser::
-		ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateExpression(const wizard_basic::parser
+		::Parser::ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateExpressionAddition(const wizard_basic
+		::parser::Parser::ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateExpressionMultiplication(const
+		wizard_basic::parser::Parser::ParseTree::const_iterator&
+		parse_tree_node);
+	boost::shared_ptr<Expression> translateConstantReal(const wizard_basic::
+		parser::Parser::ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateIdentifier(const wizard_basic::parser
+		::Parser::ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateArrayAccess(const wizard_basic::
+		parser::Parser::ParseTree::const_iterator& parse_tree_node);
+	boost::shared_ptr<Expression> translateFunctionCall(const wizard_basic::
+		parser::Parser::ParseTree::const_iterator& parse_tree_node);
 };
 
 }
