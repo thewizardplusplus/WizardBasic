@@ -1,0 +1,32 @@
+#include "WizardBasicGrammarRule.h"
+#include <boost/assign.hpp>
+
+using namespace thewizardplusplus::wizard_basic::compiler::parser;
+using namespace boost::spirit::classic;
+using namespace boost::assign;
+
+const std::map<parser_id, std::string> WizardBasicGrammarRule::NAMES =
+	map_list_of
+		(ROOT, "ROOT")
+		(PROGRAM, "PROGRAM")
+		(LINE, "LINE")
+
+		(STATEMENT, "STATEMENT")
+		(STATEMENT_ARRAY_DEFINITION, "STATEMENT_ARRAY_DEFINITION")
+		(STATEMENT_ASSIGN, "STATEMENT_ASSIGN")
+		(STATEMENT_JUMP, "STATEMENT_JUMP")
+		(STATEMENT_CONDITION, "STATEMENT_CONDITION")
+
+		(EXPRESSION_ADDITION, "EXPRESSION_ADDITION")
+		(EXPRESSION_MULTIPLICATION, "EXPRESSION_MULTIPLICATION")
+		(EXPRESSION_ATOM, "EXPRESSION_ATOM")
+
+		(COMMENT, "COMMENT")
+		(IDENTIFIER, "IDENTIFIER")
+		(ARRAY_ACCESS, "ARRAY_ACCESS")
+		(FUNCTION_CALL, "FUNCTION_CALL")
+
+		(LINE_BREAK, "LINE_BREAK")
+		(CONSTANT_POSITIVE_INTEGER, "CONSTANT_POSITIVE_INTEGER")
+		(CONSTANT_REAL, "CONSTANT_REAL")
+		(CONSTANT_STRING, "CONSTANT_STRING");
