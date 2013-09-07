@@ -23,6 +23,10 @@ const VariableList& Program::getVariables(void) const {
 	return variables;
 }
 
+const FunctionList& Program::getFunctions(void) const {
+	return functions;
+}
+
 void Program::addLabel(size_t label) {
 	if (std::find(labels.begin(), labels.end(), label) != labels.end()) {
 		throw DuplicateLabelsException();

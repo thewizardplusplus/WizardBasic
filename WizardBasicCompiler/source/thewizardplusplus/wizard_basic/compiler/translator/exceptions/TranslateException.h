@@ -17,7 +17,7 @@ public:
 	virtual ~TranslateException(void) throw();
 	void setLineLabel(size_t line_label);
 
-private:
+protected:
 	std::string translate_message;
 };
 

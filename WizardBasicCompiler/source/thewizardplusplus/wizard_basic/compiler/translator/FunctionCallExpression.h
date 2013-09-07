@@ -2,6 +2,7 @@
 #define FUNCTIONCALLEXPRESSION_H
 
 #include "Expression.h"
+#include "Function.h"
 
 namespace thewizardplusplus {
 namespace wizard_basic {
@@ -10,8 +11,11 @@ namespace translator {
 
 class FunctionCallExpression : public Expression {
 public:
-	FunctionCallExpression(void);
+	FunctionCallExpression(const Function& function);
 	virtual std::string getCppCode(void) const;
+
+private:
+	Function function;
 };
 
 }

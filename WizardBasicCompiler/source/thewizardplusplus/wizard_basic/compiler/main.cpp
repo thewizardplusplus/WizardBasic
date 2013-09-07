@@ -10,7 +10,7 @@ using namespace thewizardplusplus::wizard_basic::compiler::exceptions;
 
 int main(void) {
 	std::string code =
-		"10  REM Quick sort.\n"
+		/*"10  REM Quick sort.\n"
 		"20  REM Based on public-domain C implementation by Darel Rex Finley:\n"
 		"30  REM     http://alienryderflex.com/quicksort/\n"
 		"40\n"
@@ -77,7 +77,9 @@ int main(void) {
 		"640     LET i = i + 1\n"
 		"650     IF i < Length(array) THEN 610\n"
 		"660 DIM END_OF_MESSAGE = \"].\n\"\n"
-		"670 Show(message + END_OF_MESSAGE)\n";
+		"670 Show(message + END_OF_MESSAGE)\n";*/
+		"5 DIM a[1]\n"
+		"10 Test2(a, a)";
 
 	try {
 		Parser::ParseTree parse_tree = Parser().parse(code);

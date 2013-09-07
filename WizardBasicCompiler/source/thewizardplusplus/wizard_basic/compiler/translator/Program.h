@@ -4,6 +4,7 @@
 #include "Expression.h"
 #include "ConditionType.h"
 #include "VariableList.h"
+#include "FunctionList.h"
 #include <string>
 #include <vector>
 #include <set>
@@ -16,6 +17,7 @@ namespace translator {
 class Program {
 public:
 	const VariableList& getVariables(void) const;
+	const FunctionList& getFunctions(void) const;
 	void addLabel(size_t label);
 	void addVariable(const Variable::Pointer& variable);
 	void addAssign(const std::string& variable_name, const Expression::Pointer&
@@ -38,6 +40,7 @@ private:
 	LabelList    labels;
 	LabelList    jumps;
 	VariableList variables;
+	FunctionList functions;
 
 	void testJumps(void) const;
 	LabelVector findUnusedLabels(void) const;

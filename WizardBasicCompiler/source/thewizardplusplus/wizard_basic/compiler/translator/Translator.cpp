@@ -10,6 +10,8 @@
 #include "exceptions/UndefinedVariableException.h"
 #include "IdentifierExpression.h"
 #include "ArrayAccessExpression.h"
+#include "exceptions/IncorrectNumberOfFunctionParametersException.h"
+#include "exceptions/IncorrectTypesOfFunctionParameterException.h"
 #include "FunctionCallExpression.h"
 #include <boost/lexical_cast.hpp>
 #include <typeinfo>
@@ -336,5 +338,30 @@ Expression::Pointer Translator::translateFunctionCall(const Parser::ParseTree::
 		"Wizard BASIC: translating error - invalid node; expected "
 		"FUNCTION_CALL.");
 
-	return Expression::Pointer(new FunctionCallExpression());
+	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
+	ASSERT(child->value.id() == WizardBasicGrammarRule::IDENTIFIER, "Wizard "
+		"BASIC: translating error - invalid node; expected IDENTIFIER.");
+	std::string name = getNodeValue(child++);
+
+	Function function = program->getFunctions().getFunctionByName(name);
+	if (function.getParameters().size() != parse_tree_node->children.size() - 1)
+	{
+		throw IncorrectNumberOfFunctionParametersException(function.
+			getParameters().size(), parse_tree_node->children.size() - 1);
+	}
+
+	Function::ParameterList::iterator i = function.getParameters().begin();
+	size_t counter = 1;
+	for (; i != function.getParameters().end() && child != parse_tree_node->
+		children.end(); ++i, ++child, counter++)
+	{
+		try {
+			(*i).setExpression(translateExpression(child));
+		} catch (IncorrectTypesOfFunctionParameterException& exception) {
+			exception.setNumberOfParameter(counter);
+			throw;
+		}
+	}
+
+	return Expression::Pointer(new FunctionCallExpression(function));
 }

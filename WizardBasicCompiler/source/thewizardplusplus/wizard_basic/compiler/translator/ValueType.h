@@ -14,7 +14,8 @@ public:
 		UNKNOWN_TYPE,
 		VOID,
 		NUMBER,
-		ARRAY
+		ARRAY,
+		STRING
 	};
 
 	static std::string convertToString(ValueType::Types value_type);

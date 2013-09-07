@@ -13,3 +13,10 @@ IllegalOperationException::IllegalOperationException(const std::string&
 		operation_description % ValueType::convertToString(operand1_type) %
 		ValueType::convertToString(operand2_type)).str())
 {}
+
+IllegalOperationException::IllegalOperationException(const std::string&
+	operation_description, const std::string& message)
+:
+	TranslateException((format("illegal %1%; %2%") % operation_description %
+		message).str())
+{}

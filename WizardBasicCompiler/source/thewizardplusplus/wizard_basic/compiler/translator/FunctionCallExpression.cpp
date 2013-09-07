@@ -2,10 +2,11 @@
 
 using namespace thewizardplusplus::wizard_basic::compiler::translator;
 
-FunctionCallExpression::FunctionCallExpression(void) :
-	Expression(ValueType::NUMBER)
+FunctionCallExpression::FunctionCallExpression(const Function& function) :
+	Expression(function.getResultType()),
+	function(function)
 {}
 
 std::string FunctionCallExpression::getCppCode(void) const {
-	return "<function_call>";
+	return function.getCppCode();
 }

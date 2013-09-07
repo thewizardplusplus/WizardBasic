@@ -47,7 +47,14 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.h \
 	source/thewizardplusplus/wizard_basic/compiler/utils/assert.h \
-    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.h
+    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/Function.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/ParsingException.cpp \
@@ -85,7 +92,14 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/main.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp
+    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/Function.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.cpp \
+    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.cpp
 
 # файлы внешних библиотек
 win32 {
