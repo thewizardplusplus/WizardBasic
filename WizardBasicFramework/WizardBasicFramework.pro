@@ -12,13 +12,16 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.h \
-	source/thewizardplusplus/wizard_basic/framework/base/Array.h
+	source/thewizardplusplus/wizard_basic/framework/base/Array.h \
+    source/thewizardplusplus/wizard_basic/framework/system/System.h \
+    source/thewizardplusplus/wizard_basic/framework/system/os.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.cpp \
-	source/thewizardplusplus/wizard_basic/framework/base/Array.cpp
+	source/thewizardplusplus/wizard_basic/framework/base/Array.cpp \
+    source/thewizardplusplus/wizard_basic/framework/system/System.cpp
 
 # файлы внешних библиотек
 win32 {

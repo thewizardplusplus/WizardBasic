@@ -12,5 +12,5 @@ StringVariable::StringVariable(const std::string& name, const std::string&
 {}
 
 std::string StringVariable::getCppDefinition(void) const {
-	return (format("\tArray %1%(\"%1%\", \"%2%\");\n") % name % string).str();
+	return (format("\tSTRING(%1%, \"%2%\");\n") % name % string).str();
 }

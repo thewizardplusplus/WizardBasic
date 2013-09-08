@@ -133,31 +133,24 @@ std::string Program::getCppCode(void) const {
 		erase_all(code, (format("\tlabel%1%:\n") % *i).str());
 	}
 
-	if (!variables.hasArrays()) {
-		return (format(
-			"int main(void) {\n"
-			"%1%"
-			"%2%"
-			"}\n"
-		) % variables.getCppDefinition() % code).str();
-	} else {
-		return (format(
-			"#include <WizardBasicFramework/Array.h>\n"
-			"#include <iostream>\n"
-			"\n"
-			"using namespace thewizardplusplus::wizard_basic::framework;\n"
-			"\n"
-			"int main(void) {\n"
-			"%1%"
-			"\ttry {\n"
-			"%2%"
-			"\t} catch (const OutOfBoundsException& exception) {\n"
-			"\t\tstd::cerr << \"Wizard BASIC: runtime error - \" << exception."
-				"what() << \".\" << std::endl;\n"
-			"\t}\n"
-			"}\n"
-		) % variables.getCppDefinition() % code).str();
-	}
+	return (format(
+		"#include <WizardBasicFramework/base/Array.h>\n"
+		"#include <WizardBasicFramework/system/System.h>\n"
+		"#include <iostream>\n"
+		"\n"
+		"using namespace thewizardplusplus::wizard_basic::framework::base;\n"
+		"using namespace thewizardplusplus::wizard_basic::framework::system;\n"
+		"\n"
+		"int main(void) {\n"
+		"%1%"
+		"\ttry {\n"
+		"%2%"
+		"\t} catch (const OutOfBoundsException& exception) {\n"
+		"\t\tstd::cerr << \"Wizard BASIC: runtime error - \" << exception."
+			"what() << \".\" << std::endl;\n"
+		"\t}\n"
+		"}\n"
+	) % variables.getCppDefinition() % code).str();
 }
 
 void Program::testJumps(void) const {

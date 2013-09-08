@@ -10,7 +10,14 @@ using namespace thewizardplusplus::wizard_basic::compiler::exceptions;
 
 int main(void) {
 	std::string code =
-		"10 TEST(23)";
+		"10 DIM NEW_LINE = \"\\n\"\n"
+		"20 TRACEN(RND())\n"
+		"30 TRACES(NEW_LINE)\n"
+		"40 TRACEN(TIMER())\n"
+		"50 TRACES(NEW_LINE)\n"
+		"60 DIM TEST_STRING = \"Test.\"\n"
+		"70 TRACES(TEST_STRING)\n"
+		"80 TRACES(NEW_LINE)";
 
 	try {
 		Parser::ParseTree parse_tree = Parser().parse(code);

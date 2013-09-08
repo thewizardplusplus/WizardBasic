@@ -343,28 +343,33 @@ Expression::Pointer Translator::translateFunctionCall(const Parser::ParseTree::
 		"BASIC: translating error - invalid node; expected IDENTIFIER.");
 	std::string alias = getNodeValue(child++);
 
-	Function function = program->getFunctions().getFunctionByAlias(alias);
-	Function::ParameterList& parameters = function.getParameters();
+	try {
+		Function function = program->getFunctions().getFunctionByAlias(alias);
+		Function::ParameterList& parameters = function.getParameters();
 
-	size_t received_number = parse_tree_node->children.size() - 1;
-	size_t expected_number = parameters.size();
-	if (received_number != expected_number) {
-		throw IncorrectNumberOfFunctionParametersException(expected_number,
-			received_number);
-	}
-
-	Function::ParameterList::iterator i = parameters.begin();
-	size_t counter = 1;
-	for (; i != parameters.end() && child != parse_tree_node->children.end();
-		++i, ++child, counter++)
-	{
-		try {
-			(*i).setExpression(translateExpression(child));
-		} catch (IncorrectTypesOfFunctionParameterException& exception) {
-			exception.setNumberOfParameter(counter);
-			throw;
+		size_t received_number = parse_tree_node->children.size() - 1;
+		size_t expected_number = parameters.size();
+		if (received_number != expected_number) {
+			throw IncorrectNumberOfFunctionParametersException(expected_number,
+				received_number);
 		}
-	}
 
-	return Expression::Pointer(new FunctionCallExpression(function));
+		Function::ParameterList::iterator i = parameters.begin();
+		size_t counter = 1;
+		for (; i != parameters.end() && child != parse_tree_node->children.end();
+			++i, ++child, counter++)
+		{
+			try {
+				(*i).setExpression(translateExpression(child));
+			} catch (IncorrectTypesOfFunctionParameterException& exception) {
+				exception.setNumberOfParameter(counter);
+				throw;
+			}
+		}
+
+		return Expression::Pointer(new FunctionCallExpression(function));
+	} catch (IllegalFunctionCallOperationException& exception) {
+		exception.setFunctionName(alias);
+		throw;
+	}
 }

@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
+#define ARRAY(name, size) Array name(size, #name)
+#define STRING(name, string) Array name(string, #name)
+
 namespace thewizardplusplus {
 namespace wizard_basic {
 namespace framework {
@@ -11,8 +14,8 @@ namespace base {
 
 class Array {
 public:
-	Array(const std::string& name, size_t size);
-	Array(const std::string& name, const std::string& string);
+	Array(size_t size, const std::string& name);
+	Array(const std::string& string, const std::string& name);
 	float operator[](float index) const;
 	float& operator[](float index);
 	operator std::string(void) const;
@@ -22,8 +25,8 @@ public:
 private:
 	typedef std::vector<float> NumberVector;
 
-	std::string  name;
 	NumberVector array;
+	std::string  name;
 
 	size_t processIndex(float index) const;
 };

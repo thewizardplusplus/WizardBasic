@@ -9,10 +9,16 @@ using namespace boost::assign;
 
 FunctionList::FunctionList(void) {
 	functions = list_of
-		(Function(ValueType::NUMBER, "TEST", "Test", list_of
-			(FunctionParameter(ValueType::NUMBER))
-		)
-	);
+		(Function(ValueType::NUMBER, "RND", "System::getInstance()."
+			"getRandomNumber"))
+		(Function(ValueType::NUMBER, "TIMER", "System::getInstance()."
+			"getTimeFromStartInS"))
+		(Function(ValueType::VOID, "TRACEN", "System::getInstance().trace",
+			list_of
+				(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "TRACES", "System::getInstance().trace",
+			list_of
+				(FunctionParameter(ValueType::ARRAY))));
 }
 
 Function FunctionList::getFunctionByAlias(const std::string& alias) const {
