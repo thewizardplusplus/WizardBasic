@@ -23,7 +23,7 @@ const VariableList& Program::getVariables(void) const {
 	return variables;
 }
 
-const FunctionList& Program::getFunctions(void) const {
+FunctionList& Program::getFunctions(void) {
 	return functions;
 }
 

@@ -15,6 +15,6 @@ IncorrectTypesOfFunctionParameterException::
 void IncorrectTypesOfFunctionParameterException::setNumberOfParameter(
 	size_t number)
 {
-	translate_message += (format(" with parameter number %1%") % number).
+	translate_message += (format("; with parameter number %1%") % number).
 		str();
 }

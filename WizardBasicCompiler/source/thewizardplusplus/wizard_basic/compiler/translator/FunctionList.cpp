@@ -7,29 +7,22 @@ using namespace thewizardplusplus::wizard_basic::compiler::translator::
 	exceptions;
 using namespace boost::assign;
 
-FunctionList::FunctionList(void) :
-	functions(list_of
-		(Function(ValueType::VOID, "Test"))
-		(Function(ValueType::NUMBER, "Test1", "TST", list_of
+FunctionList::FunctionList(void) {
+	functions = list_of
+		(Function(ValueType::NUMBER, "TEST", "Test", list_of
 			(FunctionParameter(ValueType::NUMBER))
-			.convert_to_container<Function::ParameterList>()))
-		(Function(ValueType::VOID, "Test2", "", list_of
-			(FunctionParameter(ValueType::NUMBER))
-			(FunctionParameter(ValueType::ARRAY))
-			.convert_to_container<Function::ParameterList>()))
-		.convert_to_container<FunctionInnerList>())
-{}
+		)
+	);
+}
 
-Function FunctionList::getFunctionByName(const std::string& name) const {
+Function FunctionList::getFunctionByAlias(const std::string& alias) const {
 	FunctionInnerList::const_iterator i = functions.begin();
 	for (; i != functions.end(); ++i) {
 		Function function = *i;
-		if (function.getName() == name || (!function.getAlias().empty() &&
-			function.getAlias() == name))
-		{
+		if (function.getAlias() == alias) {
 			return function;
 		}
 	}
 
-	throw UnknownFunctionException(name);
+	throw UnknownFunctionException();
 }

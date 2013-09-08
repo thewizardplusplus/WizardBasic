@@ -341,19 +341,22 @@ Expression::Pointer Translator::translateFunctionCall(const Parser::ParseTree::
 	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
 	ASSERT(child->value.id() == WizardBasicGrammarRule::IDENTIFIER, "Wizard "
 		"BASIC: translating error - invalid node; expected IDENTIFIER.");
-	std::string name = getNodeValue(child++);
+	std::string alias = getNodeValue(child++);
 
-	Function function = program->getFunctions().getFunctionByName(name);
-	if (function.getParameters().size() != parse_tree_node->children.size() - 1)
-	{
-		throw IncorrectNumberOfFunctionParametersException(function.
-			getParameters().size(), parse_tree_node->children.size() - 1);
+	Function function = program->getFunctions().getFunctionByAlias(alias);
+	Function::ParameterList& parameters = function.getParameters();
+
+	size_t received_number = parse_tree_node->children.size() - 1;
+	size_t expected_number = parameters.size();
+	if (received_number != expected_number) {
+		throw IncorrectNumberOfFunctionParametersException(expected_number,
+			received_number);
 	}
 
-	Function::ParameterList::iterator i = function.getParameters().begin();
+	Function::ParameterList::iterator i = parameters.begin();
 	size_t counter = 1;
-	for (; i != function.getParameters().end() && child != parse_tree_node->
-		children.end(); ++i, ++child, counter++)
+	for (; i != parameters.end() && child != parse_tree_node->children.end();
+		++i, ++child, counter++)
 	{
 		try {
 			(*i).setExpression(translateExpression(child));

@@ -17,3 +17,9 @@ IllegalFunctionCallOperationException::IllegalFunctionCallOperationException(
 	IllegalOperationException("function call operation", expected_type,
 		received_type)
 {}
+
+void IllegalFunctionCallOperationException::setFunctionName(const std::string&
+	name)
+{
+	translate_message += (format("; with function \"%1%()\"") % name).str();
+}

@@ -17,7 +17,7 @@ namespace translator {
 class Program {
 public:
 	const VariableList& getVariables(void) const;
-	const FunctionList& getFunctions(void) const;
+	FunctionList& getFunctions(void);
 	void addLabel(size_t label);
 	void addVariable(const Variable::Pointer& variable);
 	void addAssign(const std::string& variable_name, const Expression::Pointer&

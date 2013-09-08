@@ -12,7 +12,7 @@ namespace translator {
 class FunctionList {
 public:
 	FunctionList(void);
-	Function getFunctionByName(const std::string& name) const;
+	Function getFunctionByAlias(const std::string& alias) const;
 
 private:
 	typedef std::list<Function> FunctionInnerList;

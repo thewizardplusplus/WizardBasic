@@ -12,7 +12,7 @@ namespace exceptions {
 
 class UnknownFunctionException : public IllegalFunctionCallOperationException {
 public:
-	UnknownFunctionException(const std::string& name);
+	UnknownFunctionException(void);
 };
 
 }

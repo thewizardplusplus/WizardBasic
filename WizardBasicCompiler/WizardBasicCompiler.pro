@@ -9,6 +9,7 @@ CONFIG -= qt
 
 # файлы проекта
 HEADERS += \
+	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.h \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.h \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/ParsingException.h \
 	source/thewizardplusplus/wizard_basic/compiler/parser/WizardBasicGrammarRule.h \
@@ -27,6 +28,10 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalArrayAccessOperationException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalAssignOperationException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalConditionOperationException.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Variable.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/NumberVariable.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayVariable.h \
@@ -44,18 +49,14 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayAccessExpression.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionCallExpression.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ConditionType.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/Function.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.h \
-	source/thewizardplusplus/wizard_basic/compiler/utils/assert.h \
-    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/Function.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.h
+	source/thewizardplusplus/wizard_basic/compiler/utils/assert.h
 SOURCES += \
+	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/ParsingException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/WizardBasicGrammarRule.cpp \
@@ -72,6 +73,10 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalArrayAccessOperationException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalAssignOperationException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalConditionOperationException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Variable.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/NumberVariable.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayVariable.cpp \
@@ -89,17 +94,12 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayAccessExpression.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionCallExpression.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ConditionType.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/Function.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.cpp \
-	source/thewizardplusplus/wizard_basic/compiler/main.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/Function.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.cpp
+	source/thewizardplusplus/wizard_basic/compiler/main.cpp
 
 # файлы внешних библиотек
 win32 {

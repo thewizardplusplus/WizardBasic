@@ -15,6 +15,7 @@ public:
 	IllegalFunctionCallOperationException(const std::string& message);
 	IllegalFunctionCallOperationException(ValueType::Types expected_type,
 		ValueType::Types received_type);
+	void setFunctionName(const std::string& name);
 };
 
 }

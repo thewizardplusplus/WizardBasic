@@ -5,11 +5,20 @@ using namespace thewizardplusplus::wizard_basic::compiler::translator;
 using namespace boost;
 
 Function::Function(ValueType::Types result_type, const std::string& name, const
-	std::string& alias, const ParameterList& parameters)
+	ParameterList& parameters)
 :
 	result_type(result_type),
+	alias(name),
 	name(name),
+	parameters(parameters)
+{}
+
+Function::Function(ValueType::Types result_type, const std::string& alias, const
+	std::string& name, const ParameterList& parameters)
+:
+	result_type(result_type),
 	alias(alias),
+	name(name),
 	parameters(parameters)
 {}
 
@@ -17,15 +26,15 @@ ValueType::Types Function::getResultType(void) const {
 	return result_type;
 }
 
-std::string Function::getName(void) const {
-	return name;
-}
-
 std::string Function::getAlias(void) const {
 	return alias;
 }
 
-Function::ParameterList Function::getParameters(void) {
+std::string Function::getName(void) const {
+	return name;
+}
+
+Function::ParameterList& Function::getParameters(void) {
 	return parameters;
 }
 
