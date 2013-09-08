@@ -1,4 +1,4 @@
-#include "System.h"
+#include "SystemModule.h"
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
@@ -6,16 +6,22 @@
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
 
-const System& System::getInstance(void) {
-	static System system;
-	return system;
+SystemModule::SystemModule(void) {
+	std::srand(std::time(NULL));
+
+	#ifdef OS_LINUX
+	gettimeofday(&start_time, NULL);
+	#elif defined(OS_WINDOWS)
+	QueryPerformanceFrequency(&frequency);
+	QueryPerformanceCounter(&start_time);
+	#endif
 }
 
-float System::getRandomNumber(void) const {
+float SystemModule::getRandomNumber(void) const {
 	return static_cast<float>(std::rand()) / RAND_MAX;
 }
 
-float System::getTimeFromStartInS(void) const {
+float SystemModule::getTimeFromStartInS(void) const {
 	#ifdef OS_LINUX
 	timeval current_time;
 	gettimeofday(&current_time, NULL);
@@ -29,21 +35,10 @@ float System::getTimeFromStartInS(void) const {
 	#endif
 }
 
-void System::trace(float number) const {
+void SystemModule::trace(float number) const {
 	std::cout << std::fixed << number;
 }
 
-void System::trace(const std::string& string) const {
+void SystemModule::trace(const std::string& string) const {
 	std::cout << string;
-}
-
-System::System(void) {
-	std::srand(std::time(NULL));
-
-	#ifdef OS_LINUX
-	gettimeofday(&start_time, NULL);
-	#elif defined(OS_WINDOWS)
-	QueryPerformanceFrequency(&frequency);
-	QueryPerformanceCounter(&start_time);
-	#endif
 }

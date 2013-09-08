@@ -29,16 +29,12 @@ FunctionList::FunctionList(void) {
 		(Function(ValueType::NUMBER, "INT", "std::floor", list_of
 			(FunctionParameter(ValueType::NUMBER))))
 		// system module
-		(Function(ValueType::NUMBER, "RND", "System::getInstance()."
-			"getRandomNumber"))
-		(Function(ValueType::NUMBER, "TIMER", "System::getInstance()."
-			"getTimeFromStartInS"))
-		(Function(ValueType::VOID, "TRACEN", "System::getInstance().trace",
-			list_of
-				(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "TRACES", "System::getInstance().trace",
-			list_of
-				(FunctionParameter(ValueType::ARRAY))));
+		(Function(ValueType::NUMBER, "RND", "GetRandomNumber"))
+		(Function(ValueType::NUMBER, "TIMER", "GetTimeFromStartInS"))
+		(Function(ValueType::VOID, "TRACEN", "Trace", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "TRACES", "Trace", list_of
+			(FunctionParameter(ValueType::ARRAY))));
 }
 
 Function FunctionList::getFunctionByAlias(const std::string& alias) const {

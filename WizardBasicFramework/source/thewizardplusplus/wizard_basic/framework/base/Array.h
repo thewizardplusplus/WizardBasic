@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#define ARRAY(name, size) Array name(size, #name)
+#define ARRAY(name, size)    Array name(size, #name)
 #define STRING(name, string) Array name(string, #name)
 
 namespace thewizardplusplus {

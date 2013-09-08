@@ -135,7 +135,7 @@ std::string Program::getCppCode(void) const {
 
 	return (format(
 		"#include <WizardBasicFramework/base/Array.h>\n"
-		"#include <WizardBasicFramework/system/System.h>\n"
+		"#include <WizardBasicFramework/system/system_functions.h>\n"
 		"#include <cmath>\n"
 		"#include <iostream>\n"
 		"\n"

@@ -1,13 +1,13 @@
-#include "system/System.h"
+#include "system/system_functions.h"
 #include <iostream>
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
 
 int main(void) {
-	System::getInstance().trace(System::getInstance().getRandomNumber());
+	Trace(GetRandomNumber());
 	std::cout << std::endl;
-	System::getInstance().trace(System::getInstance().getTimeFromStartInS());
+	Trace(GetTimeFromStartInS());
 	std::cout << std::endl;
-	System::getInstance().trace("Test.");
+	Trace("Test.");
 	std::cout << std::endl;
 }

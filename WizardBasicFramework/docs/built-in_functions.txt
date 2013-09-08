@@ -15,8 +15,8 @@
 +--------+---------------------------------------------------------------------+
 | System module                                                                |
 +--------+---------------------------------------------------------------------+
-| RND    | System::getInstance().getRandomNumber()                             |
-| TIMER  | System::getInstance().getTimeFromStartInS()                         |
-| TRACEN | System::getInstance().trace()                                       |
-| TRACES | System::getInstance().trace()                                       |
+| RND    | GetRandomNumber()                                                   |
+| TIMER  | GetTimeFromStartInS()                                               |
+| TRACEN | Trace()                                                             |
+| TRACES | Trace()                                                             |
 +--------+---------------------------------------------------------------------+

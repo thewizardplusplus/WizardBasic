@@ -14,20 +14,15 @@ namespace wizard_basic {
 namespace framework {
 namespace system {
 
-class System {
+class SystemModule {
 public:
-	static const System& getInstance(void);
-
+	SystemModule(void);
 	float getRandomNumber(void) const;
 	float getTimeFromStartInS(void) const;
 	void trace(float number) const;
 	void trace(const std::string& string) const;
 
 private:
-	System(void);
-	System(const System& sample);
-	System& operator=(const System& sample);
-
 	#ifdef OS_LINUX
 	timeval       start_time;
 	#elif defined(OS_WINDOWS)
