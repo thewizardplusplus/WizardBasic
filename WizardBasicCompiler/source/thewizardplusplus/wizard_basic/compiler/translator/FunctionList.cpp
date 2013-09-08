@@ -9,6 +9,26 @@ using namespace boost::assign;
 
 FunctionList::FunctionList(void) {
 	functions = list_of
+		// math module
+		(Function(ValueType::NUMBER, "SIN", "std::sin", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "COS", "std::cos", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "TAN", "std::tan", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "ATN", "std::atan", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "EXP", "std::exp", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "LOG", "std::log", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "SQR", "std::sqrt", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "ABS", "std::abs", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "INT", "std::floor", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		// system module
 		(Function(ValueType::NUMBER, "RND", "System::getInstance()."
 			"getRandomNumber"))
 		(Function(ValueType::NUMBER, "TIMER", "System::getInstance()."
