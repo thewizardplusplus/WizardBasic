@@ -1,14 +1,12 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include "../base/Array.h"
 #include "os.h"
 #ifdef OS_LINUX
 #include <sys/time.h>
 #elif defined(OS_WINDOWS)
 #include <windows.h>
 #endif
-#include <boost/optional.hpp>
 #include <string>
 
 namespace thewizardplusplus {

@@ -5,7 +5,6 @@
 #include <iostream>
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
-using namespace thewizardplusplus::wizard_basic::framework::base;
 
 SystemModule::SystemModule(void) {
 	std::srand(std::time(NULL));
