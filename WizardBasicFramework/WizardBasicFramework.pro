@@ -3,7 +3,9 @@ win32:BOOST_PATH = E:\\boost_1_54_0
 
 # общие настройки
 TARGET = wbf
-CONFIG += console
+TEMPLATE = lib
+CONFIG += staticlib
+#CONFIG += console
 CONFIG += warn_on
 CONFIG -= qt
 
@@ -17,7 +19,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModulePrivate.h \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.h
 SOURCES += \
-	source/thewizardplusplus/wizard_basic/framework/main.cpp \
+	#source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.cpp \

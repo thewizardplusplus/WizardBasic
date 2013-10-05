@@ -3,13 +3,14 @@
 #include <iostream>
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
+using namespace thewizardplusplus::wizard_basic::framework::base;
 
 void SystemModule::trace(float number) {
 	std::cout << std::fixed << number;
 }
 
-void SystemModule::trace(const std::string& string) {
-	std::cout << string;
+void SystemModule::trace(const base::Array &string) {
+	std::cout << string.toString();
 }
 
 SystemModule& SystemModule::getInstance(void) {

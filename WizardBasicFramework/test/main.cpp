@@ -1,4 +1,4 @@
-#include "system/SystemModule.h"
+#include <SystemModule.h>
 #include <iostream>
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
@@ -15,3 +15,4 @@ int main(void) {
 	SystemModule::getInstance().trace(test_string);
 	std::cout << std::endl;
 }
+

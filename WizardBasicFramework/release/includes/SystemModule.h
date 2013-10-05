@@ -1,7 +1,7 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include "../base/Array.h"
+#include <Array.h>
 #include <memory>
 
 namespace thewizardplusplus {
