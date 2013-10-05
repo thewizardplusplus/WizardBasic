@@ -135,12 +135,15 @@ std::string Program::getCppCode(void) const {
 
 	return (format(
 		"#include <SystemModule.h>\n"
+		"#include <exceptions/WizardBasicFrameworkException.h>\n"
 		"#include <cmath>\n"
 		"#include <iostream>\n"
 		"#include <cstdlib>\n"
 		"\n"
 		"using namespace thewizardplusplus::wizard_basic::framework::base;\n"
 		"using namespace thewizardplusplus::wizard_basic::framework::system;\n"
+		"using namespace thewizardplusplus::wizard_basic::framework::"
+			"exceptions;\n"
 		"\n"
 		"int main(void) {\n"
 		"%1%"
