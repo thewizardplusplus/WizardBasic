@@ -28,14 +28,6 @@ float& Array::operator[](float index) {
 }
 
 Array::operator std::string(void) const {
-	return toString();
-}
-
-size_t Array::getSize(void) const {
-	return array.size();
-}
-
-std::string Array::toString(void) const {
 	std::string result;
 	NumberVector::const_iterator i = array.begin();
 	for (; i != array.end(); ++i) {
@@ -43,6 +35,14 @@ std::string Array::toString(void) const {
 	}
 
 	return result;
+}
+
+size_t Array::getSize(void) const {
+	return array.size();
+}
+
+std::string Array::toString(void) const {
+	return *this;
 }
 
 size_t Array::processIndex(float index) const {

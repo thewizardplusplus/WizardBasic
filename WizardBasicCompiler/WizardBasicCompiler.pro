@@ -108,7 +108,7 @@ win32 {
 
 # флаги компилятора
 unix | win32-g++ {
-	QMAKE_CXXFLAGS += -std=c++98 -pedantic -Wall -W -O3
+	QMAKE_CXXFLAGS += -std=c++98 -pedantic -Wall -W -O2
 }
 win32-g++ {
 	QMAKE_CXXFLAGS += -U__STRICT_ANSI__

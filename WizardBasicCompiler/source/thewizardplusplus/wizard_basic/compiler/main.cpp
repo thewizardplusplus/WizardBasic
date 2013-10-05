@@ -10,6 +10,7 @@ using namespace thewizardplusplus::wizard_basic::compiler::exceptions;
 
 int main(void) {
 	std::string code =
+		"5 DIM x[10]\n"
 		"10 DIM NEW_LINE = \"\\n\"\n"
 		"20 TRACEN(RND())\n"
 		"30 TRACES(NEW_LINE)\n"

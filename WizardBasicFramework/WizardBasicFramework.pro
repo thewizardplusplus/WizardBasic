@@ -14,16 +14,16 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/Array.h \
 	source/thewizardplusplus/wizard_basic/framework/system/os.h \
-	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.h \
-	source/thewizardplusplus/wizard_basic/framework/system/system_functions.h
+	source/thewizardplusplus/wizard_basic/framework/system/SystemModulePrivate.h \
+	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/Array.cpp \
-	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.cpp \
-	source/thewizardplusplus/wizard_basic/framework/system/system_functions.cpp
+	source/thewizardplusplus/wizard_basic/framework/system/SystemModulePrivate.cpp \
+	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.cpp
 
 # файлы внешних библиотек
 win32 {
@@ -32,10 +32,8 @@ win32 {
 
 # флаги компилятора
 unix | win32-g++ {
-	QMAKE_CXXFLAGS += -std=c++98 -pedantic -Wall -W -O3
+	QMAKE_CXXFLAGS += -std=c++98 -pedantic -Wall -W -O2
 }
 win32-g++ {
 	QMAKE_CXXFLAGS += -U__STRICT_ANSI__
 }
-
-DEFINES += DEBUG

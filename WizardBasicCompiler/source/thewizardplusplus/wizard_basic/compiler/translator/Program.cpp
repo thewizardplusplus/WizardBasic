@@ -134,10 +134,10 @@ std::string Program::getCppCode(void) const {
 	}
 
 	return (format(
-		"#include <WizardBasicFramework/base/Array.h>\n"
-		"#include <WizardBasicFramework/system/system_functions.h>\n"
+		"#include <SystemModule.h>\n"
 		"#include <cmath>\n"
 		"#include <iostream>\n"
+		"#include <cstdlib>\n"
 		"\n"
 		"using namespace thewizardplusplus::wizard_basic::framework::base;\n"
 		"using namespace thewizardplusplus::wizard_basic::framework::system;\n"
@@ -146,9 +146,9 @@ std::string Program::getCppCode(void) const {
 		"%1%"
 		"\ttry {\n"
 		"%2%"
-		"\t} catch (const OutOfBoundsException& exception) {\n"
-		"\t\tstd::cerr << \"Wizard BASIC: runtime error - \" << exception."
-			"what() << \".\" << std::endl;\n"
+		"\t} catch (const WizardBasicFrameworkException& exception) {\n"
+		"\t\tstd::cerr << exception.what() << std::endl;\n"
+		"\t\treturn EXIT_FAILURE;\n"
 		"\t}\n"
 		"}\n"
 	) % variables.getCppDefinition() % code).str();

@@ -1,34 +1,31 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
-#include "os.h"
-#ifdef OS_LINUX
-#include <sys/time.h>
-#elif defined(OS_WINDOWS)
-#include <windows.h>
-#endif
 #include <string>
+#include <memory>
 
 namespace thewizardplusplus {
 namespace wizard_basic {
 namespace framework {
 namespace system {
 
+class SystemModulePrivate;
+
 class SystemModule {
 public:
-	SystemModule(void);
+	static void trace(float number);
+	static void trace(const std::string& string);
+	static SystemModule& getInstance(void);
+
 	float getRandomNumber(void) const;
 	float getTimeFromStartInS(void) const;
-	void trace(float number) const;
-	void trace(const std::string& string) const;
 
 private:
-	#ifdef OS_LINUX
-	timeval       start_time;
-	#elif defined(OS_WINDOWS)
-	LARGE_INTEGER frequency;
-	LARGE_INTEGER start_time;
-	#endif
+	std::auto_ptr<SystemModulePrivate> private_realization;
+
+	SystemModule(void);
+	SystemModule(const SystemModule& sample);
+	SystemModule& operator=(const SystemModule& sample);
 };
 
 }

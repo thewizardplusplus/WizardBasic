@@ -29,11 +29,15 @@ FunctionList::FunctionList(void) {
 		(Function(ValueType::NUMBER, "INT", "std::floor", list_of
 			(FunctionParameter(ValueType::NUMBER))))
 		// system module
-		(Function(ValueType::NUMBER, "RND", "GetRandomNumber"))
-		(Function(ValueType::NUMBER, "TIMER", "GetTimeFromStartInS"))
-		(Function(ValueType::VOID, "TRACEN", "Trace", list_of
+		(Function(ValueType::NUMBER, "RND", "SystemModule::getInstance()."
+			"getRandomNumber"))
+		(Function(ValueType::NUMBER, "TIMER", "SystemModule::getInstance()."
+			"getTimeFromStartInS"))
+		(Function(ValueType::VOID, "TRACEN", "SystemModule::getInstance()."
+			"trace", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "TRACES", "Trace", list_of
+		(Function(ValueType::VOID, "TRACES", "SystemModule::getInstance()."
+			"trace", list_of
 			(FunctionParameter(ValueType::ARRAY))));
 }
 

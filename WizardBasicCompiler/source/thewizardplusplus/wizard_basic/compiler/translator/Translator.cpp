@@ -356,8 +356,8 @@ Expression::Pointer Translator::translateFunctionCall(const Parser::ParseTree::
 
 		Function::ParameterList::iterator i = parameters.begin();
 		size_t counter = 1;
-		for (; i != parameters.end() && child != parse_tree_node->children.end();
-			++i, ++child, counter++)
+		for (; i != parameters.end() && child != parse_tree_node->children.
+			end(); ++i, ++child, counter++)
 		{
 			try {
 				(*i).setExpression(translateExpression(child));

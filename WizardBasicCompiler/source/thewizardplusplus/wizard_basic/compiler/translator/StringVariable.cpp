@@ -12,5 +12,6 @@ StringVariable::StringVariable(const std::string& name, const std::string&
 {}
 
 std::string StringVariable::getCppDefinition(void) const {
-	return (format("\tSTRING(%1%, \"%2%\");\n") % name % string).str();
+	return (format("\tWIZARD_BASIC_STRING(%1%, \"%2%\");\n") % name % string).
+		str();
 }
