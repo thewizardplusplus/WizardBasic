@@ -18,10 +18,11 @@ void Compiler::compile(const std::string& translated_code, const std::string&
 		throw FailedOpenTemporaryFileException(temporary_filename);
 	}
 	out << translated_code;
+	out.close();
 
-	std::string command = (format("g++ -O2 -I./framework/includes/ -o %1% %2% "
-		"-L./framework/libs/ -lwbf") % output_filename % temporary_filename).
-		str();
+	std::string command = (format("g++ -I./framework/includes -Wl,-subsystem,"
+		"console -o %1% %2% -L./framework/libs -lwbf") % output_filename %
+		temporary_filename).str();
 	int result = std::system(command.c_str());
 	if (result) {
 		throw AssemblingOrLinkingException();

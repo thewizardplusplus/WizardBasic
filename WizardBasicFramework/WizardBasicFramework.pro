@@ -11,6 +11,7 @@ CONFIG -= qt
 
 # файлы проекта
 HEADERS += \
+	source/thewizardplusplus/wizard_basic/framework/utils/Converter.h \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.h \

@@ -1,13 +1,13 @@
 #include "OutOfBoundsException.h"
-#include <boost/format.hpp>
+#include "../../utils/Converter.h"
 
 using namespace thewizardplusplus::wizard_basic::framework::base::exceptions;
-using namespace boost;
+using namespace thewizardplusplus::wizard_basic::framework::utils;
 
 OutOfBoundsException::OutOfBoundsException(const std::string& array_name, size_t
 	array_size, float rounded_index)
 :
-	BaseException((format("out of bounds of array \"%1%\"; array size is %2%; "
-		"rounded index is %3%") % array_name % array_size % rounded_index).
-		str())
+	BaseException("out of bounds of array \"" + array_name + "\"; array size is"
+		" " + Converter::toString(array_size) + "; rounded index is " +
+		Converter::toString(rounded_index))
 {}
