@@ -1,8 +1,7 @@
 #include "RealConstantExpression.h"
-#include <boost/lexical_cast.hpp>
+#include <sstream>
 
 using namespace thewizardplusplus::wizard_basic::compiler::translator;
-using namespace boost;
 
 RealConstantExpression::RealConstantExpression(float real_constant) :
 	Expression(ValueType::NUMBER),
@@ -10,5 +9,8 @@ RealConstantExpression::RealConstantExpression(float real_constant) :
 {}
 
 std::string RealConstantExpression::getCppCode(void) const {
-	return lexical_cast<std::string>(real_constant);
+	std::ostringstream out;
+	out << std::fixed << real_constant;
+
+	return out.str();
 }

@@ -28,7 +28,7 @@ int main(int number_of_arguments, char** arguments) {
 		::find(options_begin, options_end, "-v") != options_end)
 	{
 		std::cout <<
-			"Wizard BASIC, v0.1.\n"
+			"Wizard BASIC, v0.1.1.\n"
 			"(c) 2013, thewizardplusplus.\n"
 			<< std::endl;
 		return EXIT_SUCCESS;

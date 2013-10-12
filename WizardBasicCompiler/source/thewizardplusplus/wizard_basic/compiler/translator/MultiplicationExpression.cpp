@@ -26,14 +26,8 @@ MultiplicationExpression::MultiplicationExpression(const Expression::Pointer&
 			operand1->getType(), operand2->getType());
 	}
 
-	if (typeid(*operand1) == typeid(AdditionExpression)) {
-		this->operand1 = Expression::Pointer(new ParenthesesExpression(
-			operand1));
-	}
-	if (typeid(*operand2) == typeid(AdditionExpression)) {
-		this->operand2 = Expression::Pointer(new ParenthesesExpression(
-			operand2));
-	}
+	this->operand1 = Expression::Pointer(new ParenthesesExpression(operand1));
+	this->operand2 = Expression::Pointer(new ParenthesesExpression(operand2));
 }
 
 std::string MultiplicationExpression::getCppCode(void) const {
