@@ -38,7 +38,115 @@ FunctionList::FunctionList(void) {
 			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "TRACES", "SystemModule::getInstance()."
 			"trace", list_of
-			(FunctionParameter(ValueType::ARRAY))));
+			(FunctionParameter(ValueType::ARRAY))))
+		// graphics module
+		(Function(ValueType::NUMBER, "CAMPOSX", "GraphicsModule::getInstance()."
+			"getCameraPositionX"))
+		(Function(ValueType::NUMBER, "CAMPOSY", "GraphicsModule::getInstance()."
+			"getCameraPositionY"))
+		(Function(ValueType::NUMBER, "CAMPOSZ", "GraphicsModule::getInstance()."
+			"getCameraPositionZ"))
+		(Function(ValueType::VOID, "CAMPOS", "GraphicsModule::getInstance()."
+			"setCameraPosition", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "CAMROTX", "GraphicsModule::getInstance()."
+			"getCameraRotationX"))
+		(Function(ValueType::NUMBER, "CAMROTY", "GraphicsModule::getInstance()."
+			"getCameraRotationY"))
+		(Function(ValueType::NUMBER, "CAMROTZ", "GraphicsModule::getInstance()."
+			"getCameraRotationZ"))
+		(Function(ValueType::VOID, "CAMROT", "GraphicsModule::getInstance()."
+			"setCameraRotation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "FOG", "GraphicsModule::getInstance()."
+			"setFogMode", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "FOGPRM", "GraphicsModule::getInstance()."
+			"setFogParameters", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJLD", "GraphicsModule::getInstance()."
+			"loadObject", list_of
+			(FunctionParameter(ValueType::ARRAY))))
+		(Function(ValueType::NUMBER, "OBJPOSX", "GraphicsModule::getInstance()."
+			"getObjectPositionX", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJPOSY", "GraphicsModule::getInstance()."
+			"getObjectPositionY", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJPOSZ", "GraphicsModule::getInstance()."
+			"getObjectPositionZ", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "OBJPOS", "GraphicsModule::getInstance()."
+			"setObjectPosition", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJROTX", "GraphicsModule::getInstance()."
+			"getObjectRotationX", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJROTY", "GraphicsModule::getInstance()."
+			"getObjectRotationY", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJROTZ", "GraphicsModule::getInstance()."
+			"getObjectRotationZ", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "OBJROT", "GraphicsModule::getInstance()."
+			"setObjectRotation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJSCX", "GraphicsModule::getInstance()."
+			"getObjectScaleX", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJSCY", "GraphicsModule::getInstance()."
+			"getObjectScaleY", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "OBJSCZ", "GraphicsModule::getInstance()."
+			"getObjectScaleZ", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "OBJSC", "GraphicsModule::getInstance()."
+			"setObjectScale", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "OBJPL", "GraphicsModule::getInstance()."
+			"playObjectAnimation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "OBJPS", "GraphicsModule::getInstance()."
+			"pauseObjectAnimation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "ISKEY", "GraphicsModule::getInstance()."
+			"isKeyPressed", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "ISBTN", "GraphicsModule::getInstance()."
+			"isButtonPressed", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "PTPOSX", "GraphicsModule::getInstance()."
+			"getPointerPositionX"))
+		(Function(ValueType::NUMBER, "PTPOSY", "GraphicsModule::getInstance()."
+			"getPointerPositionY"))
+		(Function(ValueType::VOID, "PTPOS", "GraphicsModule::getInstance()."
+			"setPointerPosition", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "UPDATE", "GraphicsModule::getInstance()."
+			"update"));
 }
 
 Function FunctionList::getFunctionByAlias(const std::string& alias) const {

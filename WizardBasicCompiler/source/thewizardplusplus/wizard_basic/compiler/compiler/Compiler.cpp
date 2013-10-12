@@ -1,5 +1,6 @@
 #include "Compiler.h"
 #include "exceptions/FailedOpenTemporaryFileException.h"
+#include "../utils/os.h"
 #include "exceptions/AssemblingOrLinkingException.h"
 #include <boost/format.hpp>
 #include <cstdio>
@@ -20,9 +21,15 @@ void Compiler::compile(const std::string& translated_code, const std::string&
 	out << translated_code;
 	out.close();
 
-	std::string command = (format("g++ -I./framework/includes -Wl,-subsystem,"
-		"console -o %1% %2% -L./framework/libs -lwbf") % output_filename %
+	#ifdef OS_LINUX
+	std::string command = (format("g++ -I./framework/includes -o %1% %2% "
+		"-L./framework/libs -lwbf -lAnnaGraphics -lGL") % output_filename %
 		temporary_filename).str();
+	#elif defined(OS_WINDOWS)
+	std::string command = (format("g++ -I./framework/includes -Wl,-subsystem,"
+		"console -o %1% %2% -L./framework/libs -lwbf -lAnnaGraphics -lopengl32 "
+		"-lgdi32") % output_filename % temporary_filename).str();
+	#endif
 	int result = std::system(command.c_str());
 	if (result) {
 		throw AssemblingOrLinkingException();

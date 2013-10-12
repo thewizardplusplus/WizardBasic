@@ -9,6 +9,8 @@ CONFIG -= qt
 
 # файлы проекта
 HEADERS += \
+	source/thewizardplusplus/wizard_basic/compiler/utils/assert.h \
+	source/thewizardplusplus/wizard_basic/compiler/utils/os.h \
 	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.h \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.h \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/ParsingException.h \
@@ -54,11 +56,10 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.h \
-	source/thewizardplusplus/wizard_basic/compiler/utils/assert.h \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.h \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.h \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.h \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h
+	source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.h \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.h \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.h \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.cpp \
@@ -103,16 +104,14 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Translator.cpp \
-	source/thewizardplusplus/wizard_basic/compiler/main.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.cpp \
-    source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.cpp
+	source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.cpp \
+	source/thewizardplusplus/wizard_basic/compiler/main.cpp
 
 # файлы внешних библиотек
-win32 {
-	INCLUDEPATH += $$BOOST_PATH
-}
+win32:INCLUDEPATH += $$BOOST_PATH
 
 # флаги компилятора
 unix | win32-g++ {

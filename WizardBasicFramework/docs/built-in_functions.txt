@@ -1,22 +1,56 @@
-+--------+---------------------------------------------------------------------+
-| Alias  | Name                                                                |
-+--------+---------------------------------------------------------------------+
++---------+--------------------------------------------------------------------+
+| Alias   | Name                                                               |
++---------+--------------------------------------------------------------------+
 | Math module                                                                  |
-+--------+---------------------------------------------------------------------+
-| SIN    | std::sin()                                                          |
-| COS    | std::cos()                                                          |
-| TAN    | std::tan()                                                          |
-| ATN    | std::atan()                                                         |
-| EXP    | std::exp()                                                          |
-| LOG    | std::log()                                                          |
-| SQR    | std::sqrt()                                                         |
-| ABS    | std::abs()                                                          |
-| INT    | std::floor()                                                        |
-+--------+---------------------------------------------------------------------+
++---------+--------------------------------------------------------------------+
+| SIN     | std::sin                                                           |
+| COS     | std::cos                                                           |
+| TAN     | std::tan                                                           |
+| ATN     | std::atan                                                          |
+| EXP     | std::exp                                                           |
+| LOG     | std::log                                                           |
+| SQR     | std::sqrt                                                          |
+| ABS     | std::abs                                                           |
+| INT     | std::floor                                                         |
++---------+--------------------------------------------------------------------+
 | System module                                                                |
-+--------+---------------------------------------------------------------------+
-| RND    | SystemModule::getInstance().getRandomNumber()                       |
-| TIMER  | SystemModule::getInstance().getTimeFromStartInS()                   |
-| TRACEN | SystemModule::getInstance().trace()                                 |
-| TRACES | SystemModule::getInstance().trace()                                 |
-+--------+---------------------------------------------------------------------+
++---------+--------------------------------------------------------------------+
+| RND     | SystemModule::getInstance().getRandomNumber                        |
+| TIMER   | SystemModule::getInstance().getTimeFromStartInS                    |
+| TRACEN  | SystemModule::getInstance().trace                                  |
+| TRACES  | SystemModule::getInstance().trace                                  |
++---------+--------------------------------------------------------------------+
+| Graphics module                                                              |
++---------+--------------------------------------------------------------------+
+| CAMPOSX | GraphicsModule::getInstance().getCameraPositionX                   |
+| CAMPOSY | GraphicsModule::getInstance().getCameraPositionY                   |
+| CAMPOSZ | GraphicsModule::getInstance().getCameraPositionZ                   |
+| CAMPOS  | GraphicsModule::getInstance().setCameraPosition                    |
+| CAMROTX | GraphicsModule::getInstance().getCameraRotationX                   |
+| CAMROTY | GraphicsModule::getInstance().getCameraRotationY                   |
+| CAMROTZ | GraphicsModule::getInstance().getCameraRotationZ                   |
+| CAMROT  | GraphicsModule::getInstance().setCameraRotation                    |
+| FOG     | GraphicsModule::getInstance().setFogMode                           |
+| FOGPRM  | GraphicsModule::getInstance().setFogParameters                     |
+| OBJLD   | GraphicsModule::getInstance().loadObject                           |
+| OBJPOSX | GraphicsModule::getInstance().getObjectPositionX                   |
+| OBJPOSY | GraphicsModule::getInstance().getObjectPositionY                   |
+| OBJPOSZ | GraphicsModule::getInstance().getObjectPositionZ                   |
+| OBJPOS  | GraphicsModule::getInstance().setObjectPosition                    |
+| OBJROTX | GraphicsModule::getInstance().getObjectRotationX                   |
+| OBJROTY | GraphicsModule::getInstance().getObjectRotationY                   |
+| OBJROTZ | GraphicsModule::getInstance().getObjectRotationZ                   |
+| OBJROT  | GraphicsModule::getInstance().setObjectRotation                    |
+| OBJSCX  | GraphicsModule::getInstance().getObjectScaleX                      |
+| OBJSCY  | GraphicsModule::getInstance().getObjectScaleY                      |
+| OBJSCZ  | GraphicsModule::getInstance().getObjectScaleZ                      |
+| OBJSC   | GraphicsModule::getInstance().setObjectScale                       |
+| OBJPL   | GraphicsModule::getInstance().playObjectAnimation                  |
+| OBJPS   | GraphicsModule::getInstance().pauseObjectAnimation                 |
+| ISKEY   | GraphicsModule::getInstance().isKeyPressed                         |
+| ISBTN   | GraphicsModule::getInstance().isButtonPressed                      |
+| PTPOSX  | GraphicsModule::getInstance().getPointerPositionX                  |
+| PTPOSY  | GraphicsModule::getInstance().getPointerPositionY                  |
+| PTPOS   | GraphicsModule::getInstance().setPointerPosition                   |
+| UPDATE  | GraphicsModule::getInstance().update                               |
++---------+--------------------------------------------------------------------+

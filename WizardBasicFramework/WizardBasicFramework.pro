@@ -1,13 +1,13 @@
 # параметры сборки, специфичные для окружения
 win32:BOOST_PATH = E:\\boost_1_54_0
-win32:ANNA_GRAPHICS_INCLUDES_PATH = E:\\projects\\current\\AnnaGraphics\\release\\includes
-win32:ANNA_GRAPHICS_LIBS_PATH = E:\\projects\\current\\AnnaGraphics\\release\\libs
+ANNA_GRAPHICS_INCLUDES_PATH = E:\\projects\\current\\AnnaGraphics\\release\\includes
+ANNA_GRAPHICS_LIBS_PATH = E:\\projects\\current\\AnnaGraphics\\release\\libs
 
 # общие настройки
 TARGET = wbf
-#TEMPLATE = lib
-#CONFIG += staticlib
-CONFIG += console
+TEMPLATE = lib
+CONFIG += staticlib
+#CONFIG += console
 CONFIG += warn_on
 CONFIG -= qt
 
@@ -21,24 +21,26 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/system/os.h \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModulePrivate.h \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.h \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.h
+	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/GraphicsException.h \
+	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/InvalidObjectIdException.h \
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.h \
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h
 SOURCES += \
-	#source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/base/Array.cpp \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModulePrivate.cpp \
 	source/thewizardplusplus/wizard_basic/framework/system/SystemModule.cpp \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.cpp \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.cpp
+	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/GraphicsException.cpp \
+	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/InvalidObjectIdException.cpp \
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.cpp \
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.cpp
 
 # файлы внешних библиотек
-win32 {
-	INCLUDEPATH += $$BOOST_PATH $$ANNA_GRAPHICS_INCLUDES_PATH
-	LIBS += -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics
-}
+INCLUDEPATH += $$ANNA_GRAPHICS_INCLUDES_PATH
+win32:INCLUDEPATH += $$BOOST_PATH
+#LIBS += -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics
 
 # флаги компилятора
 unix | win32-g++ {

@@ -1,19 +1,20 @@
-#ifndef GRAPHICSMODULEPRIVATE_H
-#define GRAPHICSMODULEPRIVATE_H
+#ifndef GRAPHICSMODULE_H
+#define GRAPHICSMODULE_H
 
-#include "../base/Array.h"
-#include <GraphicApi.h>
+#include <Array.h>
 #include <memory>
-#include <list>
 
 namespace thewizardplusplus {
 namespace wizard_basic {
 namespace framework {
 namespace graphics {
 
-class GraphicsModulePrivate {
+class GraphicsModulePrivate;
+
+class GraphicsModule {
 public:
-	GraphicsModulePrivate(void);
+	static GraphicsModule& getInstance(void);
+
 	float getCameraPositionX(void) const;
 	float getCameraPositionY(void) const;
 	float getCameraPositionZ(void) const;
@@ -41,24 +42,19 @@ public:
 	void playObjectAnimation(float object_id, float start_frame, float
 		end_frame, float loop);
 	void pauseObjectAnimation(float object_id, float pause);
-	float isKeyPressed(float key_code) const;
-	float isButtonPressed(float button_code) const;
+	float isKeyPressed(float key_code);
+	float isButtonPressed(float button_code);
 	float getPointerPositionX(void) const;
 	float getPointerPositionY(void) const;
 	void setPointerPosition(float x, float y);
 	void update(void);
 
 private:
-	typedef std::list<anna::graphics::AnimateObject*> ObjectList;
+	std::auto_ptr<GraphicsModulePrivate> private_realization;
 
-	std::auto_ptr<anna::graphics::GraphicApi> gapi;
-	anna::graphics::Window*                   window;
-	anna::graphics::Camera                    camera;
-	anna::graphics::World                     world;
-	float                                     last_time;
-	ObjectList                                objects;
-
-	anna::graphics::AnimateObject* getObjectById(float object_id) const;
+	GraphicsModule(void);
+	GraphicsModule(const GraphicsModule& sample);
+	GraphicsModule& operator=(const GraphicsModule& sample);
 };
 
 }

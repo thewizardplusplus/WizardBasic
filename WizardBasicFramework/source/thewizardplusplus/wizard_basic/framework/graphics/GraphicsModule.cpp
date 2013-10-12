@@ -109,6 +109,17 @@ void GraphicsModule::setObjectScale(float object_id, float x, float y,
 	private_realization->setObjectScale(object_id, x, y, z);
 }
 
+void GraphicsModule::playObjectAnimation(float object_id, float start_frame,
+	float end_frame, float loop)
+{
+	private_realization->playObjectAnimation(object_id, start_frame, end_frame,
+		loop);
+}
+
+void GraphicsModule::pauseObjectAnimation(float object_id, float pause) {
+	private_realization->pauseObjectAnimation(object_id, pause);
+}
+
 float GraphicsModule::isKeyPressed(float key_code) {
 	return private_realization->isKeyPressed(key_code);
 }

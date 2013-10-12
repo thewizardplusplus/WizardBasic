@@ -39,6 +39,9 @@ public:
 	float getObjectScaleY(float object_id) const;
 	float getObjectScaleZ(float object_id) const;
 	void setObjectScale(float object_id, float x, float y, float z);
+	void playObjectAnimation(float object_id, float start_frame, float
+		end_frame, float loop);
+	void pauseObjectAnimation(float object_id, float pause);
 	float isKeyPressed(float key_code);
 	float isButtonPressed(float button_code);
 	float getPointerPositionX(void) const;
