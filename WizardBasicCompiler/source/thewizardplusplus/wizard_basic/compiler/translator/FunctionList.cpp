@@ -33,12 +33,30 @@ FunctionList::FunctionList(void) {
 			"getRandomNumber"))
 		(Function(ValueType::NUMBER, "TIMER", "SystemModule::getInstance()."
 			"getTimeFromStartInS"))
-		(Function(ValueType::VOID, "TRACEN", "SystemModule::getInstance()."
+		(Function(ValueType::VOID, "PRINTN", "SystemModule::getInstance()."
 			"trace", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "TRACES", "SystemModule::getInstance()."
+		(Function(ValueType::VOID, "PRINTS", "SystemModule::getInstance()."
 			"trace", list_of
 			(FunctionParameter(ValueType::ARRAY))))
+		(Function(ValueType::NUMBER, "OPEN", "SystemModule::getInstance()."
+			"fileOpen", list_of
+			(FunctionParameter(ValueType::ARRAY))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "INPUT", "SystemModule::getInstance()."
+			"fileInput", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "PRINTNF", "SystemModule::getInstance()."
+			"fileOutput", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "PRINTSF", "SystemModule::getInstance()."
+			"fileOutput", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::ARRAY))))
+		(Function(ValueType::VOID, "CLOSE", "SystemModule::getInstance()."
+			"fileClose", list_of
+			(FunctionParameter(ValueType::NUMBER))))
 		// graphics module
 		(Function(ValueType::NUMBER, "CAMPOSX", "GraphicsModule::getInstance()."
 			"getCameraPositionX"))

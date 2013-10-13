@@ -1,6 +1,6 @@
 # параметры сборки, специфичные для окружения
-ANNA_GRAPHICS_INCLUDES_PATH = /home/istarstein/AnnaGraphics/includes
-ANNA_GRAPHICS_LIBS_PATH = /home/istarstein/AnnaGraphics/libs
+ANNA_GRAPHICS_INCLUDES_PATH = E:\\projects\\current\\AnnaGraphics\\release\\includes
+ANNA_GRAPHICS_LIBS_PATH = E:\\projects\\current\\AnnaGraphics\\release\\libs
 
 # общие настройки
 CONFIG += console
@@ -9,7 +9,9 @@ CONFIG -= qt
 
 # файлы внешних библиотек
 INCLUDEPATH += ./../release/includes/
-LIBS += -L./../release/libs/ -lwbf -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics -lGL
+LIBS += -L./../release/libs/ -lwbf -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics
+unix:LIBS += -lGL
+win32:LIBS += -lopengl32 -lgdi32
 
 # файлы проекта
 SOURCES += \

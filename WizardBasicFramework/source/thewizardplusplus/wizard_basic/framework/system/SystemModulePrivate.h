@@ -16,7 +16,6 @@ namespace system {
 class SystemModulePrivate {
 public:
 	SystemModulePrivate(void);
-	float getRandomNumber(void) const;
 	float getTimeFromStartInS(void) const;
 
 private:

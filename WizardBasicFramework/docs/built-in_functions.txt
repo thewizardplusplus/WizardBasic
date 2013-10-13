@@ -17,8 +17,13 @@
 +---------+--------------------------------------------------------------------+
 | RND     | SystemModule::getInstance().getRandomNumber                        |
 | TIMER   | SystemModule::getInstance().getTimeFromStartInS                    |
-| TRACEN  | SystemModule::getInstance().trace                                  |
-| TRACES  | SystemModule::getInstance().trace                                  |
+| PRINTN  | SystemModule::trace                                                |
+| PRINTS  | SystemModule::trace                                                |
+| OPEN    | SystemModule::getInstance().fileOpen                               |
+| INPUT   | SystemModule::getInstance().fileInput                              |
+| PRINTNF | SystemModule::getInstance().fileOutput                             |
+| PRINTSF | SystemModule::getInstance().fileOutput                             |
+| CLOSE   | SystemModule::getInstance().fileClose                              |
 +---------+--------------------------------------------------------------------+
 | Graphics module                                                              |
 +---------+--------------------------------------------------------------------+

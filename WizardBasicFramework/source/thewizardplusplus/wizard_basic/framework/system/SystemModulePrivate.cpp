@@ -1,22 +1,14 @@
 #include "SystemModulePrivate.h"
-#include <cstdlib>
-#include <ctime>
 
 using namespace thewizardplusplus::wizard_basic::framework::system;
 
 SystemModulePrivate::SystemModulePrivate(void) {
-	std::srand(std::time(NULL));
-
 	#ifdef OS_LINUX
 	gettimeofday(&start_time, NULL);
 	#elif defined(OS_WINDOWS)
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&start_time);
 	#endif
-}
-
-float SystemModulePrivate::getRandomNumber(void) const {
-	return static_cast<float>(std::rand()) / RAND_MAX;
 }
 
 float SystemModulePrivate::getTimeFromStartInS(void) const {

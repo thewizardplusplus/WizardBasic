@@ -1,5 +1,6 @@
 #include "GraphicsModulePrivate.h"
 #include "../system/SystemModule.h"
+#include "exceptions/OpenObjectFileException.h"
 #include "exceptions/InvalidObjectIdException.h"
 #include <OpenGlGraphicApi.h>
 #include <cmath>
@@ -66,6 +67,10 @@ void GraphicsModulePrivate::setFogParameters(float color_r, float color_g, float
 
 float GraphicsModulePrivate::loadObject(const base::Array& filename) {
 	AnimateObject* object = AnimateObject::load(filename, gapi.get(), true);
+	if (object == NULL) {
+		throw OpenObjectFileException(filename);
+	}
+
 	if (object->getTrack()->getNumberOfFrames() != 0) {
 		world.addAnimateObject(object);
 	} else {
