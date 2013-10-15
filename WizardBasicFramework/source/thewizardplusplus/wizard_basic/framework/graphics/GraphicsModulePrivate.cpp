@@ -22,32 +22,8 @@ GraphicsModulePrivate::GraphicsModulePrivate(void) :
 	last_time = SystemModule::getInstance().getTimeFromStartInS();
 }
 
-float GraphicsModulePrivate::getCameraPositionX(void) const {
-	return camera.getPosition().x;
-}
-
-float GraphicsModulePrivate::getCameraPositionY(void) const {
-	return camera.getPosition().y;
-}
-
-float GraphicsModulePrivate::getCameraPositionZ(void) const {
-	return camera.getPosition().z;
-}
-
 void GraphicsModulePrivate::setCameraPosition(float x, float y, float z) {
 	camera.setPosition(x, y, z);
-}
-
-float GraphicsModulePrivate::getCameraRotationX(void) const {
-	return camera.getRotation().x;
-}
-
-float GraphicsModulePrivate::getCameraRotationY(void) const {
-	return camera.getRotation().y;
-}
-
-float GraphicsModulePrivate::getCameraRotationZ(void) const {
-	return camera.getRotation().z;
 }
 
 void GraphicsModulePrivate::setCameraRotation(float x, float y, float z) {
@@ -58,11 +34,23 @@ void GraphicsModulePrivate::setFogMode(float fog_mode) {
 	gapi->setFogMode(std::floor(fog_mode));
 }
 
-void GraphicsModulePrivate::setFogParameters(float color_r, float color_g, float
-	color_b, float density, float start_depth, float end_depth)
-{
-	gapi->setFogParameters(FogParameters(Vector3D<float>(color_r, color_g,
-		color_b), density, start_depth, end_depth));
+void GraphicsModulePrivate::setFogColor(float r, float g, float b) {
+	FogParameters parameters = gapi->getFogParameters();
+	parameters.color = Vector3D<float>(r, g, b);
+	gapi->setFogParameters(parameters);
+}
+
+void GraphicsModulePrivate::setFogDensity(float density) {
+	FogParameters parameters = gapi->getFogParameters();
+	parameters.density = density;
+	gapi->setFogParameters(parameters);
+}
+
+void GraphicsModulePrivate::setFogDepth(float start, float end) {
+	FogParameters parameters = gapi->getFogParameters();
+	parameters.start_depth = start;
+	parameters.end_depth = end;
+	gapi->setFogParameters(parameters);
 }
 
 float GraphicsModulePrivate::loadObject(const base::Array& filename) {
@@ -81,21 +69,6 @@ float GraphicsModulePrivate::loadObject(const base::Array& filename) {
 	return objects.size() - 1;
 }
 
-float GraphicsModulePrivate::getObjectPositionX(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getPosition().x;
-}
-
-float GraphicsModulePrivate::getObjectPositionY(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getPosition().y;
-}
-
-float GraphicsModulePrivate::getObjectPositionZ(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getPosition().z;
-}
-
 void GraphicsModulePrivate::setObjectPosition(float object_id, float x, float y,
 	float z)
 {
@@ -103,41 +76,11 @@ void GraphicsModulePrivate::setObjectPosition(float object_id, float x, float y,
 	object->setPosition(x, y, z);
 }
 
-float GraphicsModulePrivate::getObjectRotationX(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getRotation().x;
-}
-
-float GraphicsModulePrivate::getObjectRotationY(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getRotation().y;
-}
-
-float GraphicsModulePrivate::getObjectRotationZ(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getRotation().z;
-}
-
 void GraphicsModulePrivate::setObjectRotation(float object_id, float x, float y,
 	float z)
 {
 	AnimateObject* object = getObjectById(object_id);
 	object->setRotation(x, y, z);
-}
-
-float GraphicsModulePrivate::getObjectScaleX(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getScale().x;
-}
-
-float GraphicsModulePrivate::getObjectScaleY(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getScale().y;
-}
-
-float GraphicsModulePrivate::getObjectScaleZ(float object_id) const {
-	AnimateObject* object = getObjectById(object_id);
-	return object->getScale().z;
 }
 
 void GraphicsModulePrivate::setObjectScale(float object_id, float x, float y,
@@ -155,9 +98,9 @@ void GraphicsModulePrivate::playObjectAnimation(float object_id, float
 		end_frame));
 }
 
-void GraphicsModulePrivate::pauseObjectAnimation(float object_id, float pause) {
+void GraphicsModulePrivate::pauseObjectAnimation(float object_id) {
 	AnimateObject* object = getObjectById(object_id);
-	object->pause(std::floor(pause));
+	object->pause(false);
 }
 
 float GraphicsModulePrivate::isKeyPressed(float key_code) const {
@@ -165,9 +108,10 @@ float GraphicsModulePrivate::isKeyPressed(float key_code) const {
 		key_code)));
 }
 
-float GraphicsModulePrivate::isButtonPressed(float button_code) const {
-	return window->isPressedButton(static_cast<ButtonCode::Types>(std::floor(
-		button_code)));
+float GraphicsModulePrivate::getButtons(void) const {
+	return window->isPressedButton(ButtonCode::BUTTON_MIDDLE) << 2 | window->
+		isPressedButton(ButtonCode::BUTTON_RIGHT) << 1 | window->
+		isPressedButton(ButtonCode::BUTTON_LEFT);
 }
 
 float GraphicsModulePrivate::getPointerPositionX(void) const {

@@ -11,13 +11,13 @@ namespace translator {
 
 class FunctionList {
 public:
+	typedef std::list<Function> SimpleFunctionList;
+
 	FunctionList(void);
-	Function getFunctionByAlias(const std::string& alias) const;
+	Function getFunctionBySample(const Function& sample_function) const;
 
 private:
-	typedef std::list<Function> FunctionInnerList;
-
-	FunctionInnerList functions;
+	SimpleFunctionList functions;
 };
 
 }

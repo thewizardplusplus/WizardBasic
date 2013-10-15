@@ -9,7 +9,7 @@
 90      LET symbol = INPUT(file1)
 100     IF symbol = 0 - 1 THEN 140
 110
-120     PRINTNF(file2, symbol)
+120     PRINT(file2, symbol)
 130     GOTO 80
 140
 150 CLOSE(file1)
@@ -17,5 +17,5 @@
 170
 180 DIM test_string = "Test!"
 190 LET file3 = OPEN(filename2, 2)
-200 PRINTSF(file3, test_string)
+200 PRINT(file3, test_string)
 210 CLOSE(file3)

@@ -32,8 +32,6 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalConditionOperationException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.h \
-	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.h \
-	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Variable.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/NumberVariable.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayVariable.h \
@@ -59,7 +57,8 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.h \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.h \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.h \
-	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h \
+    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionStringFormat.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.cpp \
@@ -80,8 +79,6 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalConditionOperationException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IllegalFunctionCallOperationException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/UnknownFunctionException.cpp \
-	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectNumberOfFunctionParametersException.cpp \
-	source/thewizardplusplus/wizard_basic/compiler/translator/exceptions/IncorrectTypesOfFunctionParameterException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Variable.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/NumberVariable.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ArrayVariable.cpp \
@@ -119,4 +116,6 @@ unix | win32-g++ {
 }
 win32-g++ {
 	QMAKE_CXXFLAGS += -U__STRICT_ANSI__
+	# disable warning in Boost
+	QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 }

@@ -10,8 +10,6 @@
 #include "exceptions/UndefinedVariableException.h"
 #include "IdentifierExpression.h"
 #include "ArrayAccessExpression.h"
-#include "exceptions/IncorrectNumberOfFunctionParametersException.h"
-#include "exceptions/IncorrectTypesOfFunctionParameterException.h"
 #include "FunctionCallExpression.h"
 #include <boost/lexical_cast.hpp>
 #include <typeinfo>
@@ -341,35 +339,13 @@ Expression::Pointer Translator::translateFunctionCall(const Parser::ParseTree::
 	Parser::ParseTree::const_iterator child = parse_tree_node->children.begin();
 	ASSERT(child->value.id() == WizardBasicGrammarRule::IDENTIFIER, "Wizard "
 		"BASIC: translating error - invalid node; expected IDENTIFIER.");
-	std::string alias = getNodeValue(child++);
 
-	try {
-		Function function = program->getFunctions().getFunctionByAlias(alias);
-		Function::ParameterList& parameters = function.getParameters();
-
-		size_t received_number = parse_tree_node->children.size() - 1;
-		size_t expected_number = parameters.size();
-		if (received_number != expected_number) {
-			throw IncorrectNumberOfFunctionParametersException(expected_number,
-				received_number);
-		}
-
-		Function::ParameterList::iterator i = parameters.begin();
-		size_t counter = 1;
-		for (; i != parameters.end() && child != parse_tree_node->children.
-			end(); ++i, ++child, counter++)
-		{
-			try {
-				(*i).setExpression(translateExpression(child));
-			} catch (IncorrectTypesOfFunctionParameterException& exception) {
-				exception.setNumberOfParameter(counter);
-				throw;
-			}
-		}
-
-		return Expression::Pointer(new FunctionCallExpression(function));
-	} catch (IllegalFunctionCallOperationException& exception) {
-		exception.setFunctionName(alias);
-		throw;
+	Function sample_function(getNodeValue(child++));
+	for (; child != parse_tree_node->children.end(); ++child) {
+		sample_function.getParameters().push_back(FunctionParameter(
+			translateExpression(child)));
 	}
+
+	return Expression::Pointer(new FunctionCallExpression(program->
+		getFunctions().getFunctionBySample(sample_function)));
 }

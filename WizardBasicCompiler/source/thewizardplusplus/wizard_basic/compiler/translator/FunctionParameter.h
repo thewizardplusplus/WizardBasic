@@ -12,8 +12,8 @@ namespace translator {
 class FunctionParameter {
 public:
 	FunctionParameter(ValueType::Types type);
+	FunctionParameter(Expression::Pointer expression);
 	ValueType::Types getType(void) const;
-	void setExpression(const Expression::Pointer& expression);
 	std::string getCppCode(void) const;
 
 private:

@@ -18,7 +18,8 @@ std::string ConditionType::convertToCppCode(ConditionType::Types condition_type)
 			return ">";
 	}
 
-	// dummy for warning, value selected for guarantee error in generated C-code
+	// dummy for warning, value selected for guarantee error in generated
+	// C++-code
 	return "@";
 }
 

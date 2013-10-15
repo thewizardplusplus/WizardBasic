@@ -1,6 +1,7 @@
 #include "FunctionList.h"
 #include "exceptions/UnknownFunctionException.h"
 #include <boost/assign/list_of.hpp>
+#include <algorithm>
 
 using namespace thewizardplusplus::wizard_basic::compiler::translator;
 using namespace thewizardplusplus::wizard_basic::compiler::translator::
@@ -33,11 +34,11 @@ FunctionList::FunctionList(void) {
 			"getRandomNumber"))
 		(Function(ValueType::NUMBER, "TIMER", "SystemModule::getInstance()."
 			"getTimeFromStartInS"))
-		(Function(ValueType::VOID, "PRINTN", "SystemModule::getInstance()."
-			"trace", list_of
+		(Function(ValueType::VOID, "PRINT", "SystemModule::getInstance().trace",
+			list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "PRINTS", "SystemModule::getInstance()."
-			"trace", list_of
+		(Function(ValueType::VOID, "PRINT", "SystemModule::getInstance().trace",
+			list_of
 			(FunctionParameter(ValueType::ARRAY))))
 		(Function(ValueType::NUMBER, "OPEN", "SystemModule::getInstance()."
 			"fileOpen", list_of
@@ -46,11 +47,11 @@ FunctionList::FunctionList(void) {
 		(Function(ValueType::NUMBER, "INPUT", "SystemModule::getInstance()."
 			"fileInput", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "PRINTNF", "SystemModule::getInstance()."
+		(Function(ValueType::VOID, "PRINT", "SystemModule::getInstance()."
 			"fileOutput", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "PRINTSF", "SystemModule::getInstance()."
+		(Function(ValueType::VOID, "PRINT", "SystemModule::getInstance()."
 			"fileOutput", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::ARRAY))))
@@ -58,123 +59,98 @@ FunctionList::FunctionList(void) {
 			"fileClose", list_of
 			(FunctionParameter(ValueType::NUMBER))))
 		// graphics module
-		(Function(ValueType::NUMBER, "CAMPOSX", "GraphicsModule::getInstance()."
-			"getCameraPositionX"))
-		(Function(ValueType::NUMBER, "CAMPOSY", "GraphicsModule::getInstance()."
-			"getCameraPositionY"))
-		(Function(ValueType::NUMBER, "CAMPOSZ", "GraphicsModule::getInstance()."
-			"getCameraPositionZ"))
-		(Function(ValueType::VOID, "CAMPOS", "GraphicsModule::getInstance()."
-			"setCameraPosition", list_of
+		(Function(ValueType::VOID, "POSITION_CAMERA", "GraphicsModule::"
+			"getInstance().setCameraPosition", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "CAMROTX", "GraphicsModule::getInstance()."
-			"getCameraRotationX"))
-		(Function(ValueType::NUMBER, "CAMROTY", "GraphicsModule::getInstance()."
-			"getCameraRotationY"))
-		(Function(ValueType::NUMBER, "CAMROTZ", "GraphicsModule::getInstance()."
-			"getCameraRotationZ"))
-		(Function(ValueType::VOID, "CAMROT", "GraphicsModule::getInstance()."
-			"setCameraRotation", list_of
+		(Function(ValueType::VOID, "ROTATION_CAMERA", "GraphicsModule::"
+			"getInstance().setCameraRotation", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "FOG", "GraphicsModule::getInstance()."
 			"setFogMode", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "FOGPRM", "GraphicsModule::getInstance()."
-			"setFogParameters", list_of
-			(FunctionParameter(ValueType::NUMBER))
-			(FunctionParameter(ValueType::NUMBER))
-			(FunctionParameter(ValueType::NUMBER))
+		(Function(ValueType::VOID, "FOG_COLOR", "GraphicsModule::getInstance()."
+			"setFogColor", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJLD", "GraphicsModule::getInstance()."
-			"loadObject", list_of
+		(Function(ValueType::VOID, "FOG_DENSITY", "GraphicsModule::"
+			"getInstance().setFogDensity", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "FOG_DEPTH", "GraphicsModule::getInstance()."
+			"setFogDepth", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::NUMBER, "LOAD_OBJECT", "GraphicsModule::"
+			"getInstance().loadObject", list_of
 			(FunctionParameter(ValueType::ARRAY))))
-		(Function(ValueType::NUMBER, "OBJPOSX", "GraphicsModule::getInstance()."
-			"getObjectPositionX", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJPOSY", "GraphicsModule::getInstance()."
-			"getObjectPositionY", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJPOSZ", "GraphicsModule::getInstance()."
-			"getObjectPositionZ", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "OBJPOS", "GraphicsModule::getInstance()."
-			"setObjectPosition", list_of
+		(Function(ValueType::VOID, "POSITION_OBJECT", "GraphicsModule::"
+			"getInstance().setObjectPosition", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJROTX", "GraphicsModule::getInstance()."
-			"getObjectRotationX", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJROTY", "GraphicsModule::getInstance()."
-			"getObjectRotationY", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJROTZ", "GraphicsModule::getInstance()."
-			"getObjectRotationZ", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "OBJROT", "GraphicsModule::getInstance()."
-			"setObjectRotation", list_of
+		(Function(ValueType::VOID, "ROTATION_OBJECT", "GraphicsModule::"
+			"getInstance().setObjectRotation", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJSCX", "GraphicsModule::getInstance()."
-			"getObjectScaleX", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJSCY", "GraphicsModule::getInstance()."
-			"getObjectScaleY", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "OBJSCZ", "GraphicsModule::getInstance()."
-			"getObjectScaleZ", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "OBJSC", "GraphicsModule::getInstance()."
-			"setObjectScale", list_of
+		(Function(ValueType::VOID, "SCALE_OBJECT", "GraphicsModule::"
+			"getInstance().setObjectScale", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "OBJPL", "GraphicsModule::getInstance()."
-			"playObjectAnimation", list_of
+		(Function(ValueType::VOID, "PLAY_OBJECT", "GraphicsModule::"
+			"getInstance().playObjectAnimation", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "OBJPS", "GraphicsModule::getInstance()."
-			"pauseObjectAnimation", list_of
-			(FunctionParameter(ValueType::NUMBER))
+		(Function(ValueType::VOID, "STOP_OBJECT", "GraphicsModule::"
+			"getInstance().pauseObjectAnimation", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "ISKEY", "GraphicsModule::getInstance()."
-			"isKeyPressed", list_of
+		(Function(ValueType::NUMBER, "KEYSTATE", "GraphicsModule::getInstance()"
+			".isKeyPressed", list_of
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "ISBTN", "GraphicsModule::getInstance()."
-			"isButtonPressed", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::NUMBER, "PTPOSX", "GraphicsModule::getInstance()."
+		(Function(ValueType::NUMBER, "MOUSECLICK", "GraphicsModule::"
+			"getInstance().getButtons"))
+		(Function(ValueType::NUMBER, "MOUSEX", "GraphicsModule::getInstance()."
 			"getPointerPositionX"))
-		(Function(ValueType::NUMBER, "PTPOSY", "GraphicsModule::getInstance()."
+		(Function(ValueType::NUMBER, "MOUSEY", "GraphicsModule::getInstance()."
 			"getPointerPositionY"))
-		(Function(ValueType::VOID, "PTPOS", "GraphicsModule::getInstance()."
-			"setPointerPosition", list_of
+		(Function(ValueType::VOID, "POSITION_MOUSE", "GraphicsModule::"
+			"getInstance().setPointerPosition", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "UPDATE", "GraphicsModule::getInstance()."
+		(Function(ValueType::VOID, "SYNC", "GraphicsModule::getInstance()."
 			"update"));
 }
 
-Function FunctionList::getFunctionByAlias(const std::string& alias) const {
-	FunctionInnerList::const_iterator i = functions.begin();
-	for (; i != functions.end(); ++i) {
-		Function function = *i;
-		if (function.getAlias() == alias) {
-			return function;
+Function FunctionList::getFunctionBySample(const Function& sample_function)
+	const
+{
+	SimpleFunctionList::const_iterator end = functions.end();
+	SimpleFunctionList::const_iterator finded = std::find(functions.begin(),
+		end, sample_function);
+	if (finded != end) {
+		Function finded_function = *finded;
+		finded_function.getParameters() = sample_function.getParameters();
+		return finded_function;
+	} else {
+		SimpleFunctionList finded_functions;
+		SimpleFunctionList::const_iterator i = functions.begin();
+		for (; i != functions.end(); ++i) {
+			Function function = *i;
+			if (function.getName() == sample_function.getName()) {
+				finded_functions.push_back(function);
+			}
 		}
-	}
 
-	throw UnknownFunctionException();
+		throw UnknownFunctionException(sample_function, finded_functions);
+	}
 }

@@ -1,61 +1,46 @@
-+---------+--------------------------------------------------------------------+
-| Alias   | Name                                                               |
-+---------+--------------------------------------------------------------------+
++-----------------+------------------------------------------------------------+
+| Alias           | Name                                                       |
++-----------------+------------------------------------------------------------+
 | Math module                                                                  |
-+---------+--------------------------------------------------------------------+
-| SIN     | std::sin                                                           |
-| COS     | std::cos                                                           |
-| TAN     | std::tan                                                           |
-| ATN     | std::atan                                                          |
-| EXP     | std::exp                                                           |
-| LOG     | std::log                                                           |
-| SQR     | std::sqrt                                                          |
-| ABS     | std::abs                                                           |
-| INT     | std::floor                                                         |
-+---------+--------------------------------------------------------------------+
++-----------------+------------------------------------------------------------+
+| SIN             | std::sin                                                   |
+| COS             | std::cos                                                   |
+| TAN             | std::tan                                                   |
+| ATN             | std::atan                                                  |
+| EXP             | std::exp                                                   |
+| LOG             | std::log                                                   |
+| SQR             | std::sqrt                                                  |
+| ABS             | std::abs                                                   |
+| INT             | std::floor                                                 |
++-----------------+------------------------------------------------------------+
 | System module                                                                |
-+---------+--------------------------------------------------------------------+
-| RND     | SystemModule::getInstance().getRandomNumber                        |
-| TIMER   | SystemModule::getInstance().getTimeFromStartInS                    |
-| PRINTN  | SystemModule::trace                                                |
-| PRINTS  | SystemModule::trace                                                |
-| OPEN    | SystemModule::getInstance().fileOpen                               |
-| INPUT   | SystemModule::getInstance().fileInput                              |
-| PRINTNF | SystemModule::getInstance().fileOutput                             |
-| PRINTSF | SystemModule::getInstance().fileOutput                             |
-| CLOSE   | SystemModule::getInstance().fileClose                              |
-+---------+--------------------------------------------------------------------+
++-----------------+------------------------------------------------------------+
+| RND             | SystemModule::getInstance().getRandomNumber                |
+| TIMER           | SystemModule::getInstance().getTimeFromStartInS            |
+| PRINT           | SystemModule::trace                                        |
+| OPEN            | SystemModule::getInstance().fileOpen                       |
+| INPUT           | SystemModule::getInstance().fileInput                      |
+| PRINT           | SystemModule::getInstance().fileOutput                     |
+| CLOSE           | SystemModule::getInstance().fileClose                      |
++-----------------+------------------------------------------------------------+
 | Graphics module                                                              |
-+---------+--------------------------------------------------------------------+
-| CAMPOSX | GraphicsModule::getInstance().getCameraPositionX                   |
-| CAMPOSY | GraphicsModule::getInstance().getCameraPositionY                   |
-| CAMPOSZ | GraphicsModule::getInstance().getCameraPositionZ                   |
-| CAMPOS  | GraphicsModule::getInstance().setCameraPosition                    |
-| CAMROTX | GraphicsModule::getInstance().getCameraRotationX                   |
-| CAMROTY | GraphicsModule::getInstance().getCameraRotationY                   |
-| CAMROTZ | GraphicsModule::getInstance().getCameraRotationZ                   |
-| CAMROT  | GraphicsModule::getInstance().setCameraRotation                    |
-| FOG     | GraphicsModule::getInstance().setFogMode                           |
-| FOGPRM  | GraphicsModule::getInstance().setFogParameters                     |
-| OBJLD   | GraphicsModule::getInstance().loadObject                           |
-| OBJPOSX | GraphicsModule::getInstance().getObjectPositionX                   |
-| OBJPOSY | GraphicsModule::getInstance().getObjectPositionY                   |
-| OBJPOSZ | GraphicsModule::getInstance().getObjectPositionZ                   |
-| OBJPOS  | GraphicsModule::getInstance().setObjectPosition                    |
-| OBJROTX | GraphicsModule::getInstance().getObjectRotationX                   |
-| OBJROTY | GraphicsModule::getInstance().getObjectRotationY                   |
-| OBJROTZ | GraphicsModule::getInstance().getObjectRotationZ                   |
-| OBJROT  | GraphicsModule::getInstance().setObjectRotation                    |
-| OBJSCX  | GraphicsModule::getInstance().getObjectScaleX                      |
-| OBJSCY  | GraphicsModule::getInstance().getObjectScaleY                      |
-| OBJSCZ  | GraphicsModule::getInstance().getObjectScaleZ                      |
-| OBJSC   | GraphicsModule::getInstance().setObjectScale                       |
-| OBJPL   | GraphicsModule::getInstance().playObjectAnimation                  |
-| OBJPS   | GraphicsModule::getInstance().pauseObjectAnimation                 |
-| ISKEY   | GraphicsModule::getInstance().isKeyPressed                         |
-| ISBTN   | GraphicsModule::getInstance().isButtonPressed                      |
-| PTPOSX  | GraphicsModule::getInstance().getPointerPositionX                  |
-| PTPOSY  | GraphicsModule::getInstance().getPointerPositionY                  |
-| PTPOS   | GraphicsModule::getInstance().setPointerPosition                   |
-| UPDATE  | GraphicsModule::getInstance().update                               |
-+---------+--------------------------------------------------------------------+
++-----------------+------------------------------------------------------------+
+| POSITION_CAMERA | GraphicsModule::getInstance().setCameraPosition            |
+| ROTATION_CAMERA | GraphicsModule::getInstance().setCameraRotation            |
+| FOG             | GraphicsModule::getInstance().setFogMode                   |
+| FOG_COLOR       | GraphicsModule::getInstance().setFogColor                  |
+| FOG_DENSITY     | GraphicsModule::getInstance().setFogDensity                |
+| FOG_DEPTH       | GraphicsModule::getInstance().setFogDepth                  |
+| LOAD_OBJECT     | GraphicsModule::getInstance().loadObject                   |
+| POSITION_OBJECT | GraphicsModule::getInstance().setObjectPosition            |
+| ROTATION_OBJECT | GraphicsModule::getInstance().setObjectRotation            |
+| SCALE_OBJECT    | GraphicsModule::getInstance().setObjectScale               |
+| PLAY_OBJECT     | GraphicsModule::getInstance().playObjectAnimation          |
+| STOP_OBJECT     | GraphicsModule::getInstance().pauseObjectAnimation         |
+| KEYSTATE        | GraphicsModule::getInstance().isKeyPressed                 |
+| MOUSECLICK      | GraphicsModule::getInstance().getButtons                   |
+| MOUSEX          | GraphicsModule::getInstance().getPointerPositionX          |
+| MOUSEY          | GraphicsModule::getInstance().getPointerPositionY          |
+| POSITION_MOUSE  | GraphicsModule::getInstance().setPointerPosition           |
+| SYNC            | GraphicsModule::getInstance().update                       |
++-----------------+------------------------------------------------------------+
