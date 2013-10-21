@@ -14,12 +14,15 @@ namespace graphics {
 class GraphicsModulePrivate {
 public:
 	GraphicsModulePrivate(void);
+	float getScreenWidth(void);
+	float getScreenHeight(void);
 	void setCameraPosition(float x, float y, float z);
 	void setCameraRotation(float x, float y, float z);
+	void setAmbientLightMode(float ambient_light_mode);
+	void setAmbientLightColor(float r, float g, float b);
 	void setFogMode(float fog_mode);
 	void setFogColor(float r, float g, float b);
-	void setFogDensity(float density);
-	void setFogDepth(float start, float end);
+	void setFogDepth(float end_depth);
 	float loadObject(const base::Array& filename);
 	void setObjectPosition(float object_id, float x, float y, float z);
 	void setObjectRotation(float object_id, float x, float y, float z);

@@ -1,5 +1,6 @@
 #include "AdditionExpression.h"
 #include "exceptions/IllegalAdditionOperationException.h"
+#include "ParenthesesExpression.h"
 #include <boost/format.hpp>
 
 using namespace thewizardplusplus::wizard_basic::compiler::translator;
@@ -21,6 +22,9 @@ AdditionExpression::AdditionExpression(Expression::Pointer operand1,
 		throw IllegalAdditionOperationException(addition_type, operand1->
 			getType(), operand2->getType());
 	}
+
+	this->operand1 = Expression::Pointer(new ParenthesesExpression(operand1));
+	this->operand2 = Expression::Pointer(new ParenthesesExpression(operand2));
 }
 
 std::string AdditionExpression::getCppCode(void) const {

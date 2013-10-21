@@ -1,46 +1,49 @@
-+-----------------+------------------------------------------------------------+
-| Alias           | Name                                                       |
-+-----------------+------------------------------------------------------------+
++---------------------+--------------------------------------------------------+
+| Alias               | Name                                                   |
++---------------------+--------------------------------------------------------+
 | Math module                                                                  |
-+-----------------+------------------------------------------------------------+
-| SIN             | std::sin                                                   |
-| COS             | std::cos                                                   |
-| TAN             | std::tan                                                   |
-| ATN             | std::atan                                                  |
-| EXP             | std::exp                                                   |
-| LOG             | std::log                                                   |
-| SQR             | std::sqrt                                                  |
-| ABS             | std::abs                                                   |
-| INT             | std::floor                                                 |
-+-----------------+------------------------------------------------------------+
++---------------------+--------------------------------------------------------+
+| SIN                 | std::sin                                               |
+| COS                 | std::cos                                               |
+| TAN                 | std::tan                                               |
+| ATN                 | std::atan                                              |
+| EXP                 | std::exp                                               |
+| LOG                 | std::log                                               |
+| SQR                 | std::sqrt                                              |
+| ABS                 | std::abs                                               |
+| INT                 | std::floor                                             |
++---------------------+--------------------------------------------------------+
 | System module                                                                |
-+-----------------+------------------------------------------------------------+
-| RND             | SystemModule::getInstance().getRandomNumber                |
-| TIMER           | SystemModule::getInstance().getTimeFromStartInS            |
-| PRINT           | SystemModule::trace                                        |
-| OPEN            | SystemModule::getInstance().fileOpen                       |
-| INPUT           | SystemModule::getInstance().fileInput                      |
-| PRINT           | SystemModule::getInstance().fileOutput                     |
-| CLOSE           | SystemModule::getInstance().fileClose                      |
-+-----------------+------------------------------------------------------------+
++---------------------+--------------------------------------------------------+
+| RND                 | SystemModule::getInstance().getRandomNumber            |
+| TIMER               | SystemModule::getInstance().getTimeFromStartInS        |
+| PRINT               | SystemModule::trace                                    |
+| OPEN                | SystemModule::getInstance().fileOpen                   |
+| INPUT               | SystemModule::getInstance().fileInput                  |
+| PRINT               | SystemModule::getInstance().fileOutput                 |
+| CLOSE               | SystemModule::getInstance().fileClose                  |
++---------------------+--------------------------------------------------------+
 | Graphics module                                                              |
-+-----------------+------------------------------------------------------------+
-| POSITION_CAMERA | GraphicsModule::getInstance().setCameraPosition            |
-| ROTATION_CAMERA | GraphicsModule::getInstance().setCameraRotation            |
-| FOG             | GraphicsModule::getInstance().setFogMode                   |
-| FOG_COLOR       | GraphicsModule::getInstance().setFogColor                  |
-| FOG_DENSITY     | GraphicsModule::getInstance().setFogDensity                |
-| FOG_DEPTH       | GraphicsModule::getInstance().setFogDepth                  |
-| LOAD_OBJECT     | GraphicsModule::getInstance().loadObject                   |
-| POSITION_OBJECT | GraphicsModule::getInstance().setObjectPosition            |
-| ROTATION_OBJECT | GraphicsModule::getInstance().setObjectRotation            |
-| SCALE_OBJECT    | GraphicsModule::getInstance().setObjectScale               |
-| PLAY_OBJECT     | GraphicsModule::getInstance().playObjectAnimation          |
-| STOP_OBJECT     | GraphicsModule::getInstance().pauseObjectAnimation         |
-| KEYSTATE        | GraphicsModule::getInstance().isKeyPressed                 |
-| MOUSECLICK      | GraphicsModule::getInstance().getButtons                   |
-| MOUSEX          | GraphicsModule::getInstance().getPointerPositionX          |
-| MOUSEY          | GraphicsModule::getInstance().getPointerPositionY          |
-| POSITION_MOUSE  | GraphicsModule::getInstance().setPointerPosition           |
-| SYNC            | GraphicsModule::getInstance().update                       |
-+-----------------+------------------------------------------------------------+
++---------------------+--------------------------------------------------------+
+| SCREEN_WIDTH        | GraphicsModule::getInstance().getScreenWidth           |
+| SCREEN_HEIGHT       | GraphicsModule::getInstance().getScreenHeight          |
+| POSITION_CAMERA     | GraphicsModule::getInstance().setCameraPosition        |
+| ROTATION_CAMERA     | GraphicsModule::getInstance().setCameraRotation        |
+| SET_AMBIENT_LIGHT   | GraphicsModule::getInstance().setAmbientLightMode      |
+| COLOR_AMBIENT_LIGHT | GraphicsModule::getInstance().setAmbientLightColor     |
+| FOG                 | GraphicsModule::getInstance().setFogMode               |
+| FOG_COLOR           | GraphicsModule::getInstance().setFogColor              |
+| FOG_DEPTH           | GraphicsModule::getInstance().setFogDepth              |
+| LOAD_OBJECT         | GraphicsModule::getInstance().loadObject               |
+| POSITION_OBJECT     | GraphicsModule::getInstance().setObjectPosition        |
+| ROTATION_OBJECT     | GraphicsModule::getInstance().setObjectRotation        |
+| SCALE_OBJECT        | GraphicsModule::getInstance().setObjectScale           |
+| PLAY_OBJECT         | GraphicsModule::getInstance().playObjectAnimation      |
+| STOP_OBJECT         | GraphicsModule::getInstance().pauseObjectAnimation     |
+| KEYSTATE            | GraphicsModule::getInstance().isKeyPressed             |
+| MOUSECLICK          | GraphicsModule::getInstance().getButtons               |
+| MOUSEX              | GraphicsModule::getInstance().getPointerPositionX      |
+| MOUSEY              | GraphicsModule::getInstance().getPointerPositionY      |
+| POSITION_MOUSE      | GraphicsModule::getInstance().setPointerPosition       |
+| SYNC                | GraphicsModule::getInstance().update                   |
++---------------------+--------------------------------------------------------+

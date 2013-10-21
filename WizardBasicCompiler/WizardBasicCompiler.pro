@@ -50,6 +50,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionCallExpression.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/ConditionType.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionParameter.h \
+	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionStringFormat.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Function.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/FunctionList.h \
 	source/thewizardplusplus/wizard_basic/compiler/translator/Program.h \
@@ -57,8 +58,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/Compiler.h \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/CompilerException.h \
 	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/FailedOpenTemporaryFileException.h \
-	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h \
-    source/thewizardplusplus/wizard_basic/compiler/translator/FunctionStringFormat.h
+	source/thewizardplusplus/wizard_basic/compiler/compiler/exceptions/AssemblingOrLinkingException.h
 SOURCES += \
 	source/thewizardplusplus/wizard_basic/compiler/exceptions/WizardBasicCompilerException.cpp \
 	source/thewizardplusplus/wizard_basic/compiler/parser/exceptions/CodePosition.cpp \
@@ -112,7 +112,7 @@ win32:INCLUDEPATH += $$BOOST_PATH
 
 # флаги компилятора
 unix | win32-g++ {
-	QMAKE_CXXFLAGS += -std=c++98 -pedantic -Wall -W -O2
+	QMAKE_CXXFLAGS += -std=c++03 -pedantic -Wall -W -O2
 }
 win32-g++ {
 	QMAKE_CXXFLAGS += -U__STRICT_ANSI__

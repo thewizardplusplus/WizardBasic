@@ -1,7 +1,7 @@
 #ifndef SYSTEMMODULEPRIVATE_H
 #define SYSTEMMODULEPRIVATE_H
 
-#include "os.h"
+#include "../utils/os.h"
 #ifdef OS_LINUX
 #include <sys/time.h>
 #elif defined(OS_WINDOWS)

@@ -1,6 +1,5 @@
 #include "MultiplicationExpression.h"
 #include "exceptions/IllegalMultiplicationOperationException.h"
-#include "AdditionExpression.h"
 #include "ParenthesesExpression.h"
 #include <boost/format.hpp>
 #include <typeinfo>

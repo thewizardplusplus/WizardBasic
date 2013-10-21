@@ -1,9 +1,10 @@
 #include "GraphicsModulePrivate.h"
 #include "../system/SystemModule.h"
-#include "exceptions/OpenObjectFileException.h"
+#include "../utils/os.h"
 #include "exceptions/InvalidObjectIdException.h"
 #include <OpenGlGraphicApi.h>
 #include <cmath>
+#include <algorithm>
 
 using namespace thewizardplusplus::wizard_basic::framework::graphics;
 using namespace thewizardplusplus::anna::graphics;
@@ -22,6 +23,14 @@ GraphicsModulePrivate::GraphicsModulePrivate(void) :
 	last_time = SystemModule::getInstance().getTimeFromStartInS();
 }
 
+float GraphicsModulePrivate::getScreenWidth(void) {
+	return window->getSize().x;
+}
+
+float GraphicsModulePrivate::getScreenHeight(void) {
+	return window->getSize().y;
+}
+
 void GraphicsModulePrivate::setCameraPosition(float x, float y, float z) {
 	camera.setPosition(x, y, z);
 }
@@ -30,36 +39,47 @@ void GraphicsModulePrivate::setCameraRotation(float x, float y, float z) {
 	camera.setRotation(x, y, z);
 }
 
+void GraphicsModulePrivate::setAmbientLightMode(float ambient_light_mode) {
+	gapi->setAmbientLighting(std::floor(ambient_light_mode));
+}
+
+void GraphicsModulePrivate::setAmbientLightColor(float r, float g, float b) {
+	gapi->setAmbientColor(r / 255.0f, g / 255.0f, b / 255.0f);
+}
+
 void GraphicsModulePrivate::setFogMode(float fog_mode) {
 	gapi->setFogMode(std::floor(fog_mode));
 }
 
 void GraphicsModulePrivate::setFogColor(float r, float g, float b) {
 	FogParameters parameters = gapi->getFogParameters();
-	parameters.color = Vector3D<float>(r, g, b);
+	parameters.color = Vector3D<float>(r, g, b) / 255.0f;
 	gapi->setFogParameters(parameters);
 }
 
-void GraphicsModulePrivate::setFogDensity(float density) {
+void GraphicsModulePrivate::setFogDepth(float end_depth) {
 	FogParameters parameters = gapi->getFogParameters();
-	parameters.density = density;
-	gapi->setFogParameters(parameters);
-}
-
-void GraphicsModulePrivate::setFogDepth(float start, float end) {
-	FogParameters parameters = gapi->getFogParameters();
-	parameters.start_depth = start;
-	parameters.end_depth = end;
+	parameters.end_depth = end_depth;
 	gapi->setFogParameters(parameters);
 }
 
 float GraphicsModulePrivate::loadObject(const base::Array& filename) {
-	AnimateObject* object = AnimateObject::load(filename, gapi.get(), true);
-	if (object == NULL) {
-		throw OpenObjectFileException(filename);
-	}
+	std::string string_filename = filename;
+	#ifdef OS_LINUX
+	char wrong_separator = '\\';
+	char right_separator = '/';
+	#elif defined(OS_WINDOWS)
+	char wrong_separator = '/';
+	char right_separator = '\\';
+	#endif
+	std::replace(string_filename.begin(), string_filename.end(),
+		wrong_separator, right_separator);
 
-	if (object->getTrack()->getNumberOfFrames() != 0) {
+	AnimateObject* object = AnimateObject::load(string_filename, gapi.get(),
+		true);
+	if (object->getTrack() != NULL && object->getTrack()->getNumberOfFrames() !=
+		0)
+	{
 		world.addAnimateObject(object);
 	} else {
 		world.addObject(object);

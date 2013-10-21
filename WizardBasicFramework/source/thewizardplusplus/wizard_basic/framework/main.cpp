@@ -1,28 +1,18 @@
 #include "system/SystemModule.h"
+#include "graphics/GraphicsModule.h"
 
 using namespace thewizardplusplus::wizard_basic::framework::base;
 using namespace thewizardplusplus::wizard_basic::framework::system;
+using namespace thewizardplusplus::wizard_basic::framework::graphics;
 
 int main(void) {
-	WIZARD_BASIC_STRING(filename1, "test");
-	WIZARD_BASIC_STRING(filename2, "new");
-	WIZARD_BASIC_STRING(test_string, "Test!");
+	WIZARD_BASIC_STRING(filename, "test.ao");
+	float object = GraphicsModule::getInstance().loadObject(filename);
+	GraphicsModule::getInstance().setObjectPosition(object, 0.0f, 2.5f, 0.0f);
+	GraphicsModule::getInstance().setObjectRotation(object, 90.0f, 0.0f, 0.0f);
+	GraphicsModule::getInstance().playObjectAnimation(object, 0, 100, 1);
 
-	float file1 = SystemModule::getInstance().fileOpen(filename1, 0);
-	float file2 = SystemModule::getInstance().fileOpen(filename2, 1);
-	while (true) {
-		float symbol = SystemModule::getInstance().fileInput(file1);
-		if (symbol == -1.0f) {
-			break;
-		}
-
-		SystemModule::getInstance().fileOutput(file2, symbol);
+	while (!GraphicsModule::getInstance().isKeyPressed(1.0f)) {
+		GraphicsModule::getInstance().update();
 	}
-
-	SystemModule::getInstance().fileClose(file1);
-	SystemModule::getInstance().fileClose(file2);
-
-	float file3 = SystemModule::getInstance().fileOpen(filename2, 2);
-	SystemModule::getInstance().fileOutput(file3, test_string);
-	SystemModule::getInstance().fileClose(file3);
 }

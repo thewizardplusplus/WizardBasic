@@ -59,6 +59,10 @@ FunctionList::FunctionList(void) {
 			"fileClose", list_of
 			(FunctionParameter(ValueType::NUMBER))))
 		// graphics module
+		(Function(ValueType::NUMBER, "SCREEN_WIDTH", "GraphicsModule::"
+			"getInstance().getScreenWidth"))
+		(Function(ValueType::NUMBER, "SCREEN_HEIGHT", "GraphicsModule::"
+			"getInstance().getScreenHeight"))
 		(Function(ValueType::VOID, "POSITION_CAMERA", "GraphicsModule::"
 			"getInstance().setCameraPosition", list_of
 			(FunctionParameter(ValueType::NUMBER))
@@ -66,6 +70,14 @@ FunctionList::FunctionList(void) {
 			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "ROTATION_CAMERA", "GraphicsModule::"
 			"getInstance().setCameraRotation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "SET_AMBIENT_LIGHT", "GraphicsModule::"
+			"getInstance().setAmbientLightMode", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "COLOR_AMBIENT_LIGHT", "GraphicsModule::"
+			"getInstance().setAmbientLightColor", list_of
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
@@ -77,12 +89,8 @@ FunctionList::FunctionList(void) {
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "FOG_DENSITY", "GraphicsModule::"
-			"getInstance().setFogDensity", list_of
-			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "FOG_DEPTH", "GraphicsModule::getInstance()."
 			"setFogDepth", list_of
-			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::NUMBER, "LOAD_OBJECT", "GraphicsModule::"
 			"getInstance().loadObject", list_of

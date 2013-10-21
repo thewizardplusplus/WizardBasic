@@ -8,12 +8,28 @@ GraphicsModule& GraphicsModule::getInstance(void) {
 	return module;
 }
 
+float GraphicsModule::getScreenWidth(void) {
+	return private_realization->getScreenWidth();
+}
+
+float GraphicsModule::getScreenHeight(void) {
+	return private_realization->getScreenHeight();
+}
+
 void GraphicsModule::setCameraPosition(float x, float y, float z) {
 	private_realization->setCameraPosition(x, y, z);
 }
 
 void GraphicsModule::setCameraRotation(float x, float y, float z) {
 	private_realization->setCameraRotation(x, y, z);
+}
+
+void GraphicsModule::setAmbientLightMode(float ambient_light_mode) {
+	private_realization->setAmbientLightMode(ambient_light_mode);
+}
+
+void GraphicsModule::setAmbientLightColor(float r, float g, float b) {
+	private_realization->setAmbientLightColor(r, g, b);
 }
 
 void GraphicsModule::setFogMode(float fog_mode) {
@@ -24,12 +40,8 @@ void GraphicsModule::setFogColor(float r, float g, float b) {
 	private_realization->setFogColor(r, g, b);
 }
 
-void GraphicsModule::setFogDensity(float density) {
-	private_realization->setFogDensity(density);
-}
-
-void GraphicsModule::setFogDepth(float start, float end) {
-	private_realization->setFogDepth(start, end);
+void GraphicsModule::setFogDepth(float end_depth) {
+	private_realization->setFogDepth(end_depth);
 }
 
 float GraphicsModule::loadObject(const base::Array& filename) {
