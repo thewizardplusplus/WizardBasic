@@ -295,10 +295,11 @@ Expression::Pointer Translator::translateIdentifier(const Parser::ParseTree::
 	ASSERT(parse_tree_node->value.id() == WizardBasicGrammarRule::IDENTIFIER,
 		"Wizard BASIC: translating error - invalid node; expected IDENTIFIER.");
 
+	std::string identifier = getNodeValue(parse_tree_node);
 	Variable::Pointer variable = program->getVariables().getVariableByName(
-		getNodeValue(parse_tree_node));
+		identifier);
 	if (!variable) {
-		throw UndefinedVariableException(variable->getName());
+		throw UndefinedVariableException(identifier);
 	}
 
 	return Expression::Pointer(new IdentifierExpression(variable));
@@ -317,10 +318,11 @@ Expression::Pointer Translator::translateArrayAccess(const Parser::ParseTree::
 	ASSERT(child->value.id() == WizardBasicGrammarRule::IDENTIFIER, "Wizard "
 		"BASIC: translating error - invalid node; expected IDENTIFIER.");
 
+	std::string identifier = getNodeValue(child);
 	Variable::Pointer variable = program->getVariables().getVariableByName(
-		getNodeValue(child));
+		identifier);
 	if (!variable) {
-		throw UndefinedVariableException(variable->getName());
+		throw UndefinedVariableException(identifier);
 	}
 
 	Expression::Pointer index_expression = translateExpression(++child);
