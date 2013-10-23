@@ -1,0 +1,34 @@
+object:
+	meshes:
+		number: 1
+		mesh:
+			position: 0.0 0.0 0.0
+			rotation: 0.0 -0.0 0.0
+			scale: 1.0 1.0 1.0
+			material:
+				texture: stained-glass_window.bmp
+				transparency_type: BLENDING
+				allow_ambient_light: true
+				allow_fog: true
+			vertices:
+				number: 6
+				vertex:
+					position: -1.0 6.397578431460715e-07 -1.0
+					uv: 0.0001000693955575116 9.998001041822135e-05
+				vertex:
+					position: 1.0 6.397578431460715e-07 -1.0
+					uv: 0.9999000430107117 9.998001041822135e-05
+				vertex:
+					position: 1.0 -6.397578431460715e-07 1.0
+					uv: 0.9999000430107117 0.9999000430107117
+				vertex:
+					position: 1.0 -6.397578431460715e-07 1.0
+					uv: 0.9999000430107117 0.9999000430107117
+				vertex:
+					position: -1.0 -6.397578431460715e-07 1.0
+					uv: 9.998001041822135e-05 0.9999000430107117
+				vertex:
+					position: -1.0 6.397578431460715e-07 -1.0
+					uv: 0.0001000693955575116 9.998001041822135e-05
+	animation_keys:
+		number: 0

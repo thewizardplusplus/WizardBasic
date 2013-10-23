@@ -18,8 +18,6 @@ public:
 	float getScreenHeight(void);
 	void setCameraPosition(float x, float y, float z);
 	void setCameraRotation(float x, float y, float z);
-	void setAmbientLightMode(float ambient_light_mode);
-	void setAmbientLightColor(float r, float g, float b);
 	void setFogMode(float fog_mode);
 	void setFogColor(float r, float g, float b);
 	void setFogDepth(float end_depth);

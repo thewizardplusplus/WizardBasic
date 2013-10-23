@@ -73,14 +73,6 @@ FunctionList::FunctionList(void) {
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "SET_AMBIENT_LIGHT", "GraphicsModule::"
-			"getInstance().setAmbientLightMode", list_of
-			(FunctionParameter(ValueType::NUMBER))))
-		(Function(ValueType::VOID, "COLOR_AMBIENT_LIGHT", "GraphicsModule::"
-			"getInstance().setAmbientLightColor", list_of
-			(FunctionParameter(ValueType::NUMBER))
-			(FunctionParameter(ValueType::NUMBER))
-			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "FOG", "GraphicsModule::getInstance()."
 			"setFogMode", list_of
 			(FunctionParameter(ValueType::NUMBER))))

@@ -24,14 +24,6 @@ void GraphicsModule::setCameraRotation(float x, float y, float z) {
 	private_realization->setCameraRotation(x, y, z);
 }
 
-void GraphicsModule::setAmbientLightMode(float ambient_light_mode) {
-	private_realization->setAmbientLightMode(ambient_light_mode);
-}
-
-void GraphicsModule::setAmbientLightColor(float r, float g, float b) {
-	private_realization->setAmbientLightColor(r, g, b);
-}
-
 void GraphicsModule::setFogMode(float fog_mode) {
 	private_realization->setFogMode(fog_mode);
 }

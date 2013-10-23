@@ -29,8 +29,6 @@
 | SCREEN_HEIGHT       | GraphicsModule::getInstance().getScreenHeight          |
 | POSITION_CAMERA     | GraphicsModule::getInstance().setCameraPosition        |
 | ROTATION_CAMERA     | GraphicsModule::getInstance().setCameraRotation        |
-| SET_AMBIENT_LIGHT   | GraphicsModule::getInstance().setAmbientLightMode      |
-| COLOR_AMBIENT_LIGHT | GraphicsModule::getInstance().setAmbientLightColor     |
 | FOG                 | GraphicsModule::getInstance().setFogMode               |
 | FOG_COLOR           | GraphicsModule::getInstance().setFogColor              |
 | FOG_DEPTH           | GraphicsModule::getInstance().setFogDepth              |

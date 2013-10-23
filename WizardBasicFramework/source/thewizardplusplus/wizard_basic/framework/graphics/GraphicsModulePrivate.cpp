@@ -1,6 +1,7 @@
 #include "GraphicsModulePrivate.h"
 #include "../system/SystemModule.h"
 #include "../utils/os.h"
+#include "Mesh.h"
 #include "exceptions/InvalidObjectIdException.h"
 #include <OpenGlGraphicApi.h>
 #include <cmath>
@@ -39,14 +40,6 @@ void GraphicsModulePrivate::setCameraRotation(float x, float y, float z) {
 	camera.setRotation(x, y, z);
 }
 
-void GraphicsModulePrivate::setAmbientLightMode(float ambient_light_mode) {
-	gapi->setAmbientLighting(std::floor(ambient_light_mode));
-}
-
-void GraphicsModulePrivate::setAmbientLightColor(float r, float g, float b) {
-	gapi->setAmbientColor(r / 255.0f, g / 255.0f, b / 255.0f);
-}
-
 void GraphicsModulePrivate::setFogMode(float fog_mode) {
 	gapi->setFogMode(std::floor(fog_mode));
 }
@@ -77,6 +70,15 @@ float GraphicsModulePrivate::loadObject(const base::Array& filename) {
 
 	AnimateObject* object = AnimateObject::load(string_filename, gapi.get(),
 		true);
+
+	size_t number_of_meshes = object->getNumberOfMeshes();
+	for (size_t i = 0; i < number_of_meshes; i++) {
+		Mesh* mesh = object->getMesh(i);
+		if (mesh->getMaterial().transparent_type == TransparentType::BLENDING) {
+			mesh->getMaterial().transparent_type = TransparentType::ALPHA_TEST;
+		}
+	}
+
 	if (object->getTrack() != NULL && object->getTrack()->getNumberOfFrames() !=
 		0)
 	{

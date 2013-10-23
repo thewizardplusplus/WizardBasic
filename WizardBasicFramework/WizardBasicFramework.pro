@@ -14,6 +14,7 @@ CONFIG -= qt
 # файлы проекта
 HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/utils/Converter.h \
+	source/thewizardplusplus/wizard_basic/framework/utils/os.h \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/BaseException.h \
 	source/thewizardplusplus/wizard_basic/framework/base/exceptions/OutOfBoundsException.h \
@@ -27,8 +28,7 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/GraphicsException.h \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/InvalidObjectIdException.h \
 	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.h \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h \
-    source/thewizardplusplus/wizard_basic/framework/utils/os.h
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h
 SOURCES += \
 	#source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \

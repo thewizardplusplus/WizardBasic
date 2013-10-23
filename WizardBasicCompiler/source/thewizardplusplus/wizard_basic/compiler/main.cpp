@@ -29,7 +29,7 @@ int main(int number_of_arguments, char** arguments) {
 	{
 		std::cout <<
 			"Wizard BASIC, v0.3.\n"
-			"(c) 2013, thewizardplusplus.\n"
+			"Copyright (c) thewizardplusplus 2013 All rights reserved\n"
 			<< std::endl;
 		return EXIT_SUCCESS;
 	}
