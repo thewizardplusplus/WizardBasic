@@ -15,7 +15,7 @@
 150 CLOSE(file1)
 160 CLOSE(file2)
 170
-180 DIM test_string = "Test!"
+180 DIM test_string = "Test!\n"
 190 LET file3 = OPEN(filename2, 2)
 200 PRINT(file3, test_string)
 210 CLOSE(file3)
