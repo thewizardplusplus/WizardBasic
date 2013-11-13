@@ -128,7 +128,34 @@ FunctionList::FunctionList(void) {
 			(FunctionParameter(ValueType::NUMBER))
 			(FunctionParameter(ValueType::NUMBER))))
 		(Function(ValueType::VOID, "SYNC", "GraphicsModule::getInstance()."
-			"update"));
+			"update"))
+		// sound module
+		(Function(ValueType::NUMBER, "LOAD_SOUND", "SoundModule::getInstance()."
+			"loadSound", list_of
+			(FunctionParameter(ValueType::ARRAY))))
+		(Function(ValueType::VOID, "PLAY_SOUND", "SoundModule::getInstance()."
+			"playSound", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "STOP_SOUND", "SoundModule::getInstance()."
+			"stopSound", list_of
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "POSITION_SOUND", "SoundModule::"
+			"getInstance().setSoundPosition", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "POSITION_LISTENER", "SoundModule::"
+			"getInstance().setListenerPosition", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))))
+		(Function(ValueType::VOID, "ROTATION_LISTENER", "SoundModule::"
+			"getInstance().setListenerRotation", list_of
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))
+			(FunctionParameter(ValueType::NUMBER))));
 }
 
 Function FunctionList::getFunctionBySample(const Function& sample_function)

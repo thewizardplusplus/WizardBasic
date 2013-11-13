@@ -2,6 +2,9 @@
 win32:BOOST_PATH = E:\\boost_1_54_0
 ANNA_GRAPHICS_INCLUDES_PATH = E:\\projects\\current\\AnnaGraphics\\release\\includes
 ANNA_GRAPHICS_LIBS_PATH = E:\\projects\\current\\AnnaGraphics\\release\\libs
+ANNA_SOUND_INCLUDES_PATH = E:\\projects\\current\\AnnaSound\\release\\includes
+ANNA_SOUND_LIBS_PATH = E:\\projects\\current\\AnnaSound\\release\\libs
+win32:OPENAL_LIB_PATH = E:\\openal\\lib\\Win32
 
 # общие настройки
 TARGET = wbf
@@ -28,7 +31,11 @@ HEADERS += \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/GraphicsException.h \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/InvalidObjectIdException.h \
 	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.h \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.h \
+	source/thewizardplusplus/wizard_basic/framework/sound/exceptions/SoundException.h \
+	source/thewizardplusplus/wizard_basic/framework/sound/exceptions/InvalidSoundIdException.h \
+	source/thewizardplusplus/wizard_basic/framework/sound/SoundModulePrivate.h \
+	source/thewizardplusplus/wizard_basic/framework/sound/SoundModule.h
 SOURCES += \
 	#source/thewizardplusplus/wizard_basic/framework/main.cpp \
 	source/thewizardplusplus/wizard_basic/framework/exceptions/WizardBasicFrameworkException.cpp \
@@ -44,14 +51,18 @@ SOURCES += \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/GraphicsException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/graphics/exceptions/InvalidObjectIdException.cpp \
 	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModulePrivate.cpp \
-	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.cpp
+	source/thewizardplusplus/wizard_basic/framework/graphics/GraphicsModule.cpp \
+	source/thewizardplusplus/wizard_basic/framework/sound/exceptions/SoundException.cpp \
+	source/thewizardplusplus/wizard_basic/framework/sound/exceptions/InvalidSoundIdException.cpp \
+	source/thewizardplusplus/wizard_basic/framework/sound/SoundModulePrivate.cpp \
+	source/thewizardplusplus/wizard_basic/framework/sound/SoundModule.cpp
 
 # файлы внешних библиотек
-INCLUDEPATH += $$ANNA_GRAPHICS_INCLUDES_PATH
+INCLUDEPATH += $$ANNA_GRAPHICS_INCLUDES_PATH $$ANNA_SOUND_INCLUDES_PATH
 win32:INCLUDEPATH += $$BOOST_PATH
-#LIBS += -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics
+#LIBS += -L$$ANNA_GRAPHICS_LIBS_PATH -lAnnaGraphics -L$$ANNA_SOUND_LIBS_PATH -lAnnaSound
 #unix:LIBS += -lGL
-#win32:LIBS += -lopengl32 -lgdi32
+#win32:LIBS += -lopengl32 -lgdi32  -L$$OPENAL_LIB_PATH -lopenal32
 
 # флаги компилятора
 unix | win32-g++ {

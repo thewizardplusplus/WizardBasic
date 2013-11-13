@@ -23,12 +23,13 @@ void Compiler::compile(const std::string& translated_code, const std::string&
 
 	#ifdef OS_LINUX
 	std::string command = (format("g++ -I./framework/includes -o %1% %2% "
-		"-L./framework/libs -lwbf -lAnnaGraphics -lGL") % output_filename %
-		temporary_filename).str();
+		"-L./framework/libs -lwbf -lAnnaGraphics -lGL -lAnnaSound -lopenal") %
+		output_filename % temporary_filename).str();
 	#elif defined(OS_WINDOWS)
 	std::string command = (format("g++ -I./framework/includes -Wl,-subsystem,"
 		"console -o %1% %2% -L./framework/libs -lwbf -lAnnaGraphics -lopengl32 "
-		"-lgdi32") % output_filename % temporary_filename).str();
+		"-lgdi32 -lAnnaSound -lopenal32") % output_filename %
+		temporary_filename).str();
 	#endif
 	int result = std::system(command.c_str());
 	if (result) {

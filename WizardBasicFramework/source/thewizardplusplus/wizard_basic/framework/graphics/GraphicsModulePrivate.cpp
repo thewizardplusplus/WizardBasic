@@ -1,9 +1,9 @@
 #include "GraphicsModulePrivate.h"
 #include "../system/SystemModule.h"
 #include "../utils/os.h"
-#include "Mesh.h"
 #include "exceptions/InvalidObjectIdException.h"
 #include <OpenGlGraphicApi.h>
+#include <Mesh.h>
 #include <cmath>
 #include <algorithm>
 

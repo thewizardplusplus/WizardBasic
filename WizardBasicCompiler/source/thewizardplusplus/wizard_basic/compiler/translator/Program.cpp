@@ -136,6 +136,7 @@ std::string Program::getCppCode(void) const {
 	return (format(
 		"#include <SystemModule.h>\n"
 		"#include <GraphicsModule.h>\n"
+		"#include <SoundModule.h>\n"
 		"#include <cmath>\n"
 		"#include <stdexcept>\n"
 		"#include <iostream>\n"
@@ -145,6 +146,7 @@ std::string Program::getCppCode(void) const {
 		"using namespace thewizardplusplus::wizard_basic::framework::system;\n"
 		"using namespace thewizardplusplus::wizard_basic::framework::"
 			"graphics;\n"
+		"using namespace thewizardplusplus::wizard_basic::framework::sound;\n"
 		"\n"
 		"int main(void) {\n"
 		"%1%"

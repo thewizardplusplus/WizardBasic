@@ -1,7 +1,7 @@
 10  REM File input-output.
 20
-30  DIM filename1 = "test.txt"
-40  DIM filename2 = "new.txt"
+30  DIM filename1 = "resources/text.txt"
+40  DIM filename2 = "new_text.txt"
 50
 60  LET file1 = OPEN(filename1, 0)
 70  LET file2 = OPEN(filename2, 1)
