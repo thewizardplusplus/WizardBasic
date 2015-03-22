@@ -1,7 +1,7 @@
 main:
-	$(MAKE) -C wizard-basic-compiler
-	$(MAKE) -C wizard-basic-framework
+	$(MAKE) -C wizard-basic-2-compiler
+	$(MAKE) -C wizard-basic-2-framework
 
 clean:
-	$(MAKE) -C wizard-basic-compiler clean
-	$(MAKE) -C wizard-basic-framework clean
+	$(MAKE) -C wizard-basic-2-compiler clean
+	$(MAKE) -C wizard-basic-2-framework clean

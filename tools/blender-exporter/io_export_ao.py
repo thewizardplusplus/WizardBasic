@@ -25,7 +25,7 @@
 bl_info = {
 	"name": "Export to Anna Object (*.ao)",
 	"author": "thewizardplusplus",
-	"version": (1, 0, 1),
+	"version": (1, 0, 0),
 	"blender": (2, 67, 0),
 	"location": "File > Export > Anna Object (*.ao)",
 	"description": "Export mesh objects to Anna Object (*.ao)",
