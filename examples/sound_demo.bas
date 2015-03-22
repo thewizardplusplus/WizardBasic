@@ -21,7 +21,7 @@
 210     LET x = RADIUS * COS(SPEED * time)
 220     LET y = RADIUS * SIN(SPEED * time)
 230     IF USE_LISTENER = 1 THEN 260
-240        	POSITION_SOUND(fire, x, y, 0)
+240         POSITION_SOUND(fire, x, y, 0)
 250         GOTO 280
 260         LET angle = SPEED * time * 180 / PI
 270         ROTATION_LISTENER(0, 0, angle)

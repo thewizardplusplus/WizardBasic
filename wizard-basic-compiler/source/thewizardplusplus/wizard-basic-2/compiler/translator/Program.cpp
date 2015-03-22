@@ -10,6 +10,7 @@
 #include "exceptions/IllegalConditionOperationException.h"
 #include "FunctionCallExpression.h"
 #include "exceptions/JumpsToNonexsistentLabelsExceptions.h"
+#include "../utils/os.h"
 #include <boost/format.hpp>
 #include <boost/algorithm/string.hpp>
 #include <typeinfo>
@@ -134,20 +135,34 @@ std::string Program::getCppCode(void) const {
 	}
 
 	return (format(
-		"#include <SystemModule.h>\n"
-		"#include <GraphicsModule.h>\n"
-		"#include <SoundModule.h>\n"
+		"#include <wizard_basic_2_framework/system/SystemModule.h>\n"
+		"#include <wizard_basic_2_framework/graphics/GraphicsModule.h>\n"
+		"#include <wizard_basic_2_framework/sound/SoundModule.h>\n"
+		#ifdef OS_LINUX
+			"#include <pthread.h>\n"
+		#endif
 		"#include <cmath>\n"
 		"#include <stdexcept>\n"
 		"#include <iostream>\n"
 		"#include <cstdlib>\n"
 		"\n"
 		"using namespace thewizardplusplus::wizard_basic_2::framework::base;\n"
-		"using namespace thewizardplusplus::wizard_basic_2::framework::system;\n"
+		"using namespace "
+			"thewizardplusplus"
+			"::wizard_basic_2"
+			"::framework::system;\n"
 		"using namespace thewizardplusplus::wizard_basic_2::framework::"
 			"graphics;\n"
 		"using namespace thewizardplusplus::wizard_basic_2::framework::sound;\n"
 		"\n"
+		#ifdef OS_LINUX
+			"// http://stackoverflow.com/a/20105913/3884331\n"
+			"int Dummy(void) {\n"
+			"\tstatic int level_of_concurrency = pthread_getconcurrency();\n"
+			"\treturn level_of_concurrency;\n"
+			"}\n"
+			"\n"
+		#endif
 		"int main(void) {\n"
 		"%1%"
 		"\ttry {\n"

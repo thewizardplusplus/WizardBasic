@@ -10,8 +10,11 @@ namespace compiler {
 
 class Compiler {
 public:
-	void compile(const std::string& translated_code, const std::string&
-		output_filename);
+	void compile(
+		const std::string& translated_code,
+		const std::string& compiler_path,
+		const std::string& output_filename
+	);
 };
 
 }
