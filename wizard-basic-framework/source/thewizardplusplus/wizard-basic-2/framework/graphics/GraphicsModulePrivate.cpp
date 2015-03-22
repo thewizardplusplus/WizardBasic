@@ -2,8 +2,8 @@
 #include "../system/SystemModule.h"
 #include "../utils/os.h"
 #include "exceptions/InvalidObjectIdException.h"
-#include <OpenGlGraphicApi.h>
-#include <Mesh.h>
+#include <anna/graphics/OpenGlGraphicApi.h>
+#include <anna/graphics/Mesh.h>
 #include <cmath>
 #include <algorithm>
 

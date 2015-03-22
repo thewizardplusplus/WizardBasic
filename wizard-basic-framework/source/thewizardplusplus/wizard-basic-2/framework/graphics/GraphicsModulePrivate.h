@@ -2,7 +2,7 @@
 #define GRAPHICSMODULEPRIVATE_H
 
 #include "../base/Array.h"
-#include <GraphicApi.h>
+#include <anna/graphics/GraphicApi.h>
 #include <memory>
 #include <list>
 

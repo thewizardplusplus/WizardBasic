@@ -2,8 +2,8 @@
 #define SOUNDMODULEPRIVATE_H
 
 #include "../base/Array.h"
-#include <SoundManager.h>
-#include <Vector3D.h>
+#include <anna/sound/SoundManager.h>
+#include <anna/maths/Vector3D.h>
 #include <memory>
 #include <list>
 

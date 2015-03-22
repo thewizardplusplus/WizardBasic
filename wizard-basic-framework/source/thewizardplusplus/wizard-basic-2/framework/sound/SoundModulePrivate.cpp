@@ -1,10 +1,10 @@
 #include "SoundModulePrivate.h"
 #include "../utils/os.h"
 #include "exceptions/InvalidSoundIdException.h"
-#include <AudioDevice.h>
-#include <Sound.h>
-#include <Listener.h>
-#include <Source.h>
+#include <anna/sound/AudioDevice.h>
+#include <anna/sound/Sound.h>
+#include <anna/sound/Listener.h>
+#include <anna/sound/Source.h>
 #include <cmath>
 #include <algorithm>
 
