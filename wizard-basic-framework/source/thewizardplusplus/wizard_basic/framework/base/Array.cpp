@@ -2,8 +2,8 @@
 #include "exceptions/OutOfBoundsException.h"
 #include <cmath>
 
-using namespace thewizardplusplus::wizard_basic::framework::base;
-using namespace thewizardplusplus::wizard_basic::framework::base::exceptions;
+using namespace thewizardplusplus::wizard_basic_2::framework::base;
+using namespace thewizardplusplus::wizard_basic_2::framework::base::exceptions;
 
 Array::Array(size_t size, const std::string& name) :
 	array(size),

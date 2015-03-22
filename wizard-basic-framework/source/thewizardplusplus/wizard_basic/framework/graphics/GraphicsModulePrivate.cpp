@@ -7,11 +7,11 @@
 #include <cmath>
 #include <algorithm>
 
-using namespace thewizardplusplus::wizard_basic::framework::graphics;
+using namespace thewizardplusplus::wizard_basic_2::framework::graphics;
 using namespace thewizardplusplus::anna::graphics;
-using namespace thewizardplusplus::wizard_basic::framework::system;
+using namespace thewizardplusplus::wizard_basic_2::framework::system;
 using namespace thewizardplusplus::anna::maths;
-using namespace thewizardplusplus::wizard_basic::framework::graphics::
+using namespace thewizardplusplus::wizard_basic_2::framework::graphics::
 	exceptions;
 
 GraphicsModulePrivate::GraphicsModulePrivate(void) :

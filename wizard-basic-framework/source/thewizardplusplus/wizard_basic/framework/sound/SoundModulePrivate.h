@@ -8,7 +8,7 @@
 #include <list>
 
 namespace thewizardplusplus {
-namespace wizard_basic {
+namespace wizard_basic_2 {
 namespace framework {
 namespace sound {
 

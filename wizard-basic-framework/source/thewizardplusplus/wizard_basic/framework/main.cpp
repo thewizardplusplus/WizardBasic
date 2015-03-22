@@ -1,9 +1,9 @@
 /*#include "system/SystemModule.h"
 #include "graphics/GraphicsModule.h"
 
-using namespace thewizardplusplus::wizard_basic::framework::base;
-using namespace thewizardplusplus::wizard_basic::framework::system;
-using namespace thewizardplusplus::wizard_basic::framework::graphics;
+using namespace thewizardplusplus::wizard_basic_2::framework::base;
+using namespace thewizardplusplus::wizard_basic_2::framework::system;
+using namespace thewizardplusplus::wizard_basic_2::framework::graphics;
 
 int main(void) {
 	WIZARD_BASIC_STRING(filename, "test.ao");
@@ -22,8 +22,8 @@ int main(void) {
 #include <cmath>
 #include <iostream>
 
-using namespace thewizardplusplus::wizard_basic::framework::base;
-using namespace thewizardplusplus::wizard_basic::framework::sound;
+using namespace thewizardplusplus::wizard_basic_2::framework::base;
+using namespace thewizardplusplus::wizard_basic_2::framework::sound;
 using namespace thewizardplusplus::anna::maths;
 
 static const bool  USE_LISTENER = true;

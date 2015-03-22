@@ -1,6 +1,6 @@
 #include "SystemModulePrivate.h"
 
-using namespace thewizardplusplus::wizard_basic::framework::system;
+using namespace thewizardplusplus::wizard_basic_2::framework::system;
 
 SystemModulePrivate::SystemModulePrivate(void) {
 	#ifdef OS_LINUX

@@ -8,10 +8,10 @@
 #include <cmath>
 #include <algorithm>
 
-using namespace thewizardplusplus::wizard_basic::framework::sound;
+using namespace thewizardplusplus::wizard_basic_2::framework::sound;
 using namespace thewizardplusplus::anna::sound;
 using namespace thewizardplusplus::anna::maths;
-using namespace thewizardplusplus::wizard_basic::framework::sound::exceptions;
+using namespace thewizardplusplus::wizard_basic_2::framework::sound::exceptions;
 
 SoundModulePrivate::SoundModulePrivate(void) {
 	sound_manager.reset(new SoundManager());

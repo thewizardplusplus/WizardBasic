@@ -8,9 +8,9 @@
 #include <cstdlib>
 #include <ctime>
 
-using namespace thewizardplusplus::wizard_basic::framework::system;
-using namespace thewizardplusplus::wizard_basic::framework::system::exceptions;
-using namespace thewizardplusplus::wizard_basic::framework::base;
+using namespace thewizardplusplus::wizard_basic_2::framework::system;
+using namespace thewizardplusplus::wizard_basic_2::framework::system::exceptions;
+using namespace thewizardplusplus::wizard_basic_2::framework::base;
 
 void SystemModule::trace(float number) {
 	std::cout << std::fixed << number;

@@ -8,7 +8,7 @@
 #define WIZARD_BASIC_STRING(name, string) Array name(string, #name)
 
 namespace thewizardplusplus {
-namespace wizard_basic {
+namespace wizard_basic_2 {
 namespace framework {
 namespace base {
 
