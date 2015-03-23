@@ -27,6 +27,18 @@ float& Array::operator[](float index) {
 	return array[processIndex(index)];
 }
 
+bool Array::operator<(const Array& sample) const {
+	return array < sample.array;
+}
+
+bool Array::operator==(const Array& sample) const {
+	return array == sample.array;
+}
+
+bool Array::operator>(const Array& sample) const {
+	return array > sample.array;
+}
+
 Array::operator std::string(void) const {
 	std::string result;
 	NumberVector::const_iterator i = array.begin();
