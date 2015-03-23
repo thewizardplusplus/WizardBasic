@@ -81,7 +81,7 @@ Wizard BASIC 2 &mdash; компилируемый высокоуровневый
 Перечислены в порядке убывания приоритета.
 
 Приоритет | Операция | Описание | Ассоциативность | Типы
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 1 | `[]` | доступ к элементам массива | левая | массивы
 2 | `*` | умножение | левая | числа
 2 | `/` | деление | левая | числа
@@ -151,7 +151,7 @@ Wizard BASIC 2 &mdash; компилируемый высокоуровневый
 * `NUMBER LOG(NUMBER)`;
 * `NUMBER SQR(NUMBER)`;
 * `NUMBER ABS(NUMBER)`;
-* `NUMBER INT(NUMBER)` &mdash; возвращает целую часть числа;
+* `NUMBER INT(NUMBER)` &mdash; возвращает целую часть числа.
 
 #### Модуль System
 
@@ -166,7 +166,7 @@ Wizard BASIC 2 &mdash; компилируемый высокоуровневый
 	* 1 (запись);
 	* 2 (дополнение);
 * `NUMBER INPUT(NUMBER file_id)` &mdash; читает из файла 1 байт;
-* `VOID CLOSE(NUMBER file_id)`;
+* `VOID CLOSE(NUMBER file_id)`.
 
 #### Модуль Graphics
 
@@ -204,11 +204,11 @@ NUMBER loop)` &mdash; параметр loop может быть:
 * `NUMBER MOUSEY(VOID)`;
 * `VOID POSITION_MOUSE(NUMBER x, NUMBER y)`;
 * `VOID SYNC(VOID)` &mdash; вызывает очистку экрана, отрисовку всех объектов и
-обновление окна (смену буферов);
+обновление окна (смену буферов).
 
 #### Модуль Sound
 
-* `NUMBER LOAD_SOUND(ARRAY filename)`;
+* `NUMBER LOAD_SOUND(ARRAY filename)` &mdash; монофонический звук будет загружен как 2D-звук, стереофонический звук &mdash; как 3D-звук;
 * `VOID PLAY_SOUND(NUMBER sound_id, NUMBER loop)` &mdash; параметр loop может
 быть:
 	* 0 (не зацикливать воспроизведение);
@@ -216,7 +216,7 @@ NUMBER loop)` &mdash; параметр loop может быть:
 * `VOID STOP_SOUND(NUMBER sound_id)` &mdash; останавливает воспроизведение;
 * `VOID POSITION_SOUND(NUMBER sound_id, NUMBER x, NUMBER y, NUMBER z)`;
 * `VOID POSITION_LISTENER(NUMBER x, NUMBER y, NUMBER z)`;
-* `VOID ROTATION_LISTENER(NUMBER x, NUMBER y, NUMBER z)`;
+* `VOID ROTATION_LISTENER(NUMBER x, NUMBER y, NUMBER z)`.
 
 #### Коды клавиш
 
