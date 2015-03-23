@@ -1,0 +1,29 @@
+10  REM Gauss-Legendre algorithm.
+20
+30  LET EPSILON = 0.000001
+40
+50  LET a = 1
+60  LET b = 1 / SQR(2)
+70  LET t = 1 / 4
+80  LET p = 1
+90
+100 REM Calculation loop:
+110     LET new_a = (a + b) / 2
+120     LET new_b = SQR(a * b)
+130     LET new_t = t - p * (a - new_a) * (a - new_a)
+140     LET new_p = 2 * p
+150
+160     LET a = new_a
+170     LET b = new_b
+180     LET t = new_t
+190     LET p = new_p
+200
+210     IF ABS(a - b) > EPSILON THEN 100
+220
+230 LET pi = (a + b) * (a + b) / (4 * t)
+240
+250 DIM MESSAGE_BEGIN = "Pi = "
+260 PRINT(MESSAGE_BEGIN)
+270 PRINT(pi)
+280 DIM MESSAGE_END = ".\n"
+290 PRINT(MESSAGE_END)
