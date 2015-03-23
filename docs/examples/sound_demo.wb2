@@ -1,0 +1,29 @@
+10  LET PI = 3.14
+20  LET USE_LISTENER = 1
+30  LET RADIUS = 2
+40  LET SPEED = 0.001
+50
+60  IF USE_LISTENER = 0 THEN 80
+70      POSITION_LISTENER(0, RADIUS, 0)
+80
+90  DIM WIND_FILENAME = "data/wind.wav"
+100 LET wind = LOAD_SOUND(WIND_FILENAME)
+110 PLAY_SOUND(wind, 1)
+120
+130 DIM FIRE_FILENAME = "data/fire.wav"
+140 LET fire = LOAD_SOUND(FIRE_FILENAME)
+150 PLAY_SOUND(fire, 1)
+160
+170 LET time = 0
+180 REM Rotation loop:
+190     LET x = RADIUS * COS(SPEED * time)
+200     LET y = RADIUS * SIN(SPEED * time)
+210     IF USE_LISTENER = 1 THEN 250
+220         POSITION_SOUND(fire, x, y, 0)
+230         GOTO 280
+240
+250         LET angle = SPEED * time * 180 / PI
+260         ROTATION_LISTENER(0, 0, angle)
+270
+280     LET time = time + 1
+290     GOTO 180

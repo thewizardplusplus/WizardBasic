@@ -1,0 +1,18 @@
+10  DIM FILENAME_1 = "data/text.txt"
+20  LET file_1 = OPEN(FILENAME_1, 0)
+30  DIM FILENAME_2 = "new_text.txt"
+40  LET file_2 = OPEN(FILENAME_2, 1)
+50
+60  REM Read loop:
+70      LET symbol = INPUT(file_1)
+80      IF symbol = 0-1 THEN 120
+90          PRINT(file_2, symbol)
+100         GOTO 60
+110
+120 CLOSE(file_1)
+130 CLOSE(file_2)
+140
+150 LET file_3 = OPEN(FILENAME_2, 2)
+160 DIM TEST_STRING = "Test 2.\n"
+170 PRINT(file_3, TEST_STRING)
+180 CLOSE(file_3)
