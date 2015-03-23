@@ -29,15 +29,15 @@ expression atom =
 	| function call
 	| "(", expression addition, ")";
 
-comment = "REM", {?/./? - line break};
-identifier = ?/[a-z_]\w*/i? - "DIM" - "LET" - "GOTO" - "IF" - "THEN" - "REM";
+comment = "REM", {? /./ ? - line break};
+identifier = ? /[a-z_]\w*/i ? - "DIM" - "LET" - "GOTO" - "IF" - "THEN" - "REM";
 array access = identifier, "[", expression addition, "]";
 function call =
 	identifier, "(",
 		[expression addition, {",", expression addition}],
 	")";
 
-line break = ?/(\r|\n)+/?;
-constant positive integer = ?/[1-9]\d*/?;
-constant real = ?/[1-9]\d*(\.\d+)?/?;
-constant string = ?/"(\\.|[^"])*"/?;
+line break = ? /(\r|\n)+/ ?;
+constant positive integer = ? /[1-9]\d*/ ?;
+constant real = ? /[1-9]\d*(\.\d+)?/ ?;
+constant string = ? /"(\\.|[^"])*"/ ?;
