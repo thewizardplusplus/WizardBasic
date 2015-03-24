@@ -5,17 +5,29 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
+	"strconv"
+	"strings"
 )
+
+type line struct {
+	label     int
+	statement string
+}
 
 var (
 	usageDescription = makeUsageDescription()
+	linePattern      = regexp.MustCompile(`^\s*(\d+)?\s*(.*?)\s*$`)
 )
 
 func main() {
 	filename := processArguments()
 	code := readFile(filename)
-	fmt.Println(code)
+	rawLines := splitLines(code)
+	parsedLines := parseLines(rawLines)
+
+	fmt.Println(parsedLines)
 }
 
 func makeUsageDescription() string {
@@ -68,4 +80,35 @@ func readFile(filename string) string {
 	}
 
 	return string(code)
+}
+
+func splitLines(code string) []string {
+	return strings.Split(code, "\n")
+}
+
+func parseLines(lines []string) []line {
+	var parsedLines []line
+	for index, content := range lines {
+		parsedLine := line{}
+
+		lineParts := linePattern.FindStringSubmatch(content)
+		if len(lineParts) == 3 {
+			oldLabel, error := strconv.Atoi(lineParts[1])
+			if error != nil && len(lineParts[1]) != 0 {
+				fmt.Printf(
+					"Warning: invalid label \"%s\" on line #%d.\n",
+					lineParts[1],
+					index+1,
+				)
+			}
+
+			parsedLine = line{oldLabel, lineParts[2]}
+		} else {
+			fmt.Printf("Warning: invalid line #%d.\n", index+1)
+		}
+
+		parsedLines = append(parsedLines, parsedLine)
+	}
+
+	return parsedLines
 }
