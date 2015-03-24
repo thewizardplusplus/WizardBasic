@@ -8,18 +8,6 @@ import (
 	"runtime"
 )
 
-type messageType uint8
-type exitFlag bool
-
-const (
-	infoMessage messageType = iota
-	warningMessage
-	errorMessage
-
-	notNeedExit exitFlag = false
-	needExit    exitFlag = true
-)
-
 var (
 	usageDescription = makeUsageDescription()
 )
@@ -41,7 +29,7 @@ func makeUsageDescription() string {
 			"\tgo run %s [options] <filename>\n"+
 			"\n"+
 			"Options:\n"+
-			"\t-h, --help - show help.",
+			"\t-h, --help - show help.\n",
 		filepath.Base(scriptPath),
 	)
 }
@@ -49,57 +37,34 @@ func makeUsageDescription() string {
 func processArguments() string {
 	numberOfArguments := len(os.Args)
 	if numberOfArguments < 2 {
-		printMessage(
-			errorMessage,
-			needExit,
-			"filename not specified"+
+		fmt.Print(
+			"Error: filename not specified.\n" +
+				"\n" +
 				usageDescription,
 		)
+
+		os.Exit(1)
 	}
 
 	firstArgument := os.Args[1]
 	if firstArgument == "-h" || firstArgument == "--help" {
-		printMessage(infoMessage, needExit, usageDescription)
+		fmt.Print(usageDescription)
+		os.Exit(0)
 	}
 
 	return firstArgument
 }
 
-func printUsage() {}
-
-func printMessage(
-	messageType messageType,
-	isNeedExit exitFlag,
-	format string,
-	arguments ...interface{},
-) {
-	if messageType == warningMessage {
-		format = fmt.Sprintf("Warning: %s.", format)
-	} else if messageType == errorMessage {
-		format = fmt.Sprintf("Error: %s.", format)
-	}
-	format += "\n"
-	fmt.Printf(format, arguments...)
-
-	if isNeedExit {
-		if messageType != errorMessage {
-			os.Exit(0)
-		} else {
-			os.Exit(1)
-		}
-	}
-}
-
 func readFile(filename string) string {
 	code, error := ioutil.ReadFile(filename)
 	if error != nil {
-		printMessage(
-			errorMessage,
-			needExit,
-			"unable to read file \"%s\" (%v)",
+		fmt.Printf(
+			"Error: unable to read file \"%s\" (%v).\n",
 			filename,
 			error,
 		)
+
+		os.Exit(1)
 	}
 
 	return string(code)
