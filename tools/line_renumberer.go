@@ -31,13 +31,9 @@ func main() {
 	code := readFile(filename)
 	rawLines := splitLines(code)
 	parsedLines := parseLines(rawLines)
-	fmt.Println(parsedLines)
-
 	labels := makelabels(parsedLines)
-	fmt.Println(labels)
-
 	renumberedLines := renumberLines(parsedLines, labels)
-	fmt.Println(renumberedLines)
+	printLines(renumberedLines)
 }
 
 func makeUsageDescription() string {
@@ -194,4 +190,36 @@ func labelCorrector(index int, labels labelMap) corrector {
 		newLabel := labels[oldLabel]
 		return strconv.Itoa(newLabel)
 	}
+}
+
+func printLines(lines []line) {
+	maximalLabelWidth := getMaximalLabelWidth(lines)
+	for _, renumberedLine := range lines {
+		indent := makeIndent(renumberedLine.label, maximalLabelWidth)
+		fmt.Printf(
+			"%d%s %s\n",
+			renumberedLine.label,
+			indent,
+			renumberedLine.statement,
+		)
+	}
+}
+
+func getMaximalLabelWidth(lines []line) int {
+	maximalLabelWidth := 0
+	if len(lines) != 0 {
+		maximalLabel := lines[len(lines)-1].label
+		maximalLabelWidth = getLabelWidth(maximalLabel)
+	}
+
+	return maximalLabelWidth
+}
+
+func getLabelWidth(label int) int {
+	return len(strconv.Itoa(label))
+}
+
+func makeIndent(label int, maximalLabelWidth int) string {
+	indentWidth := maximalLabelWidth - getLabelWidth(label)
+	return strings.Repeat(" ", indentWidth)
 }
