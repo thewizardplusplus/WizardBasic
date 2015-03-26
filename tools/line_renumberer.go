@@ -97,26 +97,33 @@ func splitLines(code string) []string {
 func parseLines(lines []string) []line {
 	var parsedLines []line
 	for index, content := range lines {
-		parsedLine := line{}
-
-		lineParts := linePattern.FindStringSubmatch(content)
-		if len(lineParts) == 3 {
-			oldLabel, error := strconv.Atoi(lineParts[1])
-			if error != nil && len(lineParts[1]) != 0 {
-				fmt.Printf(
-					"Warning: invalid label \"%s\" on line #%d.\n",
-					lineParts[1],
-					index+1,
-				)
-			}
-
-			parsedLine = line{oldLabel, lineParts[2]}
-		} else {
-			fmt.Printf("Warning: invalid line #%d.\n", index+1)
-		}
-
+		parsedLine := parseLine(index, content)
 		parsedLines = append(parsedLines, parsedLine)
 	}
 
 	return parsedLines
+}
+
+func parseLine(index int, content string) line {
+	lineParts := linePattern.FindStringSubmatch(content)
+	if len(lineParts) != 3 {
+		fmt.Printf("Warning: invalid line #%d.\n", index+1)
+		return line{}
+	}
+
+	label := parseLabel(index, lineParts[1])
+	return line{label, lineParts[2]}
+}
+
+func parseLabel(index int, stringLabel string) int {
+	integralLabel, error := strconv.Atoi(stringLabel)
+	if error != nil && len(stringLabel) != 0 {
+		fmt.Printf(
+			"Warning: invalid label \"%s\" on line #%d.\n",
+			stringLabel,
+			index+1,
+		)
+	}
+
+	return integralLabel
 }
