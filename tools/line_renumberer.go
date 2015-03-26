@@ -15,10 +15,15 @@ type line struct {
 	label     int
 	statement string
 }
+type labelMap map[int]int
+type corrector func(string) string
 
 var (
-	usageDescription = makeUsageDescription()
-	linePattern      = regexp.MustCompile(`^\s*(\d+)?\s*(.*?)\s*$`)
+	usageDescription     = makeUsageDescription()
+	linePattern          = regexp.MustCompile(`^\s*(\d+)?\s*(.*?)\s*$`)
+	jumpPattern          = regexp.MustCompile(`\bGOTO\s+\d+`)
+	conditionJumpPattern = regexp.MustCompile(`\bTHEN\s+\d+`)
+	labelPattern         = regexp.MustCompile(`\d+`)
 )
 
 func main() {
@@ -28,8 +33,11 @@ func main() {
 	parsedLines := parseLines(rawLines)
 	fmt.Println(parsedLines)
 
-	labelMap := makeLabelMap(parsedLines)
-	fmt.Println(labelMap)
+	labels := makelabels(parsedLines)
+	fmt.Println(labels)
+
+	renumberedLines := renumberLines(parsedLines, labels)
+	fmt.Println(renumberedLines)
 }
 
 func makeUsageDescription() string {
@@ -130,11 +138,60 @@ func parseLabel(index int, stringLabel string) int {
 	return integralLabel
 }
 
-func makeLabelMap(lines []line) map[int]int {
-	labelMap := make(map[int]int)
+func makelabels(lines []line) labelMap {
+	labels := make(labelMap)
 	for index, parsedLine := range lines {
-		labelMap[parsedLine.label] = (index + 1) * 10
+		labels[parsedLine.label] = (index + 1) * 10
 	}
 
-	return labelMap
+	return labels
+}
+
+func renumberLines(lines []line, labels labelMap) []line {
+	var renumberedLines []line
+	for index, parsedLine := range lines {
+		renumberedLine := renumberLine(index, parsedLine, labels)
+		renumberedLines = append(renumberedLines, renumberedLine)
+	}
+
+	return renumberedLines
+}
+
+func renumberLine(index int, parsedLine line, labels labelMap) line {
+	correctedLabel := labels[parsedLine.label]
+	correctedStatement := correctStatement(
+		index,
+		parsedLine.statement,
+		labels,
+	)
+	return line{correctedLabel, correctedStatement}
+}
+
+func correctStatement(index int, statement string, labels labelMap) string {
+	statement = jumpPattern.ReplaceAllStringFunc(
+		statement,
+		jumpCorrector(index, labels),
+	)
+	statement = conditionJumpPattern.ReplaceAllStringFunc(
+		statement,
+		jumpCorrector(index, labels),
+	)
+	return statement
+}
+
+func jumpCorrector(index int, labels labelMap) corrector {
+	return func(match string) string {
+		return labelPattern.ReplaceAllStringFunc(
+			match,
+			labelCorrector(index, labels),
+		)
+	}
+}
+
+func labelCorrector(index int, labels labelMap) corrector {
+	return func(match string) string {
+		oldLabel := parseLabel(index, match)
+		newLabel := labels[oldLabel]
+		return strconv.Itoa(newLabel)
+	}
 }
