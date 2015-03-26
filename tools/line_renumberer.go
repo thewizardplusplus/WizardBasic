@@ -47,6 +47,15 @@ func makeUsageDescription() string {
 }
 
 func processArguments() string {
+	testArguments()
+
+	firstArgument := os.Args[1]
+	processHelpOption(firstArgument)
+
+	return firstArgument
+}
+
+func testArguments() {
 	numberOfArguments := len(os.Args)
 	if numberOfArguments < 2 {
 		fmt.Print(
@@ -57,14 +66,13 @@ func processArguments() string {
 
 		os.Exit(1)
 	}
+}
 
-	firstArgument := os.Args[1]
+func processHelpOption(firstArgument string) {
 	if firstArgument == "-h" || firstArgument == "--help" {
 		fmt.Print(usageDescription)
 		os.Exit(0)
 	}
-
-	return firstArgument
 }
 
 func readFile(filename string) string {
