@@ -21,9 +21,9 @@ type corrector func(string) string
 var (
 	usageDescription     = makeUsageDescription()
 	linePattern          = regexp.MustCompile(`^\s*(\d+)?\s*(.*?)\s*$`)
-	jumpPattern          = regexp.MustCompile(`\bGOTO\s+\d+`)
-	conditionJumpPattern = regexp.MustCompile(`\bTHEN\s+\d+`)
-	labelPattern         = regexp.MustCompile(`\d+`)
+	jumpPattern          = regexp.MustCompile(`\bGOTO\s+\d+$`)
+	conditionJumpPattern = regexp.MustCompile(`\bTHEN\s+\d+$`)
+	labelPattern         = regexp.MustCompile(`\d+$`)
 )
 
 func main() {
@@ -33,7 +33,8 @@ func main() {
 	parsedLines := parseLines(rawLines)
 	labels := makelabels(parsedLines)
 	renumberedLines := renumberLines(parsedLines, labels)
-	printLines(renumberedLines)
+	formattedLines := formatLines(renumberedLines)
+	printLines(formattedLines)
 }
 
 func makeUsageDescription() string {
@@ -222,4 +223,31 @@ func getLabelWidth(label int) int {
 func makeIndent(label int, maximalLabelWidth int) string {
 	indentWidth := maximalLabelWidth - getLabelWidth(label)
 	return strings.Repeat(" ", indentWidth)
+}
+
+func formatLines(lines []line) []line {
+	var formattedLines []line
+	prefix := ""
+	for _, renumberedLine := range lines {
+		if !filterLineForFormatting(renumberedLine.statement) {
+			continue
+		}
+
+		formattedLine, nextPrefix := formatLine(renumberedLine, prefix)
+		prefix = nextPrefix
+
+		formattedLines = append(formattedLines, formattedLine)
+	}
+
+	return formattedLines
+}
+
+func filterLineForFormatting(statement string) bool {
+	matchJump := jumpPattern.MatchString(statement)
+	matchConditionJump := conditionJumpPattern.MatchString(statement)
+	return matchJump || matchConditionJump
+}
+
+func formatLine(renumberedLine line, prefix string) (line, string) {
+	return renumberedLine, prefix
 }
