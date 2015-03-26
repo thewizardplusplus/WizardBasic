@@ -26,8 +26,10 @@ func main() {
 	code := readFile(filename)
 	rawLines := splitLines(code)
 	parsedLines := parseLines(rawLines)
-
 	fmt.Println(parsedLines)
+
+	labelMap := makeLabelMap(parsedLines)
+	fmt.Println(labelMap)
 }
 
 func makeUsageDescription() string {
@@ -126,4 +128,13 @@ func parseLabel(index int, stringLabel string) int {
 	}
 
 	return integralLabel
+}
+
+func makeLabelMap(lines []line) map[int]int {
+	labelMap := make(map[int]int)
+	for index, parsedLine := range lines {
+		labelMap[parsedLine.label] = (index + 1) * 10
+	}
+
+	return labelMap
 }
