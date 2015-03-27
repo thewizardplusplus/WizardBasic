@@ -9,6 +9,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
 type line struct {
@@ -20,7 +21,7 @@ type corrector func(string) string
 
 var (
 	usageDescription     = makeUsageDescription()
-	linePattern          = regexp.MustCompile(`^\s*(\d+)?\s*(.*?)\s*$`)
+	linePattern          = regexp.MustCompile(`^\s*(\d+)?(.*?)\s*$`)
 	jumpPattern          = regexp.MustCompile(`\bGOTO\s+\d+$`)
 	conditionJumpPattern = regexp.MustCompile(`\bTHEN\s+\d+$`)
 	labelPattern         = regexp.MustCompile(`\d+$`)
@@ -29,12 +30,12 @@ var (
 func main() {
 	filename := processArguments()
 	code := readFile(filename)
-	rawLines := splitLines(code)
+	cuttedCode := removeEndingWhitespaces(code)
+	rawLines := splitLines(cuttedCode)
 	parsedLines := parseLines(rawLines)
 	labels := makelabels(parsedLines)
 	renumberedLines := renumberLines(parsedLines, labels)
-	formattedLines := formatLines(renumberedLines)
-	printLines(formattedLines)
+	printLines(renumberedLines)
 }
 
 func makeUsageDescription() string {
@@ -95,6 +96,10 @@ func readFile(filename string) string {
 	}
 
 	return string(code)
+}
+
+func removeEndingWhitespaces(code string) string {
+	return strings.TrimRightFunc(code, unicode.IsSpace)
 }
 
 func splitLines(code string) []string {
@@ -194,60 +199,11 @@ func labelCorrector(index int, labels labelMap) corrector {
 }
 
 func printLines(lines []line) {
-	maximalLabelWidth := getMaximalLabelWidth(lines)
 	for _, renumberedLine := range lines {
-		indent := makeIndent(renumberedLine.label, maximalLabelWidth)
 		fmt.Printf(
-			"%d%s %s\n",
+			"%d%s\n",
 			renumberedLine.label,
-			indent,
 			renumberedLine.statement,
 		)
 	}
-}
-
-func getMaximalLabelWidth(lines []line) int {
-	maximalLabelWidth := 0
-	if len(lines) != 0 {
-		maximalLabel := lines[len(lines)-1].label
-		maximalLabelWidth = getLabelWidth(maximalLabel)
-	}
-
-	return maximalLabelWidth
-}
-
-func getLabelWidth(label int) int {
-	return len(strconv.Itoa(label))
-}
-
-func makeIndent(label int, maximalLabelWidth int) string {
-	indentWidth := maximalLabelWidth - getLabelWidth(label)
-	return strings.Repeat(" ", indentWidth)
-}
-
-func formatLines(lines []line) []line {
-	var formattedLines []line
-	prefix := ""
-	for _, renumberedLine := range lines {
-		if !filterLineForFormatting(renumberedLine.statement) {
-			continue
-		}
-
-		formattedLine, nextPrefix := formatLine(renumberedLine, prefix)
-		prefix = nextPrefix
-
-		formattedLines = append(formattedLines, formattedLine)
-	}
-
-	return formattedLines
-}
-
-func filterLineForFormatting(statement string) bool {
-	matchJump := jumpPattern.MatchString(statement)
-	matchConditionJump := conditionJumpPattern.MatchString(statement)
-	return matchJump || matchConditionJump
-}
-
-func formatLine(renumberedLine line, prefix string) (line, string) {
-	return renumberedLine, prefix
 }
