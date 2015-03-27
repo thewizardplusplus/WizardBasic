@@ -1,74 +1,79 @@
 10  LET PLAYER_ROTATE_SPEED = 0.25
 20  LET PI = 3.1415926
-30  LET PLAYER_MOVE_SPEED = 0.05
-40  LET PLAYER_POSITION_Z = 2.5
-50  LET SCENE_RADIUS_IN_SQUARE = 5 * 5
-60
-70  FOG(1)
-80  FOG_COLOR(0, 0, 0)
-90  FOG_DEPTH(5)
-100
-110 DIM filename = "data/plateau.ao"
-120 LOAD_OBJECT(filename)
-130
-140 LET screen_center_x = SCREEN_WIDTH() / 2
-150 LET screen_center_y = SCREEN_HEIGHT() / 2
-160 LET camera_angle_x = 0
-170 LET camera_angle_z = 0
-180 LET camera_position_x = 0
-190 LET camera_position_y = 0
-200
-210 REM Main loop:
-220 IF KEYSTATE(1) = 1 THEN 730
-230     REM Camera rotation:
-240     LET cursor_position_x = MOUSEX()
-250     LET cursor_position_y = MOUSEY()
-260     POSITION_MOUSE(screen_center_x, screen_center_y)
-270
-280     LET camera_angle_x = camera_angle_x + PLAYER_ROTATE_SPEED * (cursor_position_y - screen_center_y)
-290     IF camera_angle_x < 90 THEN 310
-300         LET camera_angle_x = 90
-310     IF camera_angle_x > 0 - 90 THEN 330
-320         LET camera_angle_x = 0 - 90
-330     LET camera_angle_z = camera_angle_z + PLAYER_ROTATE_SPEED * (cursor_position_x - screen_center_x)
-340
-350     ROTATION_CAMERA(camera_angle_x, 0, camera_angle_z)
-360
-370     REM Camera move:
-380     LET direction_x = 0
-390     LET direction_y = 0
-400     IF KEYSTATE(63) = 0 THEN 440
-410         LET direction_x = direction_x + COS((camera_angle_z - 90) * PI / 180)
-420         LET direction_y = direction_y + SIN((camera_angle_z - 90) * PI / 180)
-430         GOTO 470
-440     IF KEYSTATE(59) = 0 THEN 470
-450         LET direction_x = direction_x - COS((camera_angle_z - 90) * PI / 180)
-460         LET direction_y = direction_y - SIN((camera_angle_z - 90) * PI / 180)
-470     IF KEYSTATE(41) = 0 THEN 510
-480         LET direction_x = direction_x - COS(camera_angle_z * PI / 180)
-490         LET direction_y = direction_y - SIN(camera_angle_z * PI / 180)
-500         GOTO 540
-510     IF KEYSTATE(44) = 0 THEN 540
-520         LET direction_x = direction_x + COS(camera_angle_z * PI / 180)
-530         LET direction_y = direction_y + SIN(camera_angle_z * PI / 180)
-540     LET direction_length = SQR(direction_x * direction_x + direction_y * direction_y)
-550     IF direction_length = 0 THEN 590
-560         LET direction_x = direction_x / direction_length
-570         LET direction_y = direction_y / direction_length
-580
-590     LET new_camera_position_x = camera_position_x + PLAYER_MOVE_SPEED * direction_x
-600     LET new_camera_position_y = camera_position_y + PLAYER_MOVE_SPEED * direction_y
-610     IF new_camera_position_x * new_camera_position_x + camera_position_y * camera_position_y < SCENE_RADIUS_IN_SQUARE THEN 630
-620         LET new_camera_position_x = camera_position_x
-630     IF camera_position_x * camera_position_x + new_camera_position_y * new_camera_position_y < SCENE_RADIUS_IN_SQUARE THEN 650
-640         LET new_camera_position_y = camera_position_y
-650     LET camera_position_x = new_camera_position_x
-660     LET camera_position_y = new_camera_position_y
-670
-680     POSITION_CAMERA(camera_position_x, camera_position_y, PLAYER_POSITION_Z)
-690
-700     SYNC()
-710     GOTO 210
+30  LET ESCAPE_KEY = 1
+40  LET S_KEY = 59
+50  LET W_KEY = 63
+60  LET A_KEY = 41
+70  LET D_KEY = 44
+80  LET PLAYER_MOVE_SPEED = 0.05
+90  LET PLAYER_POSITION_Z = 2.5
+100 LET SCENE_RADIUS_IN_SQUARE = 5 * 5
+110
+120 FOG(1)
+130 FOG_COLOR(0, 0, 0)
+140 FOG_DEPTH(5)
+150
+160 DIM filename = "data/plateau.ao"
+170 LOAD_OBJECT(filename)
+180
+190 LET screen_center_x = SCREEN_WIDTH() / 2
+200 LET screen_center_y = SCREEN_HEIGHT() / 2
+210 LET camera_angle_x = 0
+220 LET camera_angle_z = 0
+230 LET camera_position_x = 0
+240 LET camera_position_y = 0
+250
+260 REM Main loop:
+270 IF KEYSTATE(ESCAPE_KEY) = 1 THEN 780
+280     REM Camera rotation:
+290     LET cursor_position_x = MOUSEX()
+300     LET cursor_position_y = MOUSEY()
+310     POSITION_MOUSE(screen_center_x, screen_center_y)
+320
+330     LET camera_angle_x = camera_angle_x + PLAYER_ROTATE_SPEED * (cursor_position_y - screen_center_y)
+340     IF camera_angle_x < 90 THEN 360
+350         LET camera_angle_x = 90
+360     IF camera_angle_x > 0 - 90 THEN 380
+370         LET camera_angle_x = 0 - 90
+380     LET camera_angle_z = camera_angle_z + PLAYER_ROTATE_SPEED * (cursor_position_x - screen_center_x)
+390
+400     ROTATION_CAMERA(camera_angle_x, 0, camera_angle_z)
+410
+420     REM Camera move:
+430     LET direction_x = 0
+440     LET direction_y = 0
+450     IF KEYSTATE(W_KEY) = 0 THEN 490
+460         LET direction_x = direction_x + COS((camera_angle_z - 90) * PI / 180)
+470         LET direction_y = direction_y + SIN((camera_angle_z - 90) * PI / 180)
+480         GOTO 520
+490     IF KEYSTATE(S_KEY) = 0 THEN 520
+500         LET direction_x = direction_x - COS((camera_angle_z - 90) * PI / 180)
+510         LET direction_y = direction_y - SIN((camera_angle_z - 90) * PI / 180)
+520     IF KEYSTATE(A_KEY) = 0 THEN 560
+530         LET direction_x = direction_x - COS(camera_angle_z * PI / 180)
+540         LET direction_y = direction_y - SIN(camera_angle_z * PI / 180)
+550         GOTO 590
+560     IF KEYSTATE(D_KEY) = 0 THEN 590
+570         LET direction_x = direction_x + COS(camera_angle_z * PI / 180)
+580         LET direction_y = direction_y + SIN(camera_angle_z * PI / 180)
+590     LET direction_length = SQR(direction_x * direction_x + direction_y * direction_y)
+600     IF direction_length = 0 THEN 640
+610         LET direction_x = direction_x / direction_length
+620         LET direction_y = direction_y / direction_length
+630
+640     LET new_camera_position_x = camera_position_x + PLAYER_MOVE_SPEED * direction_x
+650     LET new_camera_position_y = camera_position_y + PLAYER_MOVE_SPEED * direction_y
+660     IF new_camera_position_x * new_camera_position_x + camera_position_y * camera_position_y < SCENE_RADIUS_IN_SQUARE THEN 680
+670         LET new_camera_position_x = camera_position_x
+680     IF camera_position_x * camera_position_x + new_camera_position_y * new_camera_position_y < SCENE_RADIUS_IN_SQUARE THEN 700
+690         LET new_camera_position_y = camera_position_y
+700     LET camera_position_x = new_camera_position_x
+710     LET camera_position_y = new_camera_position_y
 720
-730 REM Dummy line:
-740 RND()
+730     POSITION_CAMERA(camera_position_x, camera_position_y, PLAYER_POSITION_Z)
+740
+750     SYNC()
+760     GOTO 260
+770
+780 REM Dummy line:
+790 RND()
