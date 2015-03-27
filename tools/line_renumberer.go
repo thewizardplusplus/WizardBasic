@@ -35,7 +35,8 @@ func main() {
 	parsedLines := parseLines(rawLines)
 	labels := makelabels(parsedLines)
 	renumberedLines := renumberLines(parsedLines, labels)
-	printLines(renumberedLines)
+	renumberedCode := combineLines(renumberedLines)
+	updateFile(filename, renumberedCode)
 }
 
 func makeUsageDescription() string {
@@ -198,12 +199,28 @@ func labelCorrector(index int, labels labelMap) corrector {
 	}
 }
 
-func printLines(lines []line) {
+func combineLines(lines []line) string {
+	code := ""
 	for _, renumberedLine := range lines {
-		fmt.Printf(
+		code += fmt.Sprintf(
 			"%d%s\n",
 			renumberedLine.label,
 			renumberedLine.statement,
 		)
+	}
+
+	return code
+}
+
+func updateFile(filename string, code string) {
+	error := ioutil.WriteFile(filename, []byte(code), 0644)
+	if error != nil {
+		fmt.Printf(
+			"Error: unable to update file \"%s\" (%v).\n",
+			filename,
+			error,
+		)
+
+		os.Exit(1)
 	}
 }
