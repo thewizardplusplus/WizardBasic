@@ -5,9 +5,9 @@
 50  PLAY_OBJECT(gate, 1, 100, 1)
 60
 70  REM Main loop:
-80      IF KEYSTATE(1) = 1 THEN 120
-90          SYNC()
-100         GOTO 70
+80  IF KEYSTATE(1) = 1 THEN 120
+90      SYNC()
+100     GOTO 70
 110
 120 REM Dummy line:
 130 RND()
