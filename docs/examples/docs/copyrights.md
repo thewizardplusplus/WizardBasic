@@ -1,5 +1,10 @@
 # Copyrights
 
+## Models
+
+* eye &mdash; CC-BY, month3d, [http://www.blendswap.com/blends/view/23574](
+http://www.blendswap.com/blends/view/23574).
+
 ## Sounds
 
 * wind &mdash; CC-BY-NC, Robinhood76,
