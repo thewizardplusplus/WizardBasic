@@ -30,7 +30,7 @@ int main(int number_of_arguments, char** arguments) {
 		|| std::find(options_begin, options_end, "-v") != options_end
 	) {
 		std::cout
-			<< "Wizard BASIC 2 compiler, v0.5\n"
+			<< "Wizard BASIC 2 compiler, v1.0\n"
 			<< "(c) thewizardplusplus, 2013-2015\n";
 
 		return EXIT_SUCCESS;
