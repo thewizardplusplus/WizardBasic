@@ -33,7 +33,7 @@ func main() {
 	cuttedCode := removeEndingWhitespaces(code)
 	rawLines := splitLines(cuttedCode)
 	parsedLines := parseLines(rawLines)
-	labels := makelabels(parsedLines)
+	labels := makeLabelMap(parsedLines)
 	renumberedLines := renumberLines(parsedLines, labels)
 	renumberedCode := combineLines(renumberedLines)
 	updateFile(filename, renumberedCode)
@@ -141,7 +141,7 @@ func parseLabel(index int, stringLabel string) int {
 	return integralLabel
 }
 
-func makelabels(lines []line) labelMap {
+func makeLabelMap(lines []line) labelMap {
 	labels := make(labelMap)
 	for index, parsedLine := range lines {
 		labels[parsedLine.label] = (index + 1) * 10
