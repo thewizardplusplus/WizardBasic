@@ -39,5 +39,5 @@ function call =
 
 line break = ? /(\r|\n)+/ ?;
 constant positive integer = ? /[1-9]\d*/ ?;
-constant real = ? /[1-9]\d*(\.\d+)?/ ?;
+constant real = ? /(0|[1-9]\d*)(\.\d+)?/ ?;
 constant string = ? /"(\\.|[^"])*"/ ?;

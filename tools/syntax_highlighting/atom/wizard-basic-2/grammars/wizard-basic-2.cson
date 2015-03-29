@@ -1,0 +1,48 @@
+"name": "Wizard BASIC 2",
+"scopeName": "source.wizard-basic-2",
+"fileTypes": ["wb2"],
+"patterns": [
+	{
+		"match": "^[1-9]\\d*\\b",
+		"name": "entity.name.type.wizard-basic-2",
+		"comment": "Labels."
+	},
+	{
+		"match": "\\b(?:GOTO|THEN)\\s+([1-9]\\d*)\\b",
+		"name": "keyword.control.wizard-basic-2",
+		"captures": {
+			"1": {"name": "entity.name.type.wizard-basic-2"}
+		},
+		"comment": "Labels."
+	},
+	{
+		"match": "\\b(DIM|GOTO|IF|LET|THEN)\\b",
+		"name": "keyword.control.statement.wizard-basic-2",
+		"comment": "Keywords."
+	},
+	{
+		"match": "\\=|<|>|\\+|\\-|\\*|/",
+		"name": "keyword.operator.wizard-basic-2",
+		"comment": "Operators."
+	},
+	{
+		"match": "\\b(SIN|COS|TAN|ATN|EXP|LOG|SQR|ABS|INT|RND|TIMER|PRINT|PRINT|PRINT|OPEN|INPUT|CLOSE|SCREEN_WIDTH|SCREEN_HEIGHT|POSITION_CAMERA|ROTATION_CAMERA|FOG|FOG_COLOR|FOG_DEPTH|LOAD_OBJECT|POSITION_OBJECT|ROTATION_OBJECT|SCALE_OBJECT|PLAY_OBJECT|STOP_OBJECT|KEYSTATE|MOUSECLICK|MOUSEX|MOUSEY|POSITION_MOUSE|SYNC|LOAD_SOUND|PLAY_SOUND|STOP_SOUND|POSITION_SOUND|POSITION_LISTENER|ROTATION_LISTENER)\\b",
+		"name": "entity.name.function.wizard-basic-2",
+		"comment": "Built-in functions."
+	},
+	{
+		"match": "\\b(0|[1-9]\\d*)(\\.\\d+)?\\b",
+		"name": "constant.numeric.wizard-basic-2",
+		"comment": "Numbers."
+	},
+	{
+		"match": "\"(\\.|[^\"])*\"",
+		"name": "string.quoted.double.wizard-basic-2",
+		"comment": "Strings."
+	},
+	{
+		"match": "\\bREM\\b.*$",
+		"name": "comment.line.wizard-basic-2",
+		"comment": "Comments."
+	}
+]
